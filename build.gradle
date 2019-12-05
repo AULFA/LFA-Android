@@ -49,17 +49,24 @@ ext {
 }
 
 ext.libraries = [
-  googleAutoValue              : "com.google.auto.value:auto-value:1.5",
-  nyplSimplifiedBootAPI        : "org.librarysimplified:org.librarysimplified.boot.api:${simplifiedVersion}",
-  nyplSimplifiedMain           : "org.librarysimplified:org.librarysimplified.main:${simplifiedVersion}",
-  nyplSimplifiedSourceFileBased: "org.librarysimplified:org.librarysimplified.accounts.source.filebased:${simplifiedVersion}",
-  nyplSimplifiedProfilesAPI    : "org.librarysimplified:org.librarysimplified.profiles.api:${simplifiedVersion}",
-  nyplSimplifiedUICatalog      : "org.librarysimplified:org.librarysimplified.ui.catalog:${simplifiedVersion}",
-  nyplSimplifiedUISettings     : "org.librarysimplified:org.librarysimplified.ui.settings:${simplifiedVersion}",
-  nyplSimplifiedUIBranding     : "org.librarysimplified:org.librarysimplified.ui.branding:${simplifiedVersion}",
-  nyplSimplifiedUITheme        : "org.librarysimplified:org.librarysimplified.ui.theme:${simplifiedVersion}",
-  nyplSourceSPI                : "org.librarysimplified:org.librarysimplified.accounts.source.spi:${simplifiedVersion}",
-  slf4j                        : "org.slf4j:slf4j-api:1.7.25",
+  googleAutoValue                    : "com.google.auto.value:auto-value:1.5",
+  nyplSimplifiedBootAPI              : "org.librarysimplified:org.librarysimplified.boot.api:${simplifiedVersion}",
+  nyplSimplifiedDatePicker           : "org.librarysimplified:org.librarysimplified.ui.datepicker:${simplifiedVersion}",
+  nyplSimplifiedFutures              : "org.librarysimplified:org.librarysimplified.futures:${simplifiedVersion}",
+  nyplSimplifiedMain                 : "org.librarysimplified:org.librarysimplified.main:${simplifiedVersion}",
+  nyplSimplifiedNavigationAPI        : "org.librarysimplified:org.librarysimplified.ui.navigation.api:${simplifiedVersion}",
+  nyplSimplifiedProfilesAPI          : "org.librarysimplified:org.librarysimplified.profiles.api:${simplifiedVersion}",
+  nyplSimplifiedProfilesControllerAPI: "org.librarysimplified:org.librarysimplified.profiles.controller.api:${simplifiedVersion}",
+  nyplSimplifiedServicesAPI          : "org.librarysimplified:org.librarysimplified.services.api:${simplifiedVersion}",
+  nyplSimplifiedSourceFileBased      : "org.librarysimplified:org.librarysimplified.accounts.source.filebased:${simplifiedVersion}",
+  nyplSimplifiedUIBranding           : "org.librarysimplified:org.librarysimplified.ui.branding:${simplifiedVersion}",
+  nyplSimplifiedUICatalog            : "org.librarysimplified:org.librarysimplified.ui.catalog:${simplifiedVersion}",
+  nyplSimplifiedUIProfiles           : "org.librarysimplified:org.librarysimplified.ui.profiles:${simplifiedVersion}",
+  nyplSimplifiedUISettings           : "org.librarysimplified:org.librarysimplified.ui.settings:${simplifiedVersion}",
+  nyplSimplifiedUITheme              : "org.librarysimplified:org.librarysimplified.ui.theme:${simplifiedVersion}",
+  nyplSimplifiedUIThreadAPI          : "org.librarysimplified:org.librarysimplified.ui.thread.api:${simplifiedVersion}",
+  nyplSourceSPI                      : "org.librarysimplified:org.librarysimplified.accounts.source.spi:${simplifiedVersion}",
+  slf4j                              : "org.slf4j:slf4j-api:1.7.25",
 ]
 
 apply plugin: "io.codearte.nexus-staging"

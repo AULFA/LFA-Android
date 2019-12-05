@@ -13,6 +13,8 @@ ReaderClientCert.sig
 account_bundled_credentials.json
 bugsnag.conf
 cardcreator.conf
+credentials.json
+one.lfa.android.app.online/bundles
 one.lfa.android.app.online/src/main/assets/feeds
 one.lfa.android.app.online/src/main/assets/images
 one.lfa.android.app.online/src/main/assets/index.txt

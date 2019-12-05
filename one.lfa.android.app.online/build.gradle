@@ -39,7 +39,7 @@ android {
   defaultConfig {
     versionName = VERSION_NAME
     versionCode = buildVersion()
-    setProperty("archivesBaseName", "lfa-${VERSION_NAME}-${versionCode}")
+    setProperty("archivesBaseName", "${POM_NAME}-${VERSION_NAME}-${versionCode}")
   }
 
   signingConfigs {
