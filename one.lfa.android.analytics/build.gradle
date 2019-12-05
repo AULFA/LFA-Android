@@ -1,0 +1,6 @@
+dependencies {
+  api libraries.nyplSimplifiedAnalyticsAPI
+  api libraries.nyplSimplifiedFiles
+  api libraries.nyplSimplifiedThreads
+  api libraries.slf4j
+}

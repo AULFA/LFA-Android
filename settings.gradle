@@ -1,2 +1,4 @@
+include ':one.lfa.android.analytics'
 include ':one.lfa.android.app.online'
 include ':one.lfa.android.services'
+include ':one.lfa.android.tests'

@@ -50,8 +50,13 @@ ext {
 
 ext.libraries = [
   googleAutoValue                    : "com.google.auto.value:auto-value:1.5",
+  junit                              : "junit:junit:4.12",
+  kotlinStdlib                       : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+  mockitoAndroid                     : "org.mockito:mockito-android:2.22.0",
+  nyplSimplifiedAnalyticsAPI         : "org.librarysimplified:org.librarysimplified.analytics.api:${simplifiedVersion}",
   nyplSimplifiedBootAPI              : "org.librarysimplified:org.librarysimplified.boot.api:${simplifiedVersion}",
   nyplSimplifiedDatePicker           : "org.librarysimplified:org.librarysimplified.ui.datepicker:${simplifiedVersion}",
+  nyplSimplifiedFiles                : "org.librarysimplified:org.librarysimplified.files:${simplifiedVersion}",
   nyplSimplifiedFutures              : "org.librarysimplified:org.librarysimplified.futures:${simplifiedVersion}",
   nyplSimplifiedMain                 : "org.librarysimplified:org.librarysimplified.main:${simplifiedVersion}",
   nyplSimplifiedNavigationAPI        : "org.librarysimplified:org.librarysimplified.ui.navigation.api:${simplifiedVersion}",
@@ -59,6 +64,7 @@ ext.libraries = [
   nyplSimplifiedProfilesControllerAPI: "org.librarysimplified:org.librarysimplified.profiles.controller.api:${simplifiedVersion}",
   nyplSimplifiedServicesAPI          : "org.librarysimplified:org.librarysimplified.services.api:${simplifiedVersion}",
   nyplSimplifiedSourceFileBased      : "org.librarysimplified:org.librarysimplified.accounts.source.filebased:${simplifiedVersion}",
+  nyplSimplifiedThreads              : "org.librarysimplified:org.librarysimplified.threads:${simplifiedVersion}",
   nyplSimplifiedUIBranding           : "org.librarysimplified:org.librarysimplified.ui.branding:${simplifiedVersion}",
   nyplSimplifiedUICatalog            : "org.librarysimplified:org.librarysimplified.ui.catalog:${simplifiedVersion}",
   nyplSimplifiedUIProfiles           : "org.librarysimplified:org.librarysimplified.ui.profiles:${simplifiedVersion}",

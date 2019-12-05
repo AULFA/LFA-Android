@@ -104,6 +104,7 @@ afterEvaluate {
 }
 
 dependencies {
+  api project(":one.lfa.android.analytics")
   api project(":one.lfa.android.services")
 
   api libraries.nyplSimplifiedMain
