@@ -1,0 +1,9 @@
+dependencies {
+  api libraries.nyplSimplifiedBootAPI
+  api libraries.nyplSimplifiedProfilesAPI
+  api libraries.nyplSimplifiedUIBranding
+  api libraries.nyplSimplifiedUICatalog
+  api libraries.nyplSimplifiedUISettings
+  api libraries.nyplSimplifiedUITheme
+  api libraries.slf4j
+}

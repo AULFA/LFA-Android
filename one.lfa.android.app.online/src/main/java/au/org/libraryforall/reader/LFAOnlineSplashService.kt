@@ -1,0 +1,13 @@
+package au.org.libraryforall.reader
+
+import org.nypl.simplified.ui.branding.BrandingSplashServiceType
+
+/**
+ * A splash service for the app.
+ */
+
+class LFAOnlineSplashService : BrandingSplashServiceType {
+  override fun splashImageResource(): Int {
+    return R.drawable.splash
+  }
+}

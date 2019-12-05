@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<resources>
+  <color name="lfaPrimary">#14234F</color>
+  <color name="lfaPrimaryLight">#2d3867</color>
+  <color name="lfaPrimaryDark">#14234F</color>
+  <style name="LFA_NoActionBar" parent="SimplifiedTheme.NoActionBar.Base">
+    <item name="simplifiedColorPrimaryLight">@color/lfaPrimaryLight</item>
+    <item name="simplifiedColorPrimary">@color/lfaPrimary</item>
+    <item name="simplifiedColorPrimaryDark">@color/lfaPrimaryDark</item>
+  </style>
+  <style name="LFA_ActionBar" parent="SimplifiedTheme.ActionBar.Base">
+    <item name="simplifiedColorPrimaryLight">@color/lfaPrimaryLight</item>
+    <item name="simplifiedColorPrimary">@color/lfaPrimary</item>
+    <item name="simplifiedColorPrimaryDark">@color/lfaPrimaryDark</item>
+  </style>
+</resources>

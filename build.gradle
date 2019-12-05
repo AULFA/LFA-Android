@@ -1,0 +1,285 @@
+buildscript {
+  if ("$gradle.gradleVersion" != "5.6.2") {
+    throw new GradleException("Gradle version 5.6.2 is required (received $gradle.gradleVersion)")
+  }
+
+  ext.kotlin_version = "1.3.61"
+
+  repositories {
+    mavenCentral()
+    google()
+    jcenter()
+  }
+
+  dependencies {
+    classpath "biz.aQute.bnd:biz.aQute.bnd.gradle:4.3.1"
+    classpath "com.nabilhachicha:android-native-dependencies:0.1.2"
+    classpath "com.vanniktech:gradle-android-junit-jacoco-plugin:0.15.0"
+    classpath "digital.wup:android-maven-publish:3.6.3"
+    classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.21.1"
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    classpath 'com.android.tools.build:gradle:3.5.2'
+  }
+}
+
+plugins {
+  id "com.github.ben-manes.versions" version "0.27.0"
+  id "com.vanniktech.android.junit.jacoco" version "0.15.0"
+  id "digital.wup.android-maven-publish" version "3.6.3"
+  id "io.codearte.nexus-staging" version "0.21.1"
+  id "ru.vyarus.animalsniffer" version "1.5.0"
+}
+
+ext {
+  androidBuildToolsVersion = "28.0.3"
+  androidCompileSDKVersion = 28
+  androidMinimumSDKVersion = 21
+  androidTargetSDKVersion = 28
+
+  if (!project.hasProperty("nexusUsername")) {
+    logger.warn("No nexusUsername property specified: Using an empty value")
+    nexusUsername = ""
+  }
+  if (!project.hasProperty("nexusPassword")) {
+    logger.warn("No nexusPassword property specified: Using an empty value")
+    nexusPassword = ""
+  }
+
+  simplifiedVersion = "5.0.0-SNAPSHOT"
+}
+
+ext.libraries = [
+  googleAutoValue              : "com.google.auto.value:auto-value:1.5",
+  nyplSimplifiedBootAPI        : "org.librarysimplified:org.librarysimplified.boot.api:${simplifiedVersion}",
+  nyplSimplifiedMain           : "org.librarysimplified:org.librarysimplified.main:${simplifiedVersion}",
+  nyplSimplifiedSourceFileBased: "org.librarysimplified:org.librarysimplified.accounts.source.filebased:${simplifiedVersion}",
+  nyplSimplifiedProfilesAPI    : "org.librarysimplified:org.librarysimplified.profiles.api:${simplifiedVersion}",
+  nyplSimplifiedUICatalog      : "org.librarysimplified:org.librarysimplified.ui.catalog:${simplifiedVersion}",
+  nyplSimplifiedUISettings     : "org.librarysimplified:org.librarysimplified.ui.settings:${simplifiedVersion}",
+  nyplSimplifiedUIBranding     : "org.librarysimplified:org.librarysimplified.ui.branding:${simplifiedVersion}",
+  nyplSimplifiedUITheme        : "org.librarysimplified:org.librarysimplified.ui.theme:${simplifiedVersion}",
+  nyplSourceSPI                : "org.librarysimplified:org.librarysimplified.accounts.source.spi:${simplifiedVersion}",
+  slf4j                        : "org.slf4j:slf4j-api:1.7.25",
+]
+
+apply plugin: "io.codearte.nexus-staging"
+apply plugin: "com.vanniktech.android.junit.jacoco"
+
+nexusStaging {
+  packageGroup = "one.lfa"
+  numberOfRetries = 32
+  delayBetweenRetriesInMillis = 2000
+}
+
+allprojects {
+  group = project.ext["GROUP"]
+  version = project.ext["VERSION_NAME"]
+}
+
+subprojects { project ->
+
+  switch (POM_PACKAGING) {
+    case "jar":
+      logger.info("Configuring ${project} (${POM_PACKAGING}) as jar project")
+
+      apply plugin: "java"
+      apply plugin: "java-library"
+      apply plugin: "kotlin"
+
+      /*
+       * Apply the Animal Sniffer plugin to check that code is Android compatible.
+       */
+
+      apply plugin: "ru.vyarus.animalsniffer"
+
+      dependencies {
+        signature "org.codehaus.mojo.signature:java16:1.1@signature"
+        signature "net.sf.androidscents.signature:android-api-level-14:4.0_r4@signature"
+      }
+
+      /*
+       * Build an OSGi bundle.
+       */
+
+      apply plugin: "biz.aQute.bnd.builder"
+
+      jar {
+        bnd """
+Automatic-Module-Name: ${POM_AUTOMATIC_MODULE_NAME}
+
+-removeheaders: Bnd-LastModified, Tool, Private-Package
+"""
+      }
+      break
+
+    case "apk":
+      logger.info("Configuring ${project} (${POM_PACKAGING}) as Android application project")
+
+      apply plugin: "com.android.application"
+      apply plugin: "kotlin-android"
+
+      android {
+        compileSdkVersion androidCompileSDKVersion
+        buildToolsVersion androidBuildToolsVersion
+
+        defaultConfig {
+          minSdkVersion androidMinimumSDKVersion
+          targetSdkVersion androidTargetSDKVersion
+        }
+        compileOptions {
+          sourceCompatibility JavaVersion.VERSION_1_8
+          targetCompatibility JavaVersion.VERSION_1_8
+        }
+      }
+      break
+
+    case "aar":
+      logger.info("Configuring ${project} (${POM_PACKAGING}) as Android library project")
+
+      apply plugin: "com.android.library"
+      apply plugin: "kotlin-android"
+
+      android {
+        compileSdkVersion androidCompileSDKVersion
+        buildToolsVersion androidBuildToolsVersion
+
+        defaultConfig {
+          multiDexEnabled true
+          minSdkVersion androidMinimumSDKVersion
+          targetSdkVersion androidTargetSDKVersion
+          testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+          useLibrary 'org.apache.http.legacy'
+        }
+        compileOptions {
+          sourceCompatibility JavaVersion.VERSION_1_8
+          targetCompatibility JavaVersion.VERSION_1_8
+        }
+        testOptions {
+          execution 'ANDROIDX_TEST_ORCHESTRATOR'
+          animationsDisabled = true
+        }
+      }
+      break
+
+    default:
+      throw new IllegalStateException(
+        "Unrecognized packaging type ${POM_PACKAGING} for ${project}")
+  }
+
+  task javadocsJar(type: Jar) {
+    classifier = "javadoc"
+  }
+
+  task sourcesJar(type: Jar) {
+    classifier = "sources"
+    from "src/main/java", "src/main/resources"
+  }
+
+  apply plugin: "digital.wup.android-maven-publish"
+  apply plugin: "signing"
+
+  publishing {
+    publications {
+      basicJar(MavenPublication) {
+
+        switch (POM_PACKAGING) {
+          case "jar":
+            from components.java
+            break
+
+          case "apk":
+            break
+
+          case "aar":
+            from components.android
+            break
+        }
+
+        artifact sourcesJar
+        artifact javadocsJar
+
+        pom {
+          artifactId = POM_ARTIFACT_ID
+          name = POM_NAME
+          packaging = POM_PACKAGING
+          description = POM_DESCRIPTION
+          url = POM_URL
+
+          scm {
+            connection = POM_SCM_CONNECTION
+            developerConnection = POM_SCM_DEV_CONNECTION
+            url = POM_SCM_URL
+          }
+
+          licenses {
+            license {
+              name = POM_LICENCE_NAME
+              url = POM_LICENCE_URL
+            }
+          }
+
+          developers {
+            developer {
+              id = "io7m"
+              name = "Mark Raynsford"
+              email = "code@io7m.com"
+              url = "https://www.io7m.com"
+            }
+            developer {
+              id = "winniequinn"
+              name = "Winnie Quinn"
+              url = "https://www.winniequinn.com/"
+            }
+            developer {
+              id = "gioneill"
+              name = "Greg O'Neill"
+              url = "https://github.com/gioneill"
+            }
+            developer {
+              id = "mattniehoff"
+              name = "Matt Niehoff"
+              url = "https://github.com/mattniehoff"
+            }
+            developer {
+              id = "MalcolmMcFly"
+              name = "Malcolm Woods"
+              url = "https://github.com/MalcolmMcFly"
+            }
+          }
+        }
+      }
+    }
+
+    repositories {
+      maven {
+        def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
+        url = version.endsWith("SNAPSHOT") ? snapshotsRepoUrl : releasesRepoUrl
+
+        credentials(PasswordCredentials) {
+          username nexusUsername
+          password nexusPassword
+        }
+      }
+    }
+  }
+
+  signing {
+    useGpgCmd()
+    sign publishing.publications.basicJar
+  }
+
+  repositories {
+    mavenLocal()
+    mavenCentral()
+
+    maven {
+      url "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
+
+    maven { url "https://jitpack.io" }
+    jcenter()
+    google()
+  }
+}
+

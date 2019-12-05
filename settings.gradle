@@ -1,0 +1,2 @@
+include ':one.lfa.android.app.online'
+include ':one.lfa.android.services'
