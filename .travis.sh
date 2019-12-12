@@ -92,7 +92,7 @@ while [ 1 ]
 do
   info "rsyncing APKs"
 
-  rsync -avz -e "ssh -p 1022" apk/ travis-ci@builds.lfa.one:/repository/testing/all/
+  rsync -av --no-times -e "ssh -p 1022" apk/ travis-ci@builds.lfa.one:/repository/testing/all/
   if [ $? -eq 0 ]
   then
     exit 0
