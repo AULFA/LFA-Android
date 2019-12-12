@@ -57,21 +57,10 @@ scp -P 1022 travis-ci@builds.lfa.one:online-app-credentials.json .
 scp -P 1022 travis-ci@builds.lfa.one:bugsnag.conf .
 
 cp online-app-credentials.json one.lfa.android.app.online/src/main/assets/account_bundled_credentials.json
+cp online-app-credentials.json one.lfa.android.app.grande/src/main/assets/account_bundled_credentials.json
 
 cp bugsnag.conf one.lfa.android.app.online/src/main/assets/bugsnag.conf
-
-#------------------------------------------------------------------------
-# Configure offline bundles
-
-mkdir -p one.lfa.android.app.online/bundles || exit 1
-
-wget \
-  --timestamping \
-  --user "${LFA_BUILDS_USER}" \
-  --password "${LFA_BUILDS_PASSWORD}" \
-  --no-verbose \
-  --output-document=one.lfa.android.app.online/bundles/offline.zip \
-  https://builds.lfa.one/auth/offline-online/offline-online.zip
+cp bugsnag.conf one.lfa.android.app.grande/src/main/assets/bugsnag.conf
 
 #------------------------------------------------------------------------
 # Build!
@@ -81,5 +70,17 @@ wget \
 #------------------------------------------------------------------------
 # Publish APKs
 
-scp -P 1022 ./one.lfa.android.app.online/build/outputs/apk/release/*.apk travis-ci@builds.lfa.one:/sites/builds.lfa.one/apk2/
+mkdir -p apk
+cp -v ./one.lfa.android.app.grande/build/outputs/apk/release/*.apk apk/
+cp -v ./one.lfa.android.app.online/build/outputs/apk/release/*.apk apk/
 
+while [ 1 ]
+do
+  rsync -avz -e "ssh -p 1022" apk/ travis-ci@builds.lfa.one:/repository/testing/all/
+  if [ $? -eq 0 ]
+  then
+    exit 0
+  else
+    sleep 2
+  fi
+done
