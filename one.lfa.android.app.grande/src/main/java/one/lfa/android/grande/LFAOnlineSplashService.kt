@@ -1,4 +1,4 @@
-package au.org.libraryforall.reader
+package one.lfa.android.grande
 
 import org.nypl.simplified.ui.branding.BrandingSplashServiceType
 

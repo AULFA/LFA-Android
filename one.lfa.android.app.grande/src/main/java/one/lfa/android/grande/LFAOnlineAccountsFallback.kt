@@ -1,4 +1,4 @@
-package au.org.libraryforall.reader
+package one.lfa.android.grande
 
 import org.joda.time.DateTime
 import org.nypl.simplified.accounts.api.AccountProviderFallbackType
