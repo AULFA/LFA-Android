@@ -77,7 +77,7 @@ cp png-feedsonly.zip one.lfa.android.app.online/bundles/offline.zip
 
 info "building"
 
-./gradlew clean assemble test || exit 1
+./gradlew clean assembleRelease test || exit 1
 
 #------------------------------------------------------------------------
 # Publish APKs
