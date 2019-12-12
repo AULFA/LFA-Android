@@ -62,6 +62,17 @@ cp bugsnag.conf one.lfa.android.app.online/src/main/assets/bugsnag.conf
 cp bugsnag.conf one.lfa.android.app.grande/src/main/assets/bugsnag.conf
 
 #------------------------------------------------------------------------
+# Downloading bundles
+
+info "downloading bundles"
+
+scp -B -P 1022 travis-ci@builds.lfa.one:/feeds/png-feedsonly.zip .
+mkdir -p one.lfa.android.app.grande/bundles
+mkdir -p one.lfa.android.app.online/bundles
+cp png-feedsonly.zip one.lfa.android.app.grande/bundles/offline.zip
+cp png-feedsonly.zip one.lfa.android.app.online/bundles/offline.zip
+
+#------------------------------------------------------------------------
 # Build!
 
 info "building"
