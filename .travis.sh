@@ -1,5 +1,10 @@
 #!/bin/sh
 
+info()
+{
+  echo "info: $1" 1>&2
+}
+
 if [ -z "${LFA_BUILDS_SSH_KEY}" ]
 then
   echo "LFA_BUILDS_SSH_KEY not set"
@@ -15,6 +20,8 @@ fi
 #------------------------------------------------------------------------
 # Configure SSH
 
+info "configuring ssh"
+
 mkdir -p "${HOME}/.ssh" || exit 1
 echo "${LFA_BUILDS_SSH_KEY}" | base64 -d > "${HOME}/.ssh/id_ed25519" || exit 1
 chmod 700 "${HOME}/.ssh" || exit 1
@@ -27,6 +34,8 @@ EOF
 
 #------------------------------------------------------------------------
 # Configure Nexus and keystore
+
+info "downloading keystore"
 
 scp -P 1022 travis-ci@builds.lfa.one:lfa-keystore.jks .
 
@@ -41,6 +50,8 @@ EOF
 #------------------------------------------------------------------------
 # Configure bundled credentials
 
+info "downloading credentials"
+
 scp -P 1022 travis-ci@builds.lfa.one:online-app-credentials.json .
 scp -P 1022 travis-ci@builds.lfa.one:bugsnag.conf .
 
@@ -53,10 +64,14 @@ cp bugsnag.conf one.lfa.android.app.grande/src/main/assets/bugsnag.conf
 #------------------------------------------------------------------------
 # Build!
 
+info "building"
+
 ./gradlew clean assemble test
 
 #------------------------------------------------------------------------
 # Publish APKs
+
+info "publishing APKs"
 
 mkdir -p apk
 cp -v ./one.lfa.android.app.grande/build/outputs/apk/release/*.apk apk/
@@ -64,6 +79,8 @@ cp -v ./one.lfa.android.app.online/build/outputs/apk/release/*.apk apk/
 
 while [ 1 ]
 do
+  info "rsyncing APKs"
+
   rsync -avz -e "ssh -p 1022" apk/ travis-ci@builds.lfa.one:/repository/testing/all/
   if [ $? -eq 0 ]
   then
