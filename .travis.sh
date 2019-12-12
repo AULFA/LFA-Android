@@ -37,7 +37,7 @@ EOF
 
 info "downloading keystore"
 
-scp -P 1022 travis-ci@builds.lfa.one:lfa-keystore.jks . || exit 1
+scp -B -P 1022 travis-ci@builds.lfa.one:lfa-keystore.jks . || exit 1
 
 (cat <<EOF
 
@@ -52,8 +52,8 @@ EOF
 
 info "downloading credentials"
 
-scp -P 1022 travis-ci@builds.lfa.one:online-app-credentials.json . || exit 1
-scp -P 1022 travis-ci@builds.lfa.one:bugsnag.conf . || exit 1
+scp -B -P 1022 travis-ci@builds.lfa.one:online-app-credentials.json . || exit 1
+scp -B -P 1022 travis-ci@builds.lfa.one:bugsnag.conf . || exit 1
 
 cp online-app-credentials.json one.lfa.android.app.online/src/main/assets/account_bundled_credentials.json
 cp online-app-credentials.json one.lfa.android.app.grande/src/main/assets/account_bundled_credentials.json
