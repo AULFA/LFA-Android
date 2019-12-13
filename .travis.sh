@@ -87,6 +87,7 @@ info "publishing APKs"
 mkdir -p apk
 cp -v ./one.lfa.android.app.grande/build/outputs/apk/release/*.apk apk/
 cp -v ./one.lfa.android.app.online/build/outputs/apk/release/*.apk apk/
+cp -v ./one.lfa.android.app.laos/build/outputs/apk/release/*.apk apk/
 
 while [ 1 ]
 do

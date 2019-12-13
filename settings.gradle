@@ -1,5 +1,6 @@
 include ':one.lfa.android.analytics'
-include ':one.lfa.android.app.online'
 include ':one.lfa.android.app.grande'
+include ':one.lfa.android.app.laos'
+include ':one.lfa.android.app.online'
 include ':one.lfa.android.services'
 include ':one.lfa.android.tests'
