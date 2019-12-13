@@ -62,5 +62,21 @@
     "addAutomatically": true,
     "catalogURI": "http://openbookshelf.dp.la/OB/groups/3",
     "mainColor": "#ec1c24"
+  },
+  {
+    "@version": "20190708",
+    "idUUID": "urn:uuid:f5b1f8d9-43ad-42ea-9b96-a291e7ce8fb5",
+    "displayName": "LFA Laos",
+    "subtitle": "LFA Laos",
+    "logo": "simplified-asset:logos/laos.png",
+    "supportsSimplyESync": false,
+    "supportsBarcodeScanner": false,
+    "supportsBarcodeDisplay": false,
+    "supportsReservations": false,
+    "supportsCardCreator": false,
+    "supportsHelpCenter": false,
+    "addAutomatically": true,
+    "catalogURI": "content://au.org.libraryforall/f5b1f8d9-43ad-42ea-9b96-a291e7ce8fb5/feeds/DAE5313E5E65D49C7AFF7388819E7A42A93B0614523BE11C278489FC536670AE.atom",
+    "mainColor": "#ec1c24"
   }
 ]
