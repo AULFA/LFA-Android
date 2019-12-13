@@ -89,15 +89,5 @@ cp -v ./one.lfa.android.app.grande/build/outputs/apk/release/*.apk apk/
 cp -v ./one.lfa.android.app.online/build/outputs/apk/release/*.apk apk/
 cp -v ./one.lfa.android.app.laos/build/outputs/apk/release/*.apk apk/
 
-while [ 1 ]
-do
-  info "rsyncing APKs"
-
-  rsync -av --no-times -e "ssh -p 1022" apk/ travis-ci@builds.lfa.one:/repository/testing/all/
-  if [ $? -eq 0 ]
-  then
-    exit 0
-  else
-    sleep 2
-  fi
-done
+info "rsyncing APKs"
+rsync -a -L -i --delay-updates --partial --no-inc-recursive --no-times -e "ssh -p 1022" apk/ travis-ci@builds.lfa.one:/repository/testing/all/
