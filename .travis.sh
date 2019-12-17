@@ -59,6 +59,7 @@ cp online-app-credentials.json one.lfa.android.app.online/src/main/assets/accoun
 cp online-app-credentials.json one.lfa.android.app.grande/src/main/assets/account_bundled_credentials.json
 
 cp bugsnag.conf one.lfa.android.app.online/src/main/assets/bugsnag.conf
+cp bugsnag.conf one.lfa.android.app.png_offline/src/main/assets/bugsnag.conf
 cp bugsnag.conf one.lfa.android.app.grande/src/main/assets/bugsnag.conf
 
 #------------------------------------------------------------------------
@@ -87,6 +88,7 @@ info "publishing APKs"
 mkdir -p apk
 cp -v ./one.lfa.android.app.grande/build/outputs/apk/release/*.apk apk/
 cp -v ./one.lfa.android.app.online/build/outputs/apk/release/*.apk apk/
+cp -v ./one.lfa.android.app.png_offline/build/outputs/apk/release/*.apk apk/
 cp -v ./one.lfa.android.app.laos/build/outputs/apk/release/*.apk apk/
 
 info "rsyncing APKs"
