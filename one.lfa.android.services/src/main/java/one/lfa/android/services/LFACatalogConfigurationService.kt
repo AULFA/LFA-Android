@@ -9,7 +9,7 @@ import org.nypl.simplified.ui.catalog.CatalogConfigurationServiceType
 class LFACatalogConfigurationService : CatalogConfigurationServiceType {
 
   override val showSettingsTab: Boolean
-    get() = false
+    get() = true
 
   override val showHoldsTab: Boolean
     get() = false
@@ -18,7 +18,7 @@ class LFACatalogConfigurationService : CatalogConfigurationServiceType {
     get() = true
 
   override val supportErrorReportEmailAddress: String
-    get() = "simplyemigrationreports@nypl.org"
+    get() = "co+org.libraryforall.errors@io7m.com"
 
   override val supportErrorReportSubject: String
     get() = "[LFA error report]"
