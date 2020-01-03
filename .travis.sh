@@ -53,7 +53,8 @@ EOF
 info "downloading credentials"
 
 scp -B -P 1022 travis-ci@builds.lfa.one:online-app-credentials.json . || exit 1
-scp -B -P 1022 travis-ci@builds.lfa.one:bugsnag.conf . || exit 1
+scp -B -P 1022 travis-ci@builds.lfa.one:bugsnag.conf .                || exit 1
+scp -B -P 1022 travis-ci@builds.lfa.one:lfa-analytics.conf .          || exit 1
 
 cp online-app-credentials.json one.lfa.android.app.online/src/main/assets/account_bundled_credentials.json
 cp online-app-credentials.json one.lfa.android.app.grande/src/main/assets/account_bundled_credentials.json
@@ -61,6 +62,10 @@ cp online-app-credentials.json one.lfa.android.app.grande/src/main/assets/accoun
 cp bugsnag.conf one.lfa.android.app.online/src/main/assets/bugsnag.conf
 cp bugsnag.conf one.lfa.android.app.png_offline/src/main/assets/bugsnag.conf
 cp bugsnag.conf one.lfa.android.app.grande/src/main/assets/bugsnag.conf
+
+cp lfa-analytics.conf one.lfa.android.app.online/src/main/assets/lfa-analytics.conf
+cp lfa-analytics.conf one.lfa.android.app.png_offline/src/main/assets/lfa-analytics.conf
+cp lfa-analytics.conf one.lfa.android.app.grande/src/main/assets/lfa-analytics.conf
 
 #------------------------------------------------------------------------
 # Downloading bundles
