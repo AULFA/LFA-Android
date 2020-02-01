@@ -59,13 +59,13 @@ scp -B -P 1022 travis-ci@builds.lfa.one:lfa-analytics.conf .          || exit 1
 cp online-app-credentials.json one.lfa.android.app.online/src/main/assets/account_bundled_credentials.json
 cp online-app-credentials.json one.lfa.android.app.grande/src/main/assets/account_bundled_credentials.json
 
-cp bugsnag.conf one.lfa.android.app.online/src/main/assets/bugsnag.conf
-cp bugsnag.conf one.lfa.android.app.png_offline/src/main/assets/bugsnag.conf
-cp bugsnag.conf one.lfa.android.app.grande/src/main/assets/bugsnag.conf
+VARIANTS="online png_offile grande laos timor"
 
-cp lfa-analytics.conf one.lfa.android.app.online/src/main/assets/lfa-analytics.conf
-cp lfa-analytics.conf one.lfa.android.app.png_offline/src/main/assets/lfa-analytics.conf
-cp lfa-analytics.conf one.lfa.android.app.grande/src/main/assets/lfa-analytics.conf
+for VARIANT in ${VARIANTS}
+do
+  cp bugsnag.conf       one.lfa.android.app.${VARIANT}/src/main/assets/bugsnag.conf
+  cp lfa-analytics.conf one.lfa.android.app.${VARIANT}/src/main/assets/lfa-analytics.conf
+done
 
 #------------------------------------------------------------------------
 # Downloading bundles
@@ -91,10 +91,11 @@ info "building"
 info "publishing APKs"
 
 mkdir -p apk
-cp -v ./one.lfa.android.app.grande/build/outputs/apk/release/*.apk apk/
-cp -v ./one.lfa.android.app.online/build/outputs/apk/release/*.apk apk/
-cp -v ./one.lfa.android.app.png_offline/build/outputs/apk/release/*.apk apk/
-cp -v ./one.lfa.android.app.laos/build/outputs/apk/release/*.apk apk/
+
+for VARIANT in ${VARIANTS}
+do
+  cp -v ./one.lfa.android.app.${VARIANT}/build/outputs/apk/release/*.apk apk/
+done
 
 info "rsyncing APKs"
 rsync -a -L -i --delay-updates --partial --no-inc-recursive --no-times -e "ssh -p 1022" apk/ travis-ci@builds.lfa.one:/repository/testing/all/
