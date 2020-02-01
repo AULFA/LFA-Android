@@ -44,6 +44,10 @@ scp -B -P 1022 travis-ci@builds.lfa.one:lfa-keystore.jks . || exit 1
 au.org.libraryforall.keyAlias=main
 au.org.libraryforall.keyPassword=${LFA_KEYSTORE_PASSWORD}
 au.org.libraryforall.storePassword=${LFA_KEYSTORE_PASSWORD}
+
+org.gradle.daemon=true
+org.gradle.configureondemand=true
+org.gradle.jvmargs=-Xmx4g -XX:MaxPermSize=2048m -XX:+HeapDumpOnOutOfMemoryError
 EOF
 ) >> gradle.properties || exit 1
 
