@@ -45,7 +45,27 @@ ext {
     nexusPassword = ""
   }
 
-  simplifiedVersion = "5.0.0-SNAPSHOT"
+  simplifiedVersion = "5.0.2-SNAPSHOT"
+}
+
+subprojects {
+  // Force version 1.0.2 of appcompat. A bug in 1.1.0 causes a crash on API 21.
+  //
+  // https://issuetracker.google.com/issues/141132133#comment42
+  //
+  // TODO: Remove once appcompat:1.2.0 is available.
+  configurations.all {
+    resolutionStrategy.force 'androidx.appcompat:appcompat:1.0.2'
+  }
+
+  //
+  // We currently have transitive dependencies that specify dependencies on newer versions
+  // of SLF4J. These are subtly incompatible with Logback-Android, and it will be a while before
+  // new versions appear of both artifacts. Remove this when both are updated!
+  //
+  configurations.all {
+    resolutionStrategy.force libraries.slf4j
+  }
 }
 
 ext.libraries = [
