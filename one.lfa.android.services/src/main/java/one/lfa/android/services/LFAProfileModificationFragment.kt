@@ -436,7 +436,8 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
             isSynthesized = false
           ),
           showTestingLibraries = false,
-          readerPreferences = ReaderPreferences.builder().build()
+          readerPreferences = ReaderPreferences.builder().build(),
+          mostRecentAccount = null
         )
 
     val newPreferences =

@@ -45,7 +45,7 @@ ext {
     nexusPassword = ""
   }
 
-  simplifiedVersion = "5.0.2-SNAPSHOT"
+  simplifiedVersion = "5.0.3-SNAPSHOT"
 }
 
 subprojects {
