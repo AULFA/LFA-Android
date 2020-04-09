@@ -56,9 +56,9 @@ EOF
 
 info "downloading credentials"
 
-scp -B -P 1022 travis-ci@builds.lfa.one:online-app-credentials.json . || exit 1
-scp -B -P 1022 travis-ci@builds.lfa.one:bugsnag.conf .                || exit 1
-scp -B -P 1022 travis-ci@builds.lfa.one:lfa-analytics.conf .          || exit 1
+scp -B -P 1022 travis-ci@builds.lfa.one:online-app-credentials.json .    || exit 1
+scp -B -P 1022 travis-ci@builds.lfa.one:bugsnag.conf .                   || exit 1
+scp -B -P 1022 travis-ci@builds.lfa.one:lfaAnalyticsConfiguration.xml .  || exit 1
 
 cp online-app-credentials.json one.lfa.android.app.online/src/main/assets/account_bundled_credentials.json
 cp online-app-credentials.json one.lfa.android.app.grande/src/main/assets/account_bundled_credentials.json
@@ -67,8 +67,8 @@ VARIANTS="online png_offline grande laos timor"
 
 for VARIANT in ${VARIANTS}
 do
-  cp bugsnag.conf       one.lfa.android.app.${VARIANT}/src/main/assets/bugsnag.conf
-  cp lfa-analytics.conf one.lfa.android.app.${VARIANT}/src/main/assets/lfa-analytics.conf
+  cp bugsnag.conf                  one.lfa.android.app.${VARIANT}/src/main/assets/bugsnag.conf || exit 1
+  cp lfaAnalyticsConfiguration.xml one.lfa.android.app.${VARIANT}/src/main/assets/lfaAnalyticsConfiguration.xml || exit 1
 done
 
 #------------------------------------------------------------------------
@@ -76,11 +76,11 @@ done
 
 info "downloading bundles"
 
-scp -B -P 1022 travis-ci@builds.lfa.one:/feeds/png-feedsonly.zip .
+scp -B -P 1022 travis-ci@builds.lfa.one:/feeds/png-feedsonly.zip . || exit 1
 mkdir -p one.lfa.android.app.grande/bundles
 mkdir -p one.lfa.android.app.online/bundles
-cp png-feedsonly.zip one.lfa.android.app.grande/bundles/offline.zip
-cp png-feedsonly.zip one.lfa.android.app.online/bundles/offline.zip
+cp png-feedsonly.zip one.lfa.android.app.grande/bundles/offline.zip || exit 1
+cp png-feedsonly.zip one.lfa.android.app.online/bundles/offline.zip || exit 1
 
 #------------------------------------------------------------------------
 # Build!
@@ -98,7 +98,7 @@ mkdir -p apk
 
 for VARIANT in ${VARIANTS}
 do
-  cp -v ./one.lfa.android.app.${VARIANT}/build/outputs/apk/release/*.apk apk/
+  cp -v ./one.lfa.android.app.${VARIANT}/build/outputs/apk/release/*.apk apk/ || exit 1
 done
 
 info "rsyncing APKs"
