@@ -19,16 +19,19 @@ class LFAAnalyticsSystems : AnalyticsSystemProvider {
 
   private fun loadConfiguration(
     context: Context,
-    deviceID: String): LFAAnalyticsConfiguration =
-    context.assets.open("lfa-analytics.conf").use { stream ->
-      LFAAnalyticsConfiguration.loadFrom(stream, deviceID)
+    deviceID: String
+  ): LFAAnalyticsConfiguration {
+    return context.assets.open("lfaAnalytics.xml").use { stream ->
+      LFAAnalyticsConfiguration.parseFromStream(stream, deviceID)
     }
+  }
 
   override fun create(configuration: AnalyticsConfiguration): AnalyticsSystem {
     val deviceID =
       Settings.Secure.getString(
-        configuration.context.getContentResolver(),
-        Settings.Secure.ANDROID_ID)
+        configuration.context.contentResolver,
+        Settings.Secure.ANDROID_ID
+      )
 
     val directory =
       File(configuration.context.filesDir, "lfa-analytics")
@@ -40,6 +43,7 @@ class LFAAnalyticsSystems : AnalyticsSystemProvider {
       baseConfiguration = configuration,
       lfaConfiguration = lfaConfiguration,
       baseDirectory = directory,
-      executor = this.executor)
+      executor = this.executor
+    )
   }
 }

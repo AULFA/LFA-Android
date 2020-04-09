@@ -4,5 +4,6 @@ dependencies {
 
   api libraries.junit
   api libraries.kotlinStdlib
+  api libraries.logbackClassic
   api libraries.mockitoAndroid
 }

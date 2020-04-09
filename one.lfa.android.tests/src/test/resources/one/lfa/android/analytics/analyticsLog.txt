@@ -1,0 +1,7 @@
+app_open,com.example,1.0.0,100
+profile_created,a0316364-fd7f-41be-8907-95dac45fb647,Profile0,,2020-01-01,,,
+profile_selected,a0316364-fd7f-41be-8907-95dac45fb647,Profile0,,2020-01-01,,,
+catalog_searched,Book0
+catalog_searched,Book1
+book_opened,a0316364-fd7f-41be-8907-95dac45fb647,Name,Title
+book_open_page,0/100,Title

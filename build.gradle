@@ -72,6 +72,7 @@ ext.libraries = [
   googleAutoValue                    : "com.google.auto.value:auto-value:1.5",
   junit                              : "junit:junit:4.12",
   kotlinStdlib                       : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+  logbackClassic                     : "ch.qos.logback:logback-classic:1.2.3",
   mockitoAndroid                     : "org.mockito:mockito-android:2.22.0",
   nyplSimplifiedAnalyticsAPI         : "org.librarysimplified:org.librarysimplified.analytics.api:${simplifiedVersion}",
   nyplSimplifiedBootAPI              : "org.librarysimplified:org.librarysimplified.boot.api:${simplifiedVersion}",

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Configuration xmlns="urn:one.lfa.android.analytics.configuration:1:0">
+  <Parameters logFileSizeLimit="20485760" />
+  <Servers>
+    <Server address="http://www.example.com/0">
+      <AuthenticationNone />
+    </Server>
+    <Server address="http://www.example.com/1">
+      <AuthenticationTokenBased tokenValue="88cb923e-d318-4466-893e-ffa82a1eedee" />
+    </Server>
+  </Servers>
+</Configuration>

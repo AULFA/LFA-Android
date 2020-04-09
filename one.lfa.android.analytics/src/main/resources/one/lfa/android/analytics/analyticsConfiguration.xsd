@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<schema xmlns:c="urn:one.lfa.android.analytics.configuration:1:0"
+  targetNamespace="urn:one.lfa.android.analytics.configuration:1:0"
+  xmlns="http://www.w3.org/2001/XMLSchema">
+
+  <element name="AuthenticationTokenBased">
+    <complexType>
+      <attribute name="tokenValue"
+        type="string"
+        use="required" />
+    </complexType>
+  </element>
+
+  <element name="AuthenticationNone">
+    <complexType />
+  </element>
+
+  <element name="Parameters">
+    <complexType>
+      <attribute name="logFileSizeLimit"
+        type="positiveInteger"
+        use="required" />
+    </complexType>
+  </element>
+
+  <element name="Server">
+    <complexType>
+      <choice>
+        <element ref="c:AuthenticationNone" />
+        <element ref="c:AuthenticationTokenBased" />
+      </choice>
+      <attribute name="address"
+        type="anyURI"
+        use="required" />
+    </complexType>
+  </element>
+
+  <element name="Servers">
+    <complexType>
+      <sequence maxOccurs="unbounded"
+        minOccurs="1">
+        <element ref="c:Server" />
+      </sequence>
+    </complexType>
+  </element>
+
+  <element name="Configuration">
+    <complexType>
+      <sequence maxOccurs="1"
+        minOccurs="1">
+        <element ref="c:Parameters" />
+        <element ref="c:Servers" />
+      </sequence>
+    </complexType>
+  </element>
+
+</schema>

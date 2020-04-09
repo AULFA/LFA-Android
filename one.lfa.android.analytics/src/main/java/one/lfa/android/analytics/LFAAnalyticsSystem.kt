@@ -33,7 +33,8 @@ class LFAAnalyticsSystem(
   private val baseConfiguration: AnalyticsConfiguration,
   private val lfaConfiguration: LFAAnalyticsConfiguration,
   private val baseDirectory: File,
-  private val executor: ExecutorService) : AnalyticsSystem {
+  private val executor: ExecutorService
+) : AnalyticsSystem {
 
   private val logger =
     LoggerFactory.getLogger(LFAAnalyticsSystem::class.java)
@@ -92,17 +93,17 @@ class LFAAnalyticsSystem(
         eventBuilder.append("profile_selected,")
         eventBuilder.append(event.profileUUID)
         eventBuilder.append(',')
-        eventBuilder.append(scrubCommas(event.displayName))
+        eventBuilder.append(this.scrubCommas(event.displayName))
         eventBuilder.append(',')
-        eventBuilder.append(scrubCommas(orEmpty(event.attributes["gender"])))
+        eventBuilder.append(this.scrubCommas(this.orEmpty(event.attributes["gender"])))
         eventBuilder.append(',')
-        eventBuilder.append(scrubCommas(orEmpty(event.birthDate)))
+        eventBuilder.append(this.scrubCommas(this.orEmpty(event.birthDate)))
         eventBuilder.append(',')
-        eventBuilder.append(scrubCommas(orEmpty(event.attributes["role"])))
+        eventBuilder.append(this.scrubCommas(this.orEmpty(event.attributes["role"])))
         eventBuilder.append(',')
-        eventBuilder.append(scrubCommas(orEmpty(event.attributes["school"])))
+        eventBuilder.append(this.scrubCommas(this.orEmpty(event.attributes["school"])))
         eventBuilder.append(',')
-        eventBuilder.append(scrubCommas(orEmpty(event.attributes["grade"])))
+        eventBuilder.append(this.scrubCommas(this.orEmpty(event.attributes["grade"])))
         eventBuilder.toString()
       }
 
@@ -111,17 +112,17 @@ class LFAAnalyticsSystem(
         eventBuilder.append("profile_created,")
         eventBuilder.append(event.profileUUID)
         eventBuilder.append(',')
-        eventBuilder.append(scrubCommas(event.displayName))
+        eventBuilder.append(this.scrubCommas(event.displayName))
         eventBuilder.append(',')
-        eventBuilder.append(scrubCommas(orEmpty(event.attributes["gender"])))
+        eventBuilder.append(this.scrubCommas(this.orEmpty(event.attributes["gender"])))
         eventBuilder.append(',')
-        eventBuilder.append(scrubCommas(orEmpty(event.birthDate)))
+        eventBuilder.append(this.scrubCommas(this.orEmpty(event.birthDate)))
         eventBuilder.append(',')
-        eventBuilder.append(scrubCommas(orEmpty(event.attributes["role"])))
+        eventBuilder.append(this.scrubCommas(this.orEmpty(event.attributes["role"])))
         eventBuilder.append(',')
-        eventBuilder.append(scrubCommas(orEmpty(event.attributes["school"])))
+        eventBuilder.append(this.scrubCommas(this.orEmpty(event.attributes["school"])))
         eventBuilder.append(',')
-        eventBuilder.append(scrubCommas(orEmpty(event.attributes["grade"])))
+        eventBuilder.append(this.scrubCommas(this.orEmpty(event.attributes["grade"])))
         eventBuilder.toString()
       }
 
@@ -130,17 +131,17 @@ class LFAAnalyticsSystem(
         eventBuilder.append("profile_deleted,")
         eventBuilder.append(event.profileUUID)
         eventBuilder.append(',')
-        eventBuilder.append(scrubCommas(event.displayName))
+        eventBuilder.append(this.scrubCommas(event.displayName))
         eventBuilder.append(',')
-        eventBuilder.append(scrubCommas(orEmpty(event.attributes["gender"])))
+        eventBuilder.append(this.scrubCommas(this.orEmpty(event.attributes["gender"])))
         eventBuilder.append(',')
-        eventBuilder.append(scrubCommas(orEmpty(event.birthDate)))
+        eventBuilder.append(this.scrubCommas(this.orEmpty(event.birthDate)))
         eventBuilder.append(',')
-        eventBuilder.append(scrubCommas(orEmpty(event.attributes["role"])))
+        eventBuilder.append(this.scrubCommas(this.orEmpty(event.attributes["role"])))
         eventBuilder.append(',')
-        eventBuilder.append(scrubCommas(orEmpty(event.attributes["school"])))
+        eventBuilder.append(this.scrubCommas(this.orEmpty(event.attributes["school"])))
         eventBuilder.append(',')
-        eventBuilder.append(scrubCommas(orEmpty(event.attributes["grade"])))
+        eventBuilder.append(this.scrubCommas(this.orEmpty(event.attributes["grade"])))
         eventBuilder.toString()
       }
 
@@ -149,17 +150,17 @@ class LFAAnalyticsSystem(
         eventBuilder.append("profile_modified,")
         eventBuilder.append(event.profileUUID)
         eventBuilder.append(',')
-        eventBuilder.append(scrubCommas(event.displayName))
+        eventBuilder.append(this.scrubCommas(event.displayName))
         eventBuilder.append(',')
-        eventBuilder.append(scrubCommas(orEmpty(event.attributes["gender"])))
+        eventBuilder.append(this.scrubCommas(this.orEmpty(event.attributes["gender"])))
         eventBuilder.append(',')
-        eventBuilder.append(scrubCommas(orEmpty(event.birthDate)))
+        eventBuilder.append(this.scrubCommas(this.orEmpty(event.birthDate)))
         eventBuilder.append(',')
-        eventBuilder.append(scrubCommas(orEmpty(event.attributes["role"])))
+        eventBuilder.append(this.scrubCommas(this.orEmpty(event.attributes["role"])))
         eventBuilder.append(',')
-        eventBuilder.append(scrubCommas(orEmpty(event.attributes["school"])))
+        eventBuilder.append(this.scrubCommas(this.orEmpty(event.attributes["school"])))
         eventBuilder.append(',')
-        eventBuilder.append(scrubCommas(orEmpty(event.attributes["grade"])))
+        eventBuilder.append(this.scrubCommas(this.orEmpty(event.attributes["grade"])))
         eventBuilder.toString()
       }
 
@@ -184,6 +185,7 @@ class LFAAnalyticsSystem(
   }
 
   private fun trySendAll() {
+    this.logger.debug("attempting to send analytics data")
     this.outbox.list().forEach { file ->
       this.executor.execute { this.trySend(File(this.outbox, file)) }
     }
@@ -192,49 +194,81 @@ class LFAAnalyticsSystem(
   private fun trySend(file: File) {
     this.logger.debug("attempting send of {}", file)
 
-    val auth: OptionType<HTTPAuthType> =
-      Option.some(HTTPAuthBasic.create(
-        this.lfaConfiguration.deviceID,
-        this.lfaConfiguration.token))
-
     val data = this.compressAndReadLogFile(file)
     this.logger.debug("compressed data size: {}", data.size)
 
     if (data.isEmpty()) {
       file.delete()
+      return
     }
 
-    val result =
-      this.baseConfiguration.http.post(
-        auth,
-        this.lfaConfiguration.targetURI,
-        data,
-        "application/json")
+    for (serverConfiguration in this.lfaConfiguration.servers) {
+      val auth: OptionType<HTTPAuthType> =
+        this.httpAuthFor(serverConfiguration.authentication)
 
-    return result.matchResult(
-      object : HTTPResultMatcherType<InputStream, Unit, Exception> {
-        override fun onHTTPError(error: HTTPResultError<InputStream>) {
-          HTTPProblemReportLogging.logError(
-            this@LFAAnalyticsSystem.logger,
-            this@LFAAnalyticsSystem.lfaConfiguration.targetURI,
-            error.message,
-            error.status,
-            error.problemReport)
-          return
-        }
+      val result =
+        this.baseConfiguration.http.post(
+          auth,
+          serverConfiguration.address,
+          data,
+          "application/json"
+        )
 
-        override fun onHTTPException(exception: HTTPResultException<InputStream>) {
-          this@LFAAnalyticsSystem.logger.debug("failed to send analytics data: ", exception.error)
-          return
-        }
+      val sent = result.matchResult(
+        object : HTTPResultMatcherType<InputStream, Boolean, Exception> {
+          override fun onHTTPError(
+            error: HTTPResultError<InputStream>
+          ): Boolean {
+            HTTPProblemReportLogging.logError(
+              this@LFAAnalyticsSystem.logger,
+              serverConfiguration.address,
+              error.message,
+              error.status,
+              error.problemReport
+            )
+            return false
+          }
 
-        @Throws(Exception::class)
-        override fun onHTTPOK(result: HTTPResultOKType<InputStream>) {
-          this@LFAAnalyticsSystem.logger.debug("server accepted {}, deleting it", file)
-          file.delete()
-          return
-        }
-      })
+          override fun onHTTPException(
+            exception: HTTPResultException<InputStream>
+          ): Boolean {
+            this@LFAAnalyticsSystem.logger.debug("failed to send analytics data: ", exception.error)
+            return false
+          }
+
+          @Throws(Exception::class)
+          override fun onHTTPOK(
+            result: HTTPResultOKType<InputStream>
+          ): Boolean {
+            this@LFAAnalyticsSystem.logger.debug("server accepted {}, deleting it", file)
+            file.delete()
+            return true
+          }
+        })
+
+      if (sent) {
+        return
+      }
+    }
+
+    this.logger.error("failed to send analytics data to any available URI")
+  }
+
+  private fun httpAuthFor(
+    authentication: LFAAnalyticsAuthentication
+  ): OptionType<HTTPAuthType> {
+    return when (authentication) {
+      LFAAnalyticsAuthentication.None ->
+        Option.none()
+      is LFAAnalyticsAuthentication.TokenBased -> {
+        Option.some(
+          HTTPAuthBasic.create(
+            this.lfaConfiguration.deviceID,
+            authentication.token
+          )
+        )
+      }
+    }
   }
 
   @Throws(IOException::class)
