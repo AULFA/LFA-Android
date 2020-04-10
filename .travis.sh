@@ -68,7 +68,7 @@ VARIANTS="online png_offline grande laos timor"
 for VARIANT in ${VARIANTS}
 do
   cp bugsnag.conf                  one.lfa.android.app.${VARIANT}/src/main/assets/bugsnag.conf || exit 1
-  cp lfaAnalyticsConfiguration.xml one.lfa.android.app.${VARIANT}/src/main/assets/lfaAnalyticsConfiguration.xml || exit 1
+  cp lfaAnalyticsConfiguration.xml one.lfa.android.app.${VARIANT}/src/main/assets/lfaAnalytics.xml || exit 1
 done
 
 #------------------------------------------------------------------------

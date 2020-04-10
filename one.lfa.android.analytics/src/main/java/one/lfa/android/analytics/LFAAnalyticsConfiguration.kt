@@ -50,9 +50,6 @@ data class LFAAnalyticsConfiguration(
     ): LFAAnalyticsConfiguration {
       val documentBuilders = DocumentBuilderFactory.newInstance()
       documentBuilders.isNamespaceAware = true
-      documentBuilders.isValidating = false
-      documentBuilders.isXIncludeAware = false
-
       val documentBuilder = documentBuilders.newDocumentBuilder()
       val document = documentBuilder.parse(stream)
       val root = document.firstChild

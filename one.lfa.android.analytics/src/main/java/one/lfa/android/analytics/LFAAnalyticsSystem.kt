@@ -186,8 +186,10 @@ class LFAAnalyticsSystem(
 
   private fun trySendAll() {
     this.logger.debug("attempting to send analytics data")
-    this.outbox.list().forEach { file ->
-      this.executor.execute { this.trySend(File(this.outbox, file)) }
+    val files = this.outbox.listFiles()
+    this.logger.debug("attempting to send {} analytics data files", files.size)
+    for (file in files) {
+      this.executor.execute { this.trySend(file) }
     }
   }
 
