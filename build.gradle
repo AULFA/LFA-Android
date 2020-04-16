@@ -51,12 +51,14 @@ task preFlightChecks {
   logger.info("running pre-flight checks")
 
   def requiredFiles = [
+    "lfa-keystore.jks",
+    "one.lfa.android.app.grande/bundles/offline.zip",
     "one.lfa.android.app.grande/src/main/assets/account_bundled_credentials.json",
+    "one.lfa.android.app.online/bundles/offline.zip",
     "one.lfa.android.app.online/src/main/assets/account_bundled_credentials.json",
     "one.lfa.android.app.online/src/main/assets/lfaAnalytics.xml",
     "one.lfa.android.app.png_offline/src/main/assets/lfaAnalytics.xml",
     "one.lfa.android.app.timor/src/main/assets/lfaAnalytics.xml",
-    "lfa-keystore.jks",
   ]
 
   def missingFiles = []
