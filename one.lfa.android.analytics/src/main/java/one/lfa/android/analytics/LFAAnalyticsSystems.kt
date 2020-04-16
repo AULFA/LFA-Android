@@ -15,7 +15,7 @@ import java.io.File
 class LFAAnalyticsSystems : AnalyticsSystemProvider {
 
   private val executor =
-    NamedThreadPools.namedThreadPool(1, "circulation-analytics", 19)
+    NamedThreadPools.namedThreadPool(1, "lfa-analytics", 19)
 
   private fun loadConfiguration(
     context: Context,
