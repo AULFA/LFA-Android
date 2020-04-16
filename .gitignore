@@ -15,7 +15,7 @@ cardcreator.conf
 credentials.json
 lfa-analytics.conf
 one.lfa.android.app.online/bundles
-one.lfa.android.app.online/src/main/assets/lfaAnalytics.xml
+*/src/main/assets/lfaAnalytics.xml
 one.lfa.android.app.online/src/main/assets/feeds
 one.lfa.android.app.online/src/main/assets/images
 one.lfa.android.app.online/src/main/assets/index.txt

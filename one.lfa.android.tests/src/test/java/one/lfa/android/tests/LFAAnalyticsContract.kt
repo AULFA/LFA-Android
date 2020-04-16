@@ -111,6 +111,17 @@ abstract class LFAAnalyticsContract {
         baseDirectory = file,
         executor = this.executor)
 
+    system.onAnalyticsEvent(
+      AnalyticsEvent.ProfileCreated(
+        profileUUID = UUID.randomUUID(),
+        displayName = "Name",
+        birthDate = "2020-01-01",
+        attributes = sortedMapOf(
+          Pair("school", "A School")
+        )
+      )
+    )
+
     for (i in 1..10) {
       system.onAnalyticsEvent(
         AnalyticsEvent.ApplicationOpened(
@@ -122,7 +133,8 @@ abstract class LFAAnalyticsContract {
     Thread.sleep(1000)
     this.executor.submit(Callable { }).get()
 
-    Assert.assertTrue(File(file, "outbox").list().size == 2)
+    val fileCount = File(file, "outbox").list().size
+    Assert.assertEquals(4, fileCount)
 
     for (server in lfaConfiguration.servers) {
       for (i in 1..5) {
@@ -188,7 +200,18 @@ abstract class LFAAnalyticsContract {
 
     Assert.assertTrue(!http.responsesNow().isEmpty())
 
-    for (i in 1..5) {
+    system.onAnalyticsEvent(
+      AnalyticsEvent.ProfileCreated(
+        profileUUID = UUID.randomUUID(),
+        displayName = "Name",
+        birthDate = "2020-01-01",
+        attributes = sortedMapOf(
+          Pair("school", "A School")
+        )
+      )
+    )
+
+    for (i in 1..2) {
       system.onAnalyticsEvent(
         AnalyticsEvent.ApplicationOpened(
           packageName = "com.example",
@@ -240,8 +263,6 @@ abstract class LFAAnalyticsContract {
         mutableMapOf(),
         0L))
 
-
-
     val config =
       AnalyticsConfiguration(context, http)
 
@@ -256,6 +277,7 @@ abstract class LFAAnalyticsContract {
 
     system.onAnalyticsEvent(
       AnalyticsEvent.ApplicationOpened(
+        timestamp = LocalDateTime(0L),
         packageName = "com.example",
         packageVersion = "1.0.0",
         packageVersionCode = 100

@@ -2,6 +2,11 @@ package one.lfa.android.analytics
 
 import com.io7m.jfunctional.Option
 import com.io7m.jfunctional.OptionType
+import com.io7m.junreachable.UnreachableCodeException
+import org.joda.time.LocalDate
+import org.joda.time.LocalDateTime
+import org.joda.time.format.DateTimeFormatterBuilder
+import org.joda.time.format.ISODateTimeFormat
 import org.nypl.simplified.analytics.api.AnalyticsConfiguration
 import org.nypl.simplified.analytics.api.AnalyticsEvent
 import org.nypl.simplified.analytics.api.AnalyticsSystem
@@ -44,7 +49,17 @@ class LFAAnalyticsSystem(
   private val logFile =
     File(this.baseDirectory, "logFile.txt")
 
+  private val dateFormatter =
+    DateTimeFormatterBuilder()
+      .appendYear(4, 4)
+      .appendMonthOfYear(2)
+      .appendDayOfMonth(2)
+      .toFormatter()
+
   private lateinit var output: FileWriter
+
+  @Volatile
+  private var latestSchoolName: String? = null
 
   init {
     this.executor.execute {
@@ -64,13 +79,21 @@ class LFAAnalyticsSystem(
   private fun consumeEvent(event: AnalyticsEvent) {
 
     /*
+     * If the event is a sync request, roll the log file over and send it right away.
+     */
+
+    if (event is AnalyticsEvent.SyncRequested) {
+      this.rolloverLog()
+      this.trySendAll()
+      return
+    }
+
+    /*
      * Roll over the log file if necessary, and trigger a send of everything else.
      */
 
     if (this.logFile.length() >= this.lfaConfiguration.logFileSizeLimit) {
-      val outboxFile = File(this.outbox, UUID.randomUUID().toString() + ".log")
-      FileUtilities.fileRename(this.logFile, outboxFile)
-      this.output = FileWriter(this.logFile, true)
+      this.rolloverLog()
       this.trySendAll()
     }
 
@@ -86,9 +109,23 @@ class LFAAnalyticsSystem(
     }
   }
 
+  private fun rolloverLog() {
+    val outboxFile = File(this.outbox, UUID.randomUUID().toString() + ".log")
+    FileUtilities.fileRename(this.logFile, outboxFile)
+    this.output = FileWriter(this.logFile, true)
+  }
+
   private fun eventToText(event: AnalyticsEvent): String? {
+    val bodyText = this.eventBodyToText(event) ?: return null
+    val timestamp = ISODateTimeFormat.dateTimeNoMillis().print(event.timestamp)
+    return "$timestamp,$bodyText"
+  }
+
+  private fun eventBodyToText(event: AnalyticsEvent): String? {
     return when (event) {
       is AnalyticsEvent.ProfileLoggedIn -> {
+        this.latestSchoolName = this.orEmpty(event.attributes["school"])
+
         val eventBuilder = StringBuilder(128)
         eventBuilder.append("profile_selected,")
         eventBuilder.append(event.profileUUID)
@@ -108,6 +145,8 @@ class LFAAnalyticsSystem(
       }
 
       is AnalyticsEvent.ProfileCreated -> {
+        this.latestSchoolName = this.orEmpty(event.attributes["school"])
+
         val eventBuilder = StringBuilder(128)
         eventBuilder.append("profile_created,")
         eventBuilder.append(event.profileUUID)
@@ -127,6 +166,8 @@ class LFAAnalyticsSystem(
       }
 
       is AnalyticsEvent.ProfileDeleted -> {
+        this.latestSchoolName = this.orEmpty(event.attributes["school"])
+
         val eventBuilder = StringBuilder(128)
         eventBuilder.append("profile_deleted,")
         eventBuilder.append(event.profileUUID)
@@ -146,6 +187,8 @@ class LFAAnalyticsSystem(
       }
 
       is AnalyticsEvent.ProfileUpdated -> {
+        this.latestSchoolName = this.orEmpty(event.attributes["school"])
+
         val eventBuilder = StringBuilder(128)
         eventBuilder.append("profile_modified,")
         eventBuilder.append(event.profileUUID)
@@ -181,20 +224,30 @@ class LFAAnalyticsSystem(
 
       is AnalyticsEvent.ApplicationOpened ->
         "app_open,${event.packageName},${event.packageVersion},${event.packageVersionCode}"
+
+      is AnalyticsEvent.SyncRequested -> {
+        throw UnreachableCodeException()
+      }
     }
   }
 
   private fun trySendAll() {
     this.logger.debug("attempting to send analytics data")
     val files = this.outbox.listFiles()
-    this.logger.debug("attempting to send {} analytics data files", files.size)
+    this.logger.debug("{} analytics data files are ready for sending", files.size)
     for (file in files) {
       this.executor.execute { this.trySend(file) }
     }
   }
 
-  private fun trySend(file: File) {
+  private fun trySend(
+    file: File
+  ) {
     this.logger.debug("attempting send of {}", file)
+    if (this.latestSchoolName == null) {
+      this.logger.debug("cannot send without having first received a school name")
+      return
+    }
 
     val data = this.compressAndReadLogFile(file)
     this.logger.debug("compressed data size: {}", data.size)
@@ -205,6 +258,8 @@ class LFAAnalyticsSystem(
     }
 
     for (serverConfiguration in this.lfaConfiguration.servers) {
+      this.logger.debug("post {}", serverConfiguration.address)
+
       val auth: OptionType<HTTPAuthType> =
         this.httpAuthFor(serverConfiguration.authentication)
 
@@ -256,20 +311,28 @@ class LFAAnalyticsSystem(
     this.logger.error("failed to send analytics data to any available URI")
   }
 
+  private fun tokenUsername(): String {
+    val schoolName =
+      checkNotNull(this.latestSchoolName)
+    val timestamp =
+      this.dateFormatter.print(LocalDate.now())
+
+    return String.format(
+      "%s_%s_%s",
+      schoolName,
+      this.lfaConfiguration.deviceID,
+      timestamp
+    )
+  }
+
   private fun httpAuthFor(
     authentication: LFAAnalyticsAuthentication
   ): OptionType<HTTPAuthType> {
     return when (authentication) {
       LFAAnalyticsAuthentication.None ->
         Option.none()
-      is LFAAnalyticsAuthentication.TokenBased -> {
-        Option.some(
-          HTTPAuthBasic.create(
-            this.lfaConfiguration.deviceID,
-            authentication.token
-          )
-        )
-      }
+      is LFAAnalyticsAuthentication.TokenBased ->
+        Option.some(HTTPAuthBasic.create(this.tokenUsername(), authentication.token))
     }
   }
 
