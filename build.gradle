@@ -1,9 +1,9 @@
 buildscript {
-  if ("$gradle.gradleVersion" != "6.0.1") {
-    throw new GradleException("Gradle version 6.0.1 is required (received $gradle.gradleVersion)")
+  if ("$gradle.gradleVersion" != "6.3") {
+    throw new GradleException("Gradle version 6.3 is required (received $gradle.gradleVersion)")
   }
 
-  ext.kotlin_version = "1.3.61"
+  ext.kotlin_version = "1.3.70"
 
   repositories {
     mavenCentral()
@@ -12,13 +12,12 @@ buildscript {
   }
 
   dependencies {
-    classpath "biz.aQute.bnd:biz.aQute.bnd.gradle:4.3.1"
-    classpath "com.nabilhachicha:android-native-dependencies:0.1.2"
-    classpath "com.vanniktech:gradle-android-junit-jacoco-plugin:0.15.0"
+    classpath "biz.aQute.bnd:biz.aQute.bnd.gradle:5.0.1"
+    classpath "com.vanniktech:gradle-android-junit-jacoco-plugin:0.16.0"
     classpath "digital.wup:android-maven-publish:3.6.3"
     classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.21.2"
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    classpath 'com.android.tools.build:gradle:3.5.3'
+    classpath 'com.android.tools.build:gradle:3.6.2'
   }
 }
 
@@ -46,6 +45,36 @@ ext {
   }
 
   simplifiedVersion = "5.0.3-SNAPSHOT"
+}
+
+task preFlightChecks {
+  logger.info("running pre-flight checks")
+
+  def requiredFiles = [
+    "one.lfa.android.app.grande/src/main/assets/account_bundled_credentials.json",
+    "one.lfa.android.app.laos/src/main/assets/account_bundled_credentials.json",
+    "one.lfa.android.app.online/src/main/assets/account_bundled_credentials.json",
+    "one.lfa.android.app.online/src/main/assets/lfaAnalytics.xml",
+    "one.lfa.android.app.png_offline/src/main/assets/lfaAnalytics.xml",
+    "one.lfa.android.app.timor/src/main/assets/lfaAnalytics.xml",
+    "lfa-keystore.jks",
+  ]
+
+  def missingFiles = []
+  for (requiredFile in requiredFiles) {
+    logger.info("Checking ${requiredFile} exists")
+
+    try {
+      file(requiredFile).getText()
+    } catch (Exception e) {
+      logger.error("ERROR: Could not open required file ${requiredFile}: ${e.getClass()}: ${e.getMessage()}")
+      missingFiles.add(requiredFile)
+    }
+  }
+
+  if (!missingFiles.isEmpty()) {
+    throw new FileNotFoundException("One or more required files are missing")
+  }
 }
 
 subprojects {
