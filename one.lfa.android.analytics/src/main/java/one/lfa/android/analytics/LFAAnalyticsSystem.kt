@@ -54,6 +54,10 @@ class LFAAnalyticsSystem(
       .appendYear(4, 4)
       .appendMonthOfYear(2)
       .appendDayOfMonth(2)
+      .appendHourOfDay(2)
+      .appendMinuteOfHour(2)
+      .appendSecondOfMinute(2)
+      .appendMillisOfSecond(4)
       .toFormatter()
 
   private lateinit var output: FileWriter
