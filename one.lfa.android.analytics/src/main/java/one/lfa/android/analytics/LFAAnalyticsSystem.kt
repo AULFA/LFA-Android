@@ -319,7 +319,7 @@ class LFAAnalyticsSystem(
     val schoolName =
       checkNotNull(this.latestSchoolName)
     val timestamp =
-      this.dateFormatter.print(LocalDate.now())
+      this.dateFormatter.print(LocalDateTime.now())
 
     return String.format(
       "%s_%s_%s",
