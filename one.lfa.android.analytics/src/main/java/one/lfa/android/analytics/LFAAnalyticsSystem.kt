@@ -3,7 +3,6 @@ package one.lfa.android.analytics
 import com.io7m.jfunctional.Option
 import com.io7m.jfunctional.OptionType
 import com.io7m.junreachable.UnreachableCodeException
-import org.joda.time.LocalDate
 import org.joda.time.LocalDateTime
 import org.joda.time.format.DateTimeFormatterBuilder
 import org.joda.time.format.ISODateTimeFormat
@@ -261,6 +260,7 @@ class LFAAnalyticsSystem(
       return
     }
 
+    var sent = false
     for (serverConfiguration in this.lfaConfiguration.servers) {
       this.logger.debug("post {}", serverConfiguration.address)
 
@@ -275,7 +275,7 @@ class LFAAnalyticsSystem(
           "application/json"
         )
 
-      val sent = result.matchResult(
+      sent = sent || result.matchResult(
         object : HTTPResultMatcherType<InputStream, Boolean, Exception> {
           override fun onHTTPError(
             error: HTTPResultError<InputStream>
@@ -306,10 +306,10 @@ class LFAAnalyticsSystem(
             return true
           }
         })
+    }
 
-      if (sent) {
-        return
-      }
+    if (sent) {
+      return
     }
 
     this.logger.error("failed to send analytics data to any available URI")
