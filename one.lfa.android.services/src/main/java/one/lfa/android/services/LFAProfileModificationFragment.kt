@@ -91,7 +91,7 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
     super.onCreate(savedInstanceState)
 
     this.parameters =
-      this.arguments!![this.parametersId] as ProfileModificationFragmentParameters
+      this.requireArguments()[this.parametersId] as ProfileModificationFragmentParameters
 
     this.onChange = OnTextChangeListener(this::onSomethingChanged)
 
@@ -437,7 +437,8 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
           ),
           showTestingLibraries = false,
           readerPreferences = ReaderPreferences.builder().build(),
-          mostRecentAccount = null
+          mostRecentAccount = null,
+          hasSeenLibrarySelectionScreen = true
         )
 
     val newPreferences =

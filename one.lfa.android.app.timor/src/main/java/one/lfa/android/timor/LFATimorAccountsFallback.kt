@@ -2,13 +2,13 @@ package one.lfa.android.timor
 
 import org.joda.time.DateTime
 import org.nypl.simplified.accounts.api.AccountProviderFallbackType
-import org.nypl.simplified.accounts.api.AccountProviderImmutable
+import org.nypl.simplified.accounts.api.AccountProvider
 import org.nypl.simplified.accounts.api.AccountProviderType
 import java.net.URI
 
 class LFATimorAccountsFallback : AccountProviderFallbackType {
   override fun get(): AccountProviderType =
-    AccountProviderImmutable(
+    AccountProvider(
       addAutomatically = true,
       annotationsURI = null,
       authentication = null,
@@ -29,7 +29,6 @@ class LFATimorAccountsFallback : AccountProviderFallbackType {
       subtitle = "LFA Laos",
       supportEmail = null,
       supportsReservations = false,
-      supportsSimplyESynchronization = false,
       updated = DateTime.now()
     )
 }

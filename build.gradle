@@ -44,7 +44,7 @@ ext {
     nexusPassword = ""
   }
 
-  simplifiedVersion = "5.1.0-SNAPSHOT"
+  simplifiedVersion = "5.3.1"
 }
 
 task preFlightChecks {
