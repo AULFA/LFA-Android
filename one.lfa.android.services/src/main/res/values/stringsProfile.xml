@@ -25,7 +25,8 @@
   <string name="profilesGenderOther">Other</string>
   <string name="profilesModify">Change</string>
   <string name="profilesModifyTitle">Modify A Profile</string>
-  <string name="profilesNameField">Name</string>
+  <string name="profilesNameFirstField">First Name</string>
+  <string name="profilesNameLastField">Last Name</string>
   <string name="profilesPilotNo">No</string>
   <string name="profilesPilotYes">Yes, my school is:</string>
   <string name="profilesPleaseEnter">Please enter your name, gender, and date of birth.</string>

@@ -18,6 +18,8 @@ import com.io7m.jfunctional.OptionType
 import com.io7m.jfunctional.Some
 import com.io7m.junreachable.UnreachableCodeException
 import io.reactivex.disposables.Disposable
+import one.lfa.android.services.LFAWhitespace.WHITESPACE
+import one.lfa.android.services.LFAWhitespace.isWhitespace
 import org.joda.time.DateTime
 import org.librarysimplified.services.api.Services
 import org.nypl.simplified.accounts.registry.api.AccountProviderRegistryType
@@ -42,6 +44,7 @@ import org.nypl.simplified.ui.profiles.ProfilesNavigationControllerType
 import org.nypl.simplified.ui.thread.api.UIThreadServiceType
 import org.nypl.simplified.ui.toolbar.ToolbarHostType
 import org.slf4j.LoggerFactory
+import java.util.Locale
 
 class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
 
@@ -70,7 +73,8 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
   private lateinit var genderRadioGroup: RadioGroup
   private lateinit var gradeLayout: ViewGroup
   private lateinit var gradeSpinner: Spinner
-  private lateinit var name: EditText
+  private lateinit var nameFirst: EditText
+  private lateinit var nameLast: EditText
   private lateinit var onChange: OnTextChangeListener
   private lateinit var parameters: ProfileModificationFragmentParameters
   private lateinit var pilotSchoolLayout: ViewGroup
@@ -127,8 +131,10 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
 
     this.date =
       layout.findViewById(R.id.profileCreationDateSelection)
-    this.name =
-      layout.findViewById(R.id.profileCreationEditName)
+    this.nameFirst =
+      layout.findViewById(R.id.profileCreationEditNameFirst)
+    this.nameLast =
+      layout.findViewById(R.id.profileCreationEditNameLast)
 
     this.genderRadioGroup =
       layout.findViewById(R.id.profileGenderRadioGroup)
@@ -169,7 +175,8 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
     }
     this.pilotSchoolRadioGroup.check(R.id.profilePilotSchoolNoRadioButton)
 
-    this.name.addTextChangedListener(this.onChange)
+    this.nameFirst.addTextChangedListener(this.onChange)
+    this.nameLast.addTextChangedListener(this.onChange)
 
     this.genderNonBinaryEditText.addTextChangedListener(this.onChange)
     this.genderNonBinaryEditText.setOnFocusChangeListener { _: View, hasFocus: Boolean ->
@@ -243,7 +250,9 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
       }
 
     if (currentProfile != null) {
-      this.name.setText(currentProfile.displayName)
+      val namePair = FirstAndLastName.parse(currentProfile.displayName)
+      this.nameFirst.setText(namePair.nameFirst)
+      this.nameLast.setText(namePair.nameLast)
 
       val attributes = currentProfile.attributes()
       val preferences = currentProfile.preferences()
@@ -399,13 +408,52 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
     super.onStop()
 
     this.profileSubscription?.dispose()
-    this.name.removeTextChangedListener(this.onChange)
+    this.nameFirst.removeTextChangedListener(this.onChange)
     this.roleEditText.removeTextChangedListener(this.onChange)
     this.genderNonBinaryEditText.removeTextChangedListener(this.onChange)
   }
 
+  data class FirstAndLastName(
+    val nameFirst: String,
+    val nameLast: String
+  ) {
+    val name: String =
+      "${this.nameFirst} ${this.nameLast}"
+
+    companion object {
+      fun parse(rawName: String): FirstAndLastName {
+        val segments = rawName.split(regex = WHITESPACE)
+        return when (segments.size) {
+          0 ->
+            FirstAndLastName(
+              nameFirst = "",
+              nameLast = ""
+            )
+          1 ->
+            FirstAndLastName(
+              nameFirst = segments[0].trim(LFAWhitespace::isWhitespace),
+              nameLast = ""
+            )
+          else -> {
+            val firstNames =
+              segments.take(segments.size - 1)
+                .map { it.trim(LFAWhitespace::isWhitespace) }
+
+            val firstName = firstNames.joinToString(" ")
+            val lastName = segments.last()
+
+            FirstAndLastName(
+              nameFirst = firstName,
+              nameLast = lastName
+            )
+          }
+        }
+      }
+    }
+  }
+
   private fun createOrModifyProfile() {
-    val nameText = this.name.text.toString().trim { it <= ' ' }
+    val namePair = this.getNamePair()
     val genderText = this.getGenderText()
     val roleText = this.getRoleText()
     val school = this.getSchool()
@@ -419,7 +467,7 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
     this.logger.debug("date:   {}", dateValue)
     this.logger.debug("gender: {}", genderText)
     this.logger.debug("grade:  {}", grade)
-    this.logger.debug("name:   {}", nameText)
+    this.logger.debug("name:   {} {}", namePair.nameFirst, namePair.nameLast)
     this.logger.debug("role:   {}", roleText)
     this.logger.debug("school: {}", school)
 
@@ -471,7 +519,7 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
 
     val profileDescription =
       ProfileDescription(
-        displayName = nameText,
+        displayName = namePair.name,
         preferences = newPreferences,
         attributes = newAttributes
       )
@@ -487,6 +535,13 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
         update = { profileDescription }
       )
     }
+  }
+
+  private fun getNamePair(): FirstAndLastName {
+    return FirstAndLastName(
+      nameFirst = this.nameFirst.text.toString(),
+      nameLast = this.nameLast.text.toString()
+    )
   }
 
   private fun getGradeText(): String? {
@@ -511,7 +566,9 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
       this.genderRadioGroup.checkedRadioButtonId == R.id.profileGenderMaleRadioButton ->
         "male"
       this.genderRadioGroup.checkedRadioButtonId == R.id.profileGenderNonBinaryRadioButton ->
-        this.genderNonBinaryEditText.text.toString().toLowerCase().trim { it <= ' ' }
+        this.genderNonBinaryEditText.text.toString()
+          .toLowerCase(Locale.ROOT)
+          .trim(LFAWhitespace::isWhitespace)
 
       else ->
         throw UnreachableCodeException()
@@ -527,7 +584,9 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
       this.roleRadioGroup.checkedRadioButtonId == R.id.profileRoleTeacherRadioButton ->
         "teacher"
       this.roleRadioGroup.checkedRadioButtonId == R.id.profileRoleOtherRadioButton ->
-        this.roleEditText.text.toString().toLowerCase().trim { it <= ' ' }
+        this.roleEditText.text.toString()
+          .toLowerCase(Locale.ROOT)
+          .trim(LFAWhitespace::isWhitespace)
       else ->
         throw UnreachableCodeException()
     }
@@ -560,10 +619,21 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
   }
 
   private fun updateFinishButton() {
-    val isNameOK = !this.name.text.toString().trim { it <= ' ' }.isEmpty()
+    val isNameFirstOK =
+      this.nameFirst.text.toString()
+        .trim(LFAWhitespace::isWhitespace)
+        .isNotEmpty()
+
+    val isNameLastOK =
+      this.nameLast.text.toString()
+        .trim(LFAWhitespace::isWhitespace)
+        .isNotEmpty()
 
     val isGenderNonBinaryEmpty =
-      this.genderNonBinaryEditText.text.toString().trim { it <= ' ' }.isEmpty()
+      this.genderNonBinaryEditText.text.toString()
+        .trim(LFAWhitespace::isWhitespace)
+        .isEmpty()
+
     val isGenderAnyRadioButtonChecked =
       this.genderRadioGroup.checkedRadioButtonId != -1
     val isGenderNonBinaryRadioButtonChecked =
@@ -581,7 +651,10 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
     }
 
     val isRoleOtherEmpty =
-      this.roleEditText.text.toString().trim { it <= ' ' }.isEmpty()
+      this.roleEditText.text.toString()
+        .trim(LFAWhitespace::isWhitespace)
+        .isEmpty()
+
     val isRoleAnyRadioButtonChecked =
       this.roleRadioGroup.checkedRadioButtonId != -1
     val isRoleOtherRadioButtonChecked =
@@ -598,6 +671,6 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
         false
       }
 
-    this.finishButton.isEnabled = isNameOK && isRoleOk && isGenderOk
+    this.finishButton.isEnabled = isNameFirstOK && isNameLastOK && isRoleOk && isGenderOk
   }
 }
