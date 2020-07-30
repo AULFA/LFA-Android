@@ -3,4 +3,6 @@ dependencies {
   api libraries.nyplSimplifiedFiles
   api libraries.nyplSimplifiedThreads
   api libraries.slf4j
+
+  implementation libraries.androidXWorkManager
 }

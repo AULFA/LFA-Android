@@ -1,5 +1,6 @@
 package one.lfa.android.analytics
 
+import android.content.Context
 import com.io7m.jfunctional.Option
 import com.io7m.jfunctional.OptionType
 import com.io7m.junreachable.UnreachableCodeException
@@ -27,7 +28,12 @@ import java.io.IOException
 import java.io.InputStream
 import java.util.UUID
 import java.util.concurrent.ExecutorService
+import java.util.concurrent.TimeUnit
 import java.util.zip.GZIPOutputStream
+import androidx.work.Constraints
+import androidx.work.NetworkType
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 
 /**
  * The LFA analytics system.
@@ -71,7 +77,32 @@ class LFAAnalyticsSystem(
       DirectoryUtilities.directoryCreate(this.outbox)
       this.output = FileWriter(this.logFile, true)
       this.executor.execute { this.trySendAll() }
+      // @Mark...
+      // this.enqueueUpdateTask(/* I'm going to need the context? */)
     }
+  }
+
+  private fun enqueueUpdateTask(context: Context) {
+
+    /*
+     * Start a task to handle updates.
+     */
+
+    val workRequestContraints =
+            Constraints.Builder()
+                    .setRequiredNetworkType(NetworkType.CONNECTED)
+                    .setRequiresStorageNotLow(true)
+                    .build()
+
+    val workRequest =
+            PeriodicWorkRequestBuilder<LogTransmissionWorker>(1, TimeUnit.MINUTES)
+                    .setConstraints(workRequestContraints)
+                    .setInitialDelay(1L, TimeUnit.MINUTES)
+                    .addTag("one.lfa.android.analytics")
+                    .build()
+
+    WorkManager.getInstance(context)
+            .enqueue(workRequest)
   }
 
   override fun onAnalyticsEvent(event: AnalyticsEvent): Unit =

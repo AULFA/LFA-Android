@@ -97,6 +97,7 @@ subprojects {
 }
 
 ext.libraries = [
+  androidXWorkManager                : "androidx.work:work-runtime-ktx:2.2.0",
   googleAutoValue                    : "com.google.auto.value:auto-value:1.5",
   junit                              : "junit:junit:4.12",
   kotlinStdlib                       : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
@@ -188,6 +189,9 @@ Automatic-Module-Name: ${POM_AUTOMATIC_MODULE_NAME}
           sourceCompatibility JavaVersion.VERSION_1_8
           targetCompatibility JavaVersion.VERSION_1_8
         }
+        kotlinOptions {
+          jvmTarget = JavaVersion.VERSION_1_8.toString()
+        }
       }
       break
 
@@ -214,6 +218,9 @@ Automatic-Module-Name: ${POM_AUTOMATIC_MODULE_NAME}
         compileOptions {
           sourceCompatibility JavaVersion.VERSION_1_8
           targetCompatibility JavaVersion.VERSION_1_8
+        }
+        kotlinOptions {
+          jvmTarget = JavaVersion.VERSION_1_8.toString()
         }
         testOptions {
           execution 'ANDROIDX_TEST_ORCHESTRATOR'
