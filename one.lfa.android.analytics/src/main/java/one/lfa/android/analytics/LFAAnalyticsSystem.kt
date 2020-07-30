@@ -78,14 +78,14 @@ class LFAAnalyticsSystem(
       this.output = FileWriter(this.logFile, true)
       this.executor.execute { this.trySendAll() }
       // @Mark...
-      // this.enqueueUpdateTask(/* I'm going to need the context? */)
+      // this.enqueueLogTransmissionTask(/* I'm going to need the context? */)
     }
   }
 
-  private fun enqueueUpdateTask(context: Context) {
+  private fun enqueueLogTransmissionTask(context: Context) {
 
     /*
-     * Start a task to handle updates.
+     * Start a task to handle log transmissions.
      */
 
     val workRequestContraints =
