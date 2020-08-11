@@ -20,6 +20,7 @@ class LogTransmissionWorker(
     private lateinit var analytics: AnalyticsType
 
     override fun doWork(): Result {
+        // @Mark -> analytics is obviously null.  Where should this class be instantiated so I can pass it the analytics system?
         this.analytics.publishEvent(
                 AnalyticsEvent.SyncRequested(
                         timestamp = LocalDateTime.now(),

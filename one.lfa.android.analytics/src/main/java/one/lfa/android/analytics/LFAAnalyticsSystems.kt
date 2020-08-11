@@ -43,7 +43,8 @@ class LFAAnalyticsSystems : AnalyticsSystemProvider {
       baseConfiguration = configuration,
       lfaConfiguration = lfaConfiguration,
       baseDirectory = directory,
-      executor = this.executor
+      executor = this.executor,
+      context = configuration.context
     )
   }
 }

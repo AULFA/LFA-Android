@@ -43,7 +43,8 @@ class LFAAnalyticsSystem(
   private val baseConfiguration: AnalyticsConfiguration,
   private val lfaConfiguration: LFAAnalyticsConfiguration,
   private val baseDirectory: File,
-  private val executor: ExecutorService
+  private val executor: ExecutorService,
+  private val context: Context
 ) : AnalyticsSystem {
 
   private val logger =
@@ -77,8 +78,7 @@ class LFAAnalyticsSystem(
       DirectoryUtilities.directoryCreate(this.outbox)
       this.output = FileWriter(this.logFile, true)
       this.executor.execute { this.trySendAll() }
-      // @Mark...
-      // this.enqueueLogTransmissionTask(/* I'm going to need the context? */)
+      this.enqueueLogTransmissionTask(context)
     }
   }
 
