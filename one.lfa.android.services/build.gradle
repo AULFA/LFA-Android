@@ -1,7 +1,9 @@
 dependencies {
+  api libraries.irradiaDatePicker
   api libraries.nyplSimplifiedBootAPI
-  api libraries.nyplSimplifiedDatePicker
+  api libraries.nyplSimplifiedBuildConfig
   api libraries.nyplSimplifiedFutures
+  api libraries.nyplSimplifiedMain
   api libraries.nyplSimplifiedNavigationAPI
   api libraries.nyplSimplifiedProfilesAPI
   api libraries.nyplSimplifiedProfilesControllerAPI

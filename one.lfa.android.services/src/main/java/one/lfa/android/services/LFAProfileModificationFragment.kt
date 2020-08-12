@@ -18,6 +18,7 @@ import com.io7m.jfunctional.OptionType
 import com.io7m.jfunctional.Some
 import com.io7m.junreachable.UnreachableCodeException
 import io.reactivex.disposables.Disposable
+import one.irradia.datepicker.views.DatePicker3P
 import one.lfa.android.services.LFAWhitespace.WHITESPACE
 import one.lfa.android.services.LFAWhitespace.isWhitespace
 import org.joda.time.DateTime
@@ -37,7 +38,6 @@ import org.nypl.simplified.profiles.api.ProfilePreferences
 import org.nypl.simplified.profiles.api.ProfileUpdated
 import org.nypl.simplified.profiles.controller.api.ProfilesControllerType
 import org.nypl.simplified.reader.api.ReaderPreferences
-import org.nypl.simplified.ui.datepicker.DatePicker
 import org.nypl.simplified.ui.profiles.ProfileModificationAbstractFragment
 import org.nypl.simplified.ui.profiles.ProfileModificationFragmentParameters
 import org.nypl.simplified.ui.profiles.ProfilesNavigationControllerType
@@ -66,7 +66,7 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
     }
   }
 
-  private lateinit var date: DatePicker
+  private lateinit var date: DatePicker3P
   private lateinit var finishButton: Button
   private lateinit var genderNonBinaryEditText: EditText
   private lateinit var genderNonBinaryRadioButton: RadioButton
@@ -486,7 +486,8 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
           showTestingLibraries = false,
           readerPreferences = ReaderPreferences.builder().build(),
           mostRecentAccount = null,
-          hasSeenLibrarySelectionScreen = true
+          hasSeenLibrarySelectionScreen = true,
+          useExperimentalR2 = true
         )
 
     val newPreferences =
@@ -494,7 +495,8 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
         dateOfBirth = ProfileDateOfBirth(
           date = dateValue,
           isSynthesized = false
-        )
+        ),
+        useExperimentalR2 = true
       )
 
     val oldAttributes =

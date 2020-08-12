@@ -36,7 +36,7 @@
   <string name="profilesRoleTeacher">Teacher</string>
   <string name="profilesSelect">Please select an existing profile or create a new one.</string>
   <string name="profilesSelectionErrorGeneral">An error occurred whilst trying to select your profile.</string>
-  <string name="profilesSwitch">Switch Profile</string>
-  <string name="profilesSwitchConfirm">Are you sure you want to switch profiles?</string>
+  <string name="profilesSwitch">Log Out</string>
+  <string name="profilesSwitchConfirm">Are you sure you want to log out?</string>
   <string name="profilesTitle">Profiles</string>
 </resources>

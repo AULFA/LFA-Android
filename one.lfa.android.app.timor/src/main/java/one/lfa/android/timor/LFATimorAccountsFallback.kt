@@ -3,6 +3,7 @@ package one.lfa.android.timor
 import org.joda.time.DateTime
 import org.nypl.simplified.accounts.api.AccountProviderFallbackType
 import org.nypl.simplified.accounts.api.AccountProvider
+import org.nypl.simplified.accounts.api.AccountProviderAuthenticationDescription
 import org.nypl.simplified.accounts.api.AccountProviderType
 import java.net.URI
 
@@ -11,7 +12,8 @@ class LFATimorAccountsFallback : AccountProviderFallbackType {
     AccountProvider(
       addAutomatically = true,
       annotationsURI = null,
-      authentication = null,
+      authentication = AccountProviderAuthenticationDescription.Anonymous,
+      authenticationAlternatives = listOf(),
       authenticationDocumentURI = null,
       catalogURI = URI.create("content://au.org.libraryforall/f07ef516-ea25-498f-ba23-80ff2904e6e6/feeds/B3CB1505FEF3ADA2894675D1077D8D41CC55A5D4858611ECC9712BABE77A8B4D.atom"),
       cardCreatorURI = null,

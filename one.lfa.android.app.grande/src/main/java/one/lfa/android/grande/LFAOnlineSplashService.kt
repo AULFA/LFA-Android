@@ -7,6 +7,10 @@ import org.nypl.simplified.ui.branding.BrandingSplashServiceType
  */
 
 class LFAOnlineSplashService : BrandingSplashServiceType {
+
+  override val shouldShowLibrarySelectionScreen: Boolean =
+    false
+
   override fun splashImageResource(): Int {
     return R.drawable.splash
   }
