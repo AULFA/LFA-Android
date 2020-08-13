@@ -217,10 +217,10 @@ class LFAAnalyticsSystem(
         "catalog_searched,${event.searchQuery}"
 
       is AnalyticsEvent.BookOpened ->
-        "book_opened,${event.profileUUID},${event.profileDisplayName},${event.bookTitle}"
+        "book_opened,${event.profileUUID},${event.profileDisplayName},${event.opdsEntry.title}"
 
       is AnalyticsEvent.BookPageTurned ->
-        "book_open_page,${event.bookPage}/${event.bookPagesTotal},${event.bookTitle}"
+        "book_open_page,${event.bookPage}/${event.bookPagesTotal},${event.opdsEntry.title}"
 
       is AnalyticsEvent.BookClosed ->
         null

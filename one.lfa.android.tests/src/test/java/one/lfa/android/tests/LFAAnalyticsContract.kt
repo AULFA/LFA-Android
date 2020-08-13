@@ -6,6 +6,7 @@ import one.lfa.android.analytics.LFAAnalyticsAuthentication
 import one.lfa.android.analytics.LFAAnalyticsConfiguration
 import one.lfa.android.analytics.LFAAnalyticsServerConfiguration
 import one.lfa.android.analytics.LFAAnalyticsSystem
+import org.joda.time.DateTime
 import org.joda.time.LocalDateTime
 import org.junit.After
 import org.junit.Assert
@@ -18,6 +19,8 @@ import org.nypl.simplified.analytics.api.AnalyticsConfiguration
 import org.nypl.simplified.analytics.api.AnalyticsEvent
 import org.nypl.simplified.http.core.HTTPResultError
 import org.nypl.simplified.http.core.HTTPResultOK
+import org.nypl.simplified.opds.core.OPDSAcquisitionFeedEntry
+import org.nypl.simplified.opds.core.OPDSAvailabilityLoaned
 import org.slf4j.LoggerFactory
 import java.io.ByteArrayInputStream
 import java.io.File
@@ -328,6 +331,14 @@ abstract class LFAAnalyticsContract {
       )
     )
 
+    val opdsAcquisitionFeedEntry0 =
+      OPDSAcquisitionFeedEntry.newBuilder(
+        "eda7943a-2151-49c7-87d5-c9e16e3437e2",
+        "Title",
+        DateTime.now(),
+        OPDSAvailabilityLoaned.get(Option.none(), Option.none(), Option.none())
+      ).build()
+
     system.onAnalyticsEvent(
       AnalyticsEvent.BookOpened(
         timestamp = LocalDateTime(0L),
@@ -336,8 +347,7 @@ abstract class LFAAnalyticsContract {
         accountProvider = URI("http://www.example.com"),
         accountUUID = UUID.fromString("45b9369e-1004-4422-8ce2-5d5cc54dfc3e"),
         profileDisplayName = "Name",
-        bookOPDSId = "eda7943a-2151-49c7-87d5-c9e16e3437e2",
-        bookTitle = "Title",
+        opdsEntry = opdsAcquisitionFeedEntry0,
         targetURI = URI.create("http://book-uri.com")
       )
     )
@@ -349,8 +359,7 @@ abstract class LFAAnalyticsContract {
         profileUUID = UUID.fromString("a0316364-fd7f-41be-8907-95dac45fb647"),
         accountProvider = URI("http://www.example.com"),
         accountUUID = UUID.fromString("45b9369e-1004-4422-8ce2-5d5cc54dfc3e"),
-        bookOPDSId = "eda7943a-2151-49c7-87d5-c9e16e3437e2",
-        bookTitle = "Title",
+        opdsEntry = opdsAcquisitionFeedEntry0,
         bookPage = 0,
         bookPagesTotal = 100,
         bookPageTitle = "Page Title"
@@ -364,8 +373,7 @@ abstract class LFAAnalyticsContract {
         profileUUID = UUID.fromString("a0316364-fd7f-41be-8907-95dac45fb647"),
         accountProvider = URI("http://www.example.com"),
         accountUUID = UUID.fromString("45b9369e-1004-4422-8ce2-5d5cc54dfc3e"),
-        bookOPDSId = "eda7943a-2151-49c7-87d5-c9e16e3437e2",
-        bookTitle = "Title"
+        opdsEntry = opdsAcquisitionFeedEntry0
       )
     )
 
