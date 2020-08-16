@@ -109,6 +109,7 @@ abstract class LFAAnalyticsContract {
 
     val system =
       LFAAnalyticsSystem(
+        context = configuration.context,
         baseConfiguration = config,
         lfaConfiguration = lfaConfiguration,
         baseDirectory = file,
@@ -196,6 +197,7 @@ abstract class LFAAnalyticsContract {
 
     val system =
       LFAAnalyticsSystem(
+        context = configuration.context,
         baseConfiguration = config,
         lfaConfiguration = lfaConfiguration,
         baseDirectory = file,
@@ -271,6 +273,7 @@ abstract class LFAAnalyticsContract {
 
     val system =
       LFAAnalyticsSystem(
+        context = configuration.context,
         baseConfiguration = config,
         lfaConfiguration = lfaConfiguration,
         baseDirectory = file,
