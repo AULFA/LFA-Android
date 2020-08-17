@@ -112,7 +112,7 @@
       android:textSize="18sp"
       android:textStyle="bold" />
 
-    <org.nypl.simplified.ui.datepicker.DatePicker
+    <one.irradia.datepicker.views.DatePicker3P
       android:id="@+id/profileCreationDateSelection"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"

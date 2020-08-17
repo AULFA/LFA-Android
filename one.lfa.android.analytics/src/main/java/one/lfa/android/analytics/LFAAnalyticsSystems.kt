@@ -40,6 +40,7 @@ class LFAAnalyticsSystems : AnalyticsSystemProvider {
       this.loadConfiguration(configuration.context, deviceID)
 
     return LFAAnalyticsSystem(
+      context = configuration.context,
       baseConfiguration = configuration,
       lfaConfiguration = lfaConfiguration,
       baseDirectory = directory,

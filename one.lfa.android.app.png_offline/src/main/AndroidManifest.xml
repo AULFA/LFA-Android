@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
   package="au.org.libraryforall.reader.offline">
 
   <uses-permission android:name="android.permission.INTERNET" />
@@ -10,10 +11,12 @@
 
   <application
     android:name="org.nypl.simplified.main.MainApplication"
+    tools:replace="android:allowBackup"
     android:allowBackup="true"
     android:contentDescription="LFA Offline"
     android:icon="@mipmap/ic_launcher"
     android:label="LFA Offline"
+    android:networkSecurityConfig="@xml/network_security_config"
     android:theme="@style/LFA_NoActionBar"
     android:usesCleartextTraffic="true">
 
@@ -22,10 +25,17 @@
       android:name="org.nypl.simplified.main.MainActivity"
       android:contentDescription="LFA Offline"
       android:exported="true"
+      android:launchMode="singleTop"
       android:label="LFA Offline">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="simplified-vanilla-oauth" />
       </intent-filter>
     </activity>
 
@@ -47,27 +57,27 @@
 
     <activity
       android:name="org.nypl.simplified.viewer.epub.readium1.ReaderActivity"
-      android:contentDescription="LFA Offline"
+      android:exported="false" />
+
+    <activity
+      android:name="org.nypl.simplified.viewer.epub.readium2.ReaderActivity"
+      android:configChanges="orientation|keyboardHidden"
       android:exported="false"
-      android:label="LFA Offline" />
+      android:parentActivityName="org.nypl.simplified.main.MainActivity"
+      android:screenOrientation="portrait"
+      android:theme="@style/LFA_ActionBar" />
 
     <activity
       android:name="org.nypl.simplified.viewer.epub.readium1.toc.ReaderTOCActivity"
-      android:contentDescription="LFA Offline"
-      android:exported="false"
-      android:label="LFA Offline" />
+      android:exported="false" />
 
     <activity
       android:name="org.nypl.simplified.viewer.pdf.PdfReaderActivity"
-      android:contentDescription="LFA Offline"
-      android:exported="false"
-      android:label="LFA Offline" />
+      android:exported="false" />
 
     <activity
       android:name="org.nypl.simplified.viewer.audiobook.AudioBookPlayerActivity"
-      android:contentDescription="LFA Offline"
-      android:exported="false"
-      android:label="LFA Offline" />
+      android:exported="false" />
 
   </application>
 

@@ -57,7 +57,6 @@ EOF
 info "downloading credentials"
 
 scp -B -P 1022 travis-ci@builds.lfa.one:online-app-credentials.json .    || exit 1
-scp -B -P 1022 travis-ci@builds.lfa.one:bugsnag.conf .                   || exit 1
 scp -B -P 1022 travis-ci@builds.lfa.one:lfaAnalyticsConfiguration.xml .  || exit 1
 
 cp online-app-credentials.json one.lfa.android.app.online/src/main/assets/account_bundled_credentials.json
@@ -67,7 +66,6 @@ VARIANTS="online png_offline grande laos timor"
 
 for VARIANT in ${VARIANTS}
 do
-  cp bugsnag.conf                  one.lfa.android.app.${VARIANT}/src/main/assets/bugsnag.conf || exit 1
   cp lfaAnalyticsConfiguration.xml one.lfa.android.app.${VARIANT}/src/main/assets/lfaAnalytics.xml || exit 1
 done
 

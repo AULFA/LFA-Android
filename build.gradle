@@ -12,17 +12,15 @@ buildscript {
   }
 
   dependencies {
-    classpath "biz.aQute.bnd:biz.aQute.bnd.gradle:5.1.1"
-    classpath "com.vanniktech:gradle-android-junit-jacoco-plugin:0.16.0"
+    classpath "biz.aQute.bnd:biz.aQute.bnd.gradle:5.1.2"
     classpath "digital.wup:android-maven-publish:3.6.3"
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    classpath 'com.android.tools.build:gradle:4.0.0'
+    classpath 'com.android.tools.build:gradle:4.0.1'
   }
 }
 
 plugins {
   id "com.github.ben-manes.versions" version "0.27.0"
-  id "com.vanniktech.android.junit.jacoco" version "0.15.0"
   id "digital.wup.android-maven-publish" version "3.6.3"
   id "ru.vyarus.animalsniffer" version "1.5.0"
 }
@@ -42,7 +40,7 @@ ext {
     nexusPassword = ""
   }
 
-  simplifiedVersion = "5.3.1"
+  simplifiedVersion = "6.0.0-SNAPSHOT"
 }
 
 task preFlightChecks {
@@ -77,15 +75,6 @@ task preFlightChecks {
 }
 
 subprojects {
-  // Force version 1.0.2 of appcompat. A bug in 1.1.0 causes a crash on API 21.
-  //
-  // https://issuetracker.google.com/issues/141132133#comment42
-  //
-  // TODO: Remove once appcompat:1.2.0 is available.
-  configurations.all {
-    resolutionStrategy.force 'androidx.appcompat:appcompat:1.0.2'
-  }
-
   //
   // We currently have transitive dependencies that specify dependencies on newer versions
   // of SLF4J. These are subtly incompatible with Logback-Android, and it will be a while before
@@ -99,13 +88,14 @@ subprojects {
 ext.libraries = [
   androidXWorkManager                : "androidx.work:work-runtime-ktx:2.2.0",
   googleAutoValue                    : "com.google.auto.value:auto-value:1.5",
+  irradiaDatePicker                  : "one.irradia.datepicker:one.irradia.datepicker.views:1.0.0",
   junit                              : "junit:junit:4.12",
   kotlinStdlib                       : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
   logbackClassic                     : "ch.qos.logback:logback-classic:1.2.3",
   mockitoAndroid                     : "org.mockito:mockito-android:2.22.0",
   nyplSimplifiedAnalyticsAPI         : "org.librarysimplified:org.librarysimplified.analytics.api:${simplifiedVersion}",
   nyplSimplifiedBootAPI              : "org.librarysimplified:org.librarysimplified.boot.api:${simplifiedVersion}",
-  nyplSimplifiedDatePicker           : "org.librarysimplified:org.librarysimplified.ui.datepicker:${simplifiedVersion}",
+  nyplSimplifiedBuildConfig          : "org.librarysimplified:org.librarysimplified.buildconfig.api:${simplifiedVersion}",
   nyplSimplifiedFiles                : "org.librarysimplified:org.librarysimplified.files:${simplifiedVersion}",
   nyplSimplifiedFutures              : "org.librarysimplified:org.librarysimplified.futures:${simplifiedVersion}",
   nyplSimplifiedMain                 : "org.librarysimplified:org.librarysimplified.main:${simplifiedVersion}",
@@ -124,8 +114,6 @@ ext.libraries = [
   nyplSourceSPI                      : "org.librarysimplified:org.librarysimplified.accounts.source.spi:${simplifiedVersion}",
   slf4j                              : "org.slf4j:slf4j-api:1.7.25",
 ]
-
-apply plugin: "com.vanniktech.android.junit.jacoco"
 
 allprojects {
   group = project.ext["GROUP"]

@@ -40,6 +40,7 @@ import androidx.work.WorkManager
  */
 
 class LFAAnalyticsSystem(
+  private val context: Context,
   private val baseConfiguration: AnalyticsConfiguration,
   private val lfaConfiguration: LFAAnalyticsConfiguration,
   private val baseDirectory: File,
@@ -248,10 +249,10 @@ class LFAAnalyticsSystem(
         "catalog_searched,${event.searchQuery}"
 
       is AnalyticsEvent.BookOpened ->
-        "book_opened,${event.profileUUID},${event.profileDisplayName},${event.bookTitle}"
+        "book_opened,${event.profileUUID},${event.profileDisplayName},${event.opdsEntry.title}"
 
       is AnalyticsEvent.BookPageTurned ->
-        "book_open_page,${event.bookPage}/${event.bookPagesTotal},${event.bookTitle}"
+        "book_open_page,${event.bookPage}/${event.bookPagesTotal},${event.opdsEntry.title}"
 
       is AnalyticsEvent.BookClosed ->
         null
@@ -277,6 +278,8 @@ class LFAAnalyticsSystem(
   private fun trySend(
     file: File
   ) {
+    this.copyToExternalStorage(file)
+
     this.logger.debug("attempting send of {}", file)
     if (this.latestSchoolName == null) {
       this.logger.debug("cannot send without having first received a school name")
@@ -344,6 +347,25 @@ class LFAAnalyticsSystem(
     }
 
     this.logger.error("failed to send analytics data to any available URI")
+  }
+
+  private fun copyToExternalStorage(file: File) {
+    try {
+      val cacheDir = this.context.externalCacheDir
+      if (cacheDir == null) {
+        this.logger.error("external cache directory is not available")
+        return
+      }
+
+      val analyticsDir = File(cacheDir, "analytics")
+      analyticsDir.mkdirs()
+      val outputFile = File(analyticsDir, file.name)
+      this.logger.debug("copying {} -> {}", file, outputFile)
+      FileUtilities.fileCopy(file, outputFile)
+      this.logger.debug("copied {} -> {}", file, outputFile)
+    } catch (e: Exception) {
+      this.logger.error("could not copy analytics log: ", e)
+    }
   }
 
   private fun tokenUsername(): String {
