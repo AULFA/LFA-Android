@@ -5,4 +5,5 @@ dependencies {
   api libraries.slf4j
 
   implementation libraries.androidXWorkManager
+  implementation project(":one.lfa.android.services")
 }

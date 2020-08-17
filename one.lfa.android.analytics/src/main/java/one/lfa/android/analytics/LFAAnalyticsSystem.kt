@@ -44,8 +44,7 @@ class LFAAnalyticsSystem(
   private val baseConfiguration: AnalyticsConfiguration,
   private val lfaConfiguration: LFAAnalyticsConfiguration,
   private val baseDirectory: File,
-  private val executor: ExecutorService,
-  private val context: Context
+  private val executor: ExecutorService
 ) : AnalyticsSystem {
 
   private val logger =
@@ -126,6 +125,7 @@ class LFAAnalyticsSystem(
     /*
      * Roll over the log file if necessary, and trigger a send of everything else.
      */
+
 
     if (this.logFile.length() >= this.lfaConfiguration.logFileSizeLimit) {
       this.rolloverLog()
