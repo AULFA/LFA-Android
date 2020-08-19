@@ -10,8 +10,7 @@ import org.librarysimplified.services.api.Services
 import java.lang.Exception
 
 /**
- * A task that updates the repositories and then publishes a notification if an update
- * is available.
+ * A task that requests an analytics sync event
  */
 
 class LogTransmissionWorker(
