@@ -7,6 +7,7 @@ import org.joda.time.LocalDateTime
 import org.nypl.simplified.analytics.api.AnalyticsEvent
 import org.nypl.simplified.analytics.api.AnalyticsType
 import org.librarysimplified.services.api.Services
+import java.lang.Exception
 
 /**
  * A task that updates the repositories and then publishes a notification if an update
@@ -20,15 +21,17 @@ class LogTransmissionWorker(
 
     override fun doWork(): Result {
 
-        val services = Services.serviceDirectory()
-        val analytics = services.requireService(AnalyticsType::class.java)
+        try {
+            val services = Services.serviceDirectory()
+            val analytics = services.requireService(AnalyticsType::class.java)
 
-        analytics.publishEvent(
-                AnalyticsEvent.SyncRequested(
-                        timestamp = LocalDateTime.now(),
-                        credentials = null
-                )
-        )
+            analytics.publishEvent(
+                    AnalyticsEvent.SyncRequested(
+                            timestamp = LocalDateTime.now(),
+                            credentials = null
+                    )
+            )
+        } catch (e: Exception) { }
 
         return Result.success()
     }
