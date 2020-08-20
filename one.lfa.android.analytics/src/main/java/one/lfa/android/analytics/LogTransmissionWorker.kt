@@ -16,22 +16,24 @@ import java.lang.Exception
 class LogTransmissionWorker(
         context: Context,
         workerParameters: WorkerParameters)
-    : Worker(context, workerParameters) {
+  : Worker(context, workerParameters) {
 
-    override fun doWork(): Result {
+  override fun doWork(): Result {
+    try {
+      val services = Services.serviceDirectory()
+      val analytics = services.requireService(AnalyticsType::class.java)
 
-        try {
-            val services = Services.serviceDirectory()
-            val analytics = services.requireService(AnalyticsType::class.java)
-
-            analytics.publishEvent(
-                    AnalyticsEvent.SyncRequested(
-                            timestamp = LocalDateTime.now(),
-                            credentials = null
-                    )
-            )
-        } catch (e: Exception) { }
-
-        return Result.success()
+      analytics.publishEvent(
+              AnalyticsEvent.SyncRequested(
+                      timestamp = LocalDateTime.now(),
+                      credentials = null
+              )
+      )
+    } catch (e: Exception) {
+      // Todo: Log out the exception
+      // How do I get access to the logger here?
     }
+
+    return Result.success()
+  }
 }
