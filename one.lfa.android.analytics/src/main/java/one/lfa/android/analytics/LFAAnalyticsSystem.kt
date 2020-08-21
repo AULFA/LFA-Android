@@ -28,7 +28,12 @@ import java.io.IOException
 import java.io.InputStream
 import java.util.UUID
 import java.util.concurrent.ExecutorService
+import java.util.concurrent.TimeUnit
 import java.util.zip.GZIPOutputStream
+import androidx.work.Constraints
+import androidx.work.NetworkType
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 
 /**
  * The LFA analytics system.
@@ -73,7 +78,31 @@ class LFAAnalyticsSystem(
       DirectoryUtilities.directoryCreate(this.outbox)
       this.output = FileWriter(this.logFile, true)
       this.executor.execute { this.trySendAll() }
+      this.enqueueLogTransmissionTask(context)
     }
+  }
+
+  private fun enqueueLogTransmissionTask(context: Context) {
+
+    /*
+     * Start a task to handle log transmissions.
+     */
+
+    val workRequestContraints =
+            Constraints.Builder()
+                    .setRequiredNetworkType(NetworkType.CONNECTED)
+                    .setRequiresStorageNotLow(true)
+                    .build()
+
+    val workRequest =
+            PeriodicWorkRequestBuilder<LogTransmissionWorker>(1, TimeUnit.MINUTES)
+                    .setConstraints(workRequestContraints)
+                    .setInitialDelay(1L, TimeUnit.MINUTES)
+                    .addTag("one.lfa.android.analytics")
+                    .build()
+
+    WorkManager.getInstance(context)
+            .enqueue(workRequest)
   }
 
   override fun onAnalyticsEvent(event: AnalyticsEvent): Unit =
@@ -96,6 +125,7 @@ class LFAAnalyticsSystem(
     /*
      * Roll over the log file if necessary, and trigger a send of everything else.
      */
+
 
     if (this.logFile.length() >= this.lfaConfiguration.logFileSizeLimit) {
       this.rolloverLog()
