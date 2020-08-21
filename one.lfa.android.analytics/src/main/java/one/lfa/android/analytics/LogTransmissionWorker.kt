@@ -7,6 +7,7 @@ import org.joda.time.LocalDateTime
 import org.nypl.simplified.analytics.api.AnalyticsEvent
 import org.nypl.simplified.analytics.api.AnalyticsType
 import org.librarysimplified.services.api.Services
+import org.slf4j.LoggerFactory
 import java.lang.Exception
 
 /**
@@ -17,6 +18,8 @@ class LogTransmissionWorker(
         context: Context,
         workerParameters: WorkerParameters)
   : Worker(context, workerParameters) {
+
+  private val logger = LoggerFactory.getLogger(LogTransmissionWorker::class.java)
 
   override fun doWork(): Result {
     try {
@@ -30,8 +33,7 @@ class LogTransmissionWorker(
               )
       )
     } catch (e: Exception) {
-      // Todo: Log out the exception
-      // How do I get access to the logger here?
+      logger.error("LogTransmissionWorker exception: ", e)
     }
 
     return Result.success()
