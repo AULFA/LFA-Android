@@ -487,7 +487,7 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
           readerPreferences = ReaderPreferences.builder().build(),
           mostRecentAccount = null,
           hasSeenLibrarySelectionScreen = true,
-          useExperimentalR2 = true
+          useExperimentalR2 = false
         )
 
     val newPreferences =
@@ -496,7 +496,7 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
           date = dateValue,
           isSynthesized = false
         ),
-        useExperimentalR2 = true
+        useExperimentalR2 = false
       )
 
     val oldAttributes =
