@@ -17,38 +17,6 @@
   },
   {
     "@version": "20190708",
-    "idUUID": "urn:provider:com.cantookstation.lfaglobalcollection",
-    "displayName": "Global",
-    "subtitle": "Global",
-    "logo": "simplified-asset:logos/globe.png",
-    "supportsSimplyESync": false,
-    "supportsBarcodeScanner": false,
-    "supportsBarcodeDisplay": false,
-    "supportsReservations": false,
-    "supportsCardCreator": false,
-    "supportsHelpCenter": false,
-    "addAutomatically": true,
-    "catalogURI": "https://lfaglobalcollection.cantookstation.com/catalog.atom",
-    "mainColor": "#ec1c24"
-  },
-  {
-    "@version": "20190708",
-    "idUUID": "urn:provider:com.cantookstation.lfabooksthattravel",
-    "displayName": "Books That Travel",
-    "subtitle": "Books That Travel",
-    "logo": "simplified-asset:logos/btt.png",
-    "supportsSimplyESync": false,
-    "supportsBarcodeScanner": false,
-    "supportsBarcodeDisplay": false,
-    "supportsReservations": false,
-    "supportsCardCreator": false,
-    "supportsHelpCenter": false,
-    "addAutomatically": true,
-    "catalogURI": "https://lfabooksthattravel.cantookstation.com/catalog/featuredresources.atom",
-    "mainColor": "#ec1c24"
-  },
-  {
-    "@version": "20190708",
     "idUUID": "urn:provider:la.dp.openbookshelf",
     "displayName": "Open Bookshelf",
     "subtitle": "Open Bookshelf",
@@ -62,21 +30,5 @@
     "addAutomatically": true,
     "catalogURI": "http://openbookshelf.dp.la/OB/groups/3",
     "mainColor": "#ec1c24"
-  },
-  {
-    "@version": "20190708",
-    "addAutomatically": true,
-    "catalogURI": "simplified-bundled:feeds/7A0A560E3AF8DDDD996E01FD43C618413A8A2B6CC118933F950C3618939EE1CD.atom",
-    "displayName": "Offline Catalogue",
-    "idUUID": "urn:provider:com.cantookstation.lfa.bundled",
-    "logo": "simplified-asset:bundled.png",
-    "mainColor": "#ec1c24",
-    "subtitle": "A catalogue that can be browsed offline",
-    "supportsBarcodeDisplay": false,
-    "supportsBarcodeScanner": false,
-    "supportsCardCreator": false,
-    "supportsHelpCenter": false,
-    "supportsReservations": false,
-    "supportsSimplyESync": false
   }
 ]
