@@ -112,15 +112,14 @@ class LFAAnalyticsSystem(
 
   private fun consumeEvent(event: AnalyticsEvent) {
 
-    /*
-     * If the event is a sync request, roll the log file over and send it right away.
-     */
+      /*
+       * If the event is a sync request, roll the log file over and send it right away.
+       */
 
-    if (event is AnalyticsEvent.SyncRequested) {
-      this.rolloverLog()
-      this.trySendAll()
-      return
-    }
+      if (event is AnalyticsEvent.SyncRequested) {
+        this.trySendAll()
+        return
+      }
 
     /*
      * Roll over the log file if necessary, and trigger a send of everything else.
@@ -281,10 +280,6 @@ class LFAAnalyticsSystem(
     this.copyToExternalStorage(file)
 
     this.logger.debug("attempting send of {}", file)
-    if (this.latestSchoolName == null) {
-      this.logger.debug("cannot send without having first received a school name")
-      return
-    }
 
     val data = this.compressAndReadLogFile(file)
     this.logger.debug("compressed data size: {}", data.size)
