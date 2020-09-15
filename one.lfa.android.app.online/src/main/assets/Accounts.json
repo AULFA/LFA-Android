@@ -18,9 +18,9 @@
   {
     "@version": "20190708",
     "idUUID": "urn:provider:com.cantookstation.lfalaos",
-    "displayName": "Papua New Guinea",
-    "subtitle": "Papua New Guinea",
-    "logo": "simplified-asset:logos/papua_new_guinea.png",
+    "displayName": "ປະເທດລາວ",
+    "subtitle": "",
+    "logo": "simplified-asset:logos/laos.png",
     "supportsSimplyESync": false,
     "supportsBarcodeScanner": false,
     "supportsBarcodeDisplay": false,
@@ -28,7 +28,7 @@
     "supportsCardCreator": false,
     "supportsHelpCenter": false,
     "addAutomatically": true,
-    "catalogURI": "https://lfa.cantookstation.com/catalog/featuredresources.atom",
+    "catalogURI": "https://lfalaos.cantookstation.com/catalog/featuredresources.atom",
     "mainColor": "#ec1c24"
   },
   {
@@ -45,6 +45,22 @@
     "supportsHelpCenter": false,
     "addAutomatically": true,
     "catalogURI": "http://openbookshelf.dp.la/OB/groups/3",
+    "mainColor": "#ec1c24"
+  },
+  {
+    "@version": "20190708",
+    "idUUID": "urn:uuid:f07ef516-ea25-498f-ba23-80ff2904e6e6",
+    "displayName": "Timor Leste",
+    "subtitle": "",
+    "logo": "simplified-asset:logos/timor.png",
+    "supportsSimplyESync": false,
+    "supportsBarcodeScanner": false,
+    "supportsBarcodeDisplay": false,
+    "supportsReservations": false,
+    "supportsCardCreator": false,
+    "supportsHelpCenter": false,
+    "addAutomatically": true,
+    "catalogURI": "https://lfatimorlestecollection.cantookstation.com/catalog/featuredresources.atom",
     "mainColor": "#ec1c24"
   }
 ]
