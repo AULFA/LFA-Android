@@ -2,13 +2,15 @@
 
 <resources>
   <string-array name="lfaPilotSchools">
-    <item>ບວມງາມ</item>
-    <item>ເມືອງເປີນ</item>
-    <item>ຜານາງ</item>
-    <item>ໂຮມພັນ</item>
-    <item>ສົບລາບ</item>
-    <item>ພຽງດີ</item>
-    <item>ສົ້ນຂົວ</item>
-    <item>ປ່າຄາໄຕ້</item>
+    <item>ໂຮງຮຽນ ປະຖົມ ບວມງາມ</item>
+    <item>ໂຮງຮຽນ ປະຖົມ ເມືອງເປີນ</item>
+    <item>ໂຮງຮຽນ ປະຖົມ ຜານາງ</item>
+    <item>ໂຮງຮຽນ ປະຖົມ ປ່າຄາໄຕ້</item>
+    <item>ໂຮງຮຽນ ປະຖົມ ສົ້ນຂົວ</item>
+    <item>ໂຮງຮຽນ ປະຖົມ ພຽງດີ</item>
+    <item>ໂຮງຮຽນ ປະຖົມ ສົບລາບ</item>
+    <item>ໂຮງຮຽນ ປະຖົມ ໂຮມທ້ອງ</item>
+    <item>ໂຮງຮຽນ ປະຖົມ ໂຮມພັນ</item>
+    <item>ໂຮງຮຽນ ປະຖົມ ນົກແອ່ນ</item>
   </string-array>
 </resources>
