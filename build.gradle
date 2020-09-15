@@ -1,3 +1,5 @@
+import java.security.MessageDigest
+
 buildscript {
   if ("$gradle.gradleVersion" != "6.3") {
     throw new GradleException("Gradle version 6.3 is required (received $gradle.gradleVersion)")
@@ -43,31 +45,48 @@ ext {
   simplifiedVersion = "6.2.0-SNAPSHOT"
 }
 
+static def sha256Of(File file) {
+  MessageDigest digest = MessageDigest.getInstance("SHA-256")
+  digest.update(file.getBytes())
+  return digest.digest().encodeHex().toString()
+}
+
 task preFlightChecks {
   logger.info("running pre-flight checks")
 
-  def requiredFiles = [
-    "lfa-keystore.jks",
-    "one.lfa.android.app.grande/bundles/offline.zip",
-    "one.lfa.android.app.grande/src/main/assets/account_bundled_credentials.json",
-    "one.lfa.android.app.laos.online/src/main/assets/account_bundled_credentials.json",
-    "one.lfa.android.app.laos.online/src/main/assets/lfaAnalytics.xml",
-    "one.lfa.android.app.online/bundles/offline.zip",
-    "one.lfa.android.app.online/src/main/assets/account_bundled_credentials.json",
-    "one.lfa.android.app.online/src/main/assets/lfaAnalytics.xml",
-    "one.lfa.android.app.png_offline/src/main/assets/lfaAnalytics.xml",
-    "one.lfa.android.app.timor/src/main/assets/lfaAnalytics.xml",
-  ]
+  def keystoreHash  = "20dfb53906594f4ae7a77df3d92f87f1c003c6a824b0b541c23c3185fd603da8"
+  def analyticsHash = "9adef6a15025a9e93cfd636b778251f430af6b97caeb90f86bf89e83f038fc90"
+  def credsHash     = "8542fb685466e39d2f5a87d6bbf2704374ac58ac7797cc29d5183f9ef237872e"
+
+  def requiredFiles = [:]
+  requiredFiles["lfa-keystore.jks"] = keystoreHash
+  requiredFiles["one.lfa.android.app.grande/src/main/assets/account_bundled_credentials.json"] = credsHash
+  requiredFiles["one.lfa.android.app.grande/src/main/assets/lfaAnalytics.xml"] = analyticsHash
+  requiredFiles["one.lfa.android.app.laos.online/src/main/assets/account_bundled_credentials.json"] = credsHash
+  requiredFiles["one.lfa.android.app.laos.online/src/main/assets/lfaAnalytics.xml"] = analyticsHash
+  requiredFiles["one.lfa.android.app.laos/src/main/assets/account_bundled_credentials.json"] = credsHash
+  requiredFiles["one.lfa.android.app.laos/src/main/assets/lfaAnalytics.xml"] = analyticsHash
+  requiredFiles["one.lfa.android.app.online/src/main/assets/account_bundled_credentials.json"] = credsHash
+  requiredFiles["one.lfa.android.app.online/src/main/assets/lfaAnalytics.xml"] = analyticsHash
+  requiredFiles["one.lfa.android.app.png_offline/src/main/assets/lfaAnalytics.xml"] = analyticsHash
+  requiredFiles["one.lfa.android.app.timor/src/main/assets/lfaAnalytics.xml"] = analyticsHash
 
   def missingFiles = []
-  for (requiredFile in requiredFiles) {
-    logger.info("Checking ${requiredFile} exists")
+  for (entry in requiredFiles) {
+    logger.info("Checking ${entry.key} exists and has expected digest value")
 
     try {
-      file(requiredFile).getText()
+      def received = sha256Of(file(entry.key))
+      def expected = entry.value
+      if (received != expected) {
+        logger.error("ERROR: File ${entry.key} has incorrect SHA-256 hash")
+        logger.error("  Expected: ${expected}")
+        logger.error("  Received: ${entry.value}")
+        missingFiles.add(entry.key)
+      }
     } catch (Exception e) {
-      logger.error("ERROR: Could not open required file ${requiredFile}: ${e.getClass()}: ${e.getMessage()}")
-      missingFiles.add(requiredFile)
+      logger.error("ERROR: Could not open required file ${entry.key}: ${e.getClass()}: ${e.getMessage()}")
+      missingFiles.add(entry.key)
     }
   }
 

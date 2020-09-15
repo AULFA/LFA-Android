@@ -1,6 +1,10 @@
 package one.lfa.android.analytics
 
 import android.content.Context
+import androidx.work.Constraints
+import androidx.work.NetworkType
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.io7m.jfunctional.Option
 import com.io7m.jfunctional.OptionType
 import com.io7m.junreachable.UnreachableCodeException
@@ -30,10 +34,6 @@ import java.util.UUID
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.TimeUnit
 import java.util.zip.GZIPOutputStream
-import androidx.work.Constraints
-import androidx.work.NetworkType
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
 
 /**
  * The LFA analytics system.
@@ -89,20 +89,20 @@ class LFAAnalyticsSystem(
      */
 
     val workRequestContraints =
-            Constraints.Builder()
-                    .setRequiredNetworkType(NetworkType.CONNECTED)
-                    .setRequiresStorageNotLow(true)
-                    .build()
+      Constraints.Builder()
+        .setRequiredNetworkType(NetworkType.CONNECTED)
+        .setRequiresStorageNotLow(true)
+        .build()
 
     val workRequest =
-            PeriodicWorkRequestBuilder<LogTransmissionWorker>(1, TimeUnit.MINUTES)
-                    .setConstraints(workRequestContraints)
-                    .setInitialDelay(1L, TimeUnit.MINUTES)
-                    .addTag("one.lfa.android.analytics")
-                    .build()
+      PeriodicWorkRequestBuilder<LogTransmissionWorker>(1, TimeUnit.MINUTES)
+        .setConstraints(workRequestContraints)
+        .setInitialDelay(1L, TimeUnit.MINUTES)
+        .addTag("one.lfa.android.analytics")
+        .build()
 
     WorkManager.getInstance(context)
-            .enqueue(workRequest)
+      .enqueue(workRequest)
   }
 
   override fun onAnalyticsEvent(event: AnalyticsEvent): Unit =
@@ -112,14 +112,14 @@ class LFAAnalyticsSystem(
 
   private fun consumeEvent(event: AnalyticsEvent) {
 
-      /*
-       * If the event is a sync request, roll the log file over and send it right away.
-       */
+    /*
+     * If the event is a sync request, roll the log file over and send it right away.
+     */
 
-      if (event is AnalyticsEvent.SyncRequested) {
-        this.trySendAll()
-        return
-      }
+    if (event is AnalyticsEvent.SyncRequested) {
+      this.trySendAll()
+      return
+    }
 
     /*
      * Roll over the log file if necessary, and trigger a send of everything else.
@@ -270,7 +270,18 @@ class LFAAnalyticsSystem(
     val files = this.outbox.listFiles()
     this.logger.debug("{} analytics data files are ready for sending", files.size)
     for (file in files) {
-      this.executor.execute { this.trySend(file) }
+      this.executor.execute {
+        try {
+          this.trySend(file)
+        } finally {
+          try {
+            this.logger.debug("pausing after send attempt")
+            Thread.sleep(5_000L)
+          } catch (e: Exception) {
+            this.logger.debug("exception raised during sleep: ", e)
+          }
+        }
+      }
     }
   }
 
@@ -280,7 +291,6 @@ class LFAAnalyticsSystem(
     this.copyToExternalStorage(file)
 
     this.logger.debug("attempting send of {}", file)
-
     val data = this.compressAndReadLogFile(file)
     this.logger.debug("compressed data size: {}", data.size)
 

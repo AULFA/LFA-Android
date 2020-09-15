@@ -70,10 +70,6 @@ android {
   }
 }
 
-// Check that bundled credentials exist
-def credentials = file("${project.rootDir}/${POM_NAME}/src/main/assets/account_bundled_credentials.json")
-def credentialsText = credentials.getText()
-
 def jsonFile   = file("${project.rootDir}/${POM_NAME}/bundles.json")
 def parsedJson = new groovy.json.JsonSlurper().parseText(jsonFile.text)
 
@@ -89,16 +85,9 @@ parsedJson.each { bundle ->
   }
 }
 
-task copyCredentials(type: Copy) {
-  from "${project.rootDir}/${POM_NAME}/credentials.json"
-  rename { name -> "account_bundled_credentials.json" }
-  into "${project.rootDir}/${POM_NAME}/src/main/assets/"
-}
-
 afterEvaluate {
   android.applicationVariants.all { variant ->
     variant.javaCompiler.dependsOn(tasks.matching { Task task -> task.name.startsWith("unzipBundled_") })
-    variant.javaCompiler.dependsOn(copyCredentials)
   }
 }
 

@@ -1,0 +1,18 @@
+[
+  {
+    "@version": "20190708",
+    "idUUID": "urn:provider:com.cantookstation.lfalaos",
+    "displayName": "ປະເທດລາວ",
+    "subtitle": "",
+    "logo": "simplified-asset:logos/laos.png",
+    "supportsSimplyESync": false,
+    "supportsBarcodeScanner": false,
+    "supportsBarcodeDisplay": false,
+    "supportsReservations": false,
+    "supportsCardCreator": false,
+    "supportsHelpCenter": false,
+    "addAutomatically": true,
+    "catalogURI": "https://lfalaos.cantookstation.com/catalog/featuredresources.atom",
+    "mainColor": "#ec1c24"
+  }
+]
