@@ -59,8 +59,9 @@ info "downloading credentials"
 scp -B -P 1022 travis-ci@builds.lfa.one:online-app-credentials.json .    || exit 1
 scp -B -P 1022 travis-ci@builds.lfa.one:lfaAnalyticsConfiguration.xml .  || exit 1
 
-cp online-app-credentials.json one.lfa.android.app.online/src/main/assets/account_bundled_credentials.json
 cp online-app-credentials.json one.lfa.android.app.grande/src/main/assets/account_bundled_credentials.json
+cp online-app-credentials.json one.lfa.android.app.laos.online/src/main/assets/account_bundled_credentials.json
+cp online-app-credentials.json one.lfa.android.app.online/src/main/assets/account_bundled_credentials.json
 
 VARIANTS="online png_offline grande laos timor"
 

@@ -50,6 +50,8 @@ task preFlightChecks {
     "lfa-keystore.jks",
     "one.lfa.android.app.grande/bundles/offline.zip",
     "one.lfa.android.app.grande/src/main/assets/account_bundled_credentials.json",
+    "one.lfa.android.app.laos.online/src/main/assets/account_bundled_credentials.json",
+    "one.lfa.android.app.laos.online/src/main/assets/lfaAnalytics.xml",
     "one.lfa.android.app.online/bundles/offline.zip",
     "one.lfa.android.app.online/src/main/assets/account_bundled_credentials.json",
     "one.lfa.android.app.online/src/main/assets/lfaAnalytics.xml",
