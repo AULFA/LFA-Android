@@ -63,7 +63,7 @@ cp online-app-credentials.json one.lfa.android.app.grande/src/main/assets/accoun
 cp online-app-credentials.json one.lfa.android.app.laos.online/src/main/assets/account_bundled_credentials.json
 cp online-app-credentials.json one.lfa.android.app.online/src/main/assets/account_bundled_credentials.json
 
-VARIANTS="online png_offline grande laos timor"
+VARIANTS="online png_offline grande laos laos.online timor"
 
 for VARIANT in ${VARIANTS}
 do
