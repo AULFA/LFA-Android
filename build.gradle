@@ -56,7 +56,7 @@ task preFlightChecks {
 
   def keystoreHash  = "20dfb53906594f4ae7a77df3d92f87f1c003c6a824b0b541c23c3185fd603da8"
   def analyticsHash = "9adef6a15025a9e93cfd636b778251f430af6b97caeb90f86bf89e83f038fc90"
-  def credsHash     = "e38db1cce1c7ceb874ba2900d9bf77d68b268207d528e902d10908a7729d85e0"
+  def credsHash     = "157fb41bc80b833762a073d19b73bcc5d61b2f95e5722c3b1b339ddf09338675"
 
   def requiredFiles = [:]
   requiredFiles["lfa-keystore.jks"] = keystoreHash
@@ -81,7 +81,7 @@ task preFlightChecks {
       if (received != expected) {
         logger.error("ERROR: File ${entry.key} has incorrect SHA-256 hash")
         logger.error("  Expected: ${expected}")
-        logger.error("  Received: ${entry.value}")
+        logger.error("  Received: ${received}")
         missingFiles.add(entry.key)
       }
     } catch (Exception e) {
