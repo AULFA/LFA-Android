@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-  <string name="profileNameFirstField"></string>
-  <string name="profileNameLastField"></string>
+  <string name="profileNameFirstField">First Name</string>
+  <string name="profileNameLastField">Last Name</string>
   <string name="profileCancel">Cancel</string>
   <string name="profileCreationErrorGeneral">ເກີດ​ຂໍ້​ຜິດ​ຜາດ​ໃນ​ຂະ­ນະ​ສ້າງ​ບັນ­ຊີ​ຂອງ​ທ່ານ</string>
   <string name="profileDeleteAsk">Delete profile?</string>
@@ -54,7 +54,7 @@
 
   <string name="tabBooks">ປຶ້ມຂອງຂ້ອຍ</string>
   <string name="tabCatalog">ແຄັດຕາລັອກ</string>
-  <string name="tabHolds"></string>
+  <string name="tabHolds">Holds</string>
   <string name="tabProfile">Profile</string>
   <string name="tabSettings">ກ່ຽວກັບ</string>
 
