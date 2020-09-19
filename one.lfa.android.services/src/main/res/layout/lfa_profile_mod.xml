@@ -16,7 +16,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginBottom="16dp"
-      android:text="@string/profilesCreateTitle"
+      android:text="@string/profileCreateTitle"
       android:textSize="24sp"
       android:textStyle="bold" />
 
@@ -24,7 +24,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginBottom="16dp"
-      android:text="@string/profilesAskName"
+      android:text="@string/profileAskName"
       android:textSize="18sp"
       android:textStyle="bold" />
 
@@ -34,7 +34,7 @@
       android:layout_height="wrap_content"
       android:layout_marginBottom="16dp"
       android:ems="10"
-      android:hint="@string/profilesNameFirstField"
+      android:hint="@string/profileNameFirstField"
       android:imeOptions="actionDone"
       android:inputType="textPersonName|textCapWords"
       android:text="" />
@@ -45,7 +45,7 @@
       android:layout_height="wrap_content"
       android:layout_marginBottom="16dp"
       android:ems="10"
-      android:hint="@string/profilesNameLastField"
+      android:hint="@string/profileNameLastField"
       android:imeOptions="actionDone"
       android:inputType="textPersonName|textCapWords"
       android:text="" />
@@ -54,7 +54,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginBottom="16dp"
-      android:text="@string/profilesAskGender"
+      android:text="@string/profileAskGender"
       android:textSize="18sp"
       android:textStyle="bold" />
 
@@ -75,19 +75,19 @@
           android:id="@+id/profileGenderFemaleRadioButton"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="@string/profilesGenderFemale" />
+          android:text="@string/profileGenderFemale" />
 
         <RadioButton
           android:id="@+id/profileGenderMaleRadioButton"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="@string/profilesGenderMale" />
+          android:text="@string/profileGenderMale" />
 
         <RadioButton
           android:id="@+id/profileGenderNonBinaryRadioButton"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="@string/profilesGenderOther" />
+          android:text="@string/profileGenderOther" />
       </RadioGroup>
 
       <EditText
@@ -108,7 +108,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginBottom="16dp"
-      android:text="@string/profilesAskBirth"
+      android:text="@string/profileAskBirth"
       android:textSize="18sp"
       android:textStyle="bold" />
 
@@ -123,7 +123,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginBottom="16dp"
-      android:text="@string/profilesAskRole"
+      android:text="@string/profileAskRole"
       android:textSize="18sp"
       android:textStyle="bold" />
 
@@ -144,25 +144,25 @@
           android:id="@+id/profileRoleParetRadioButton"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="@string/profilesRoleParent" />
+          android:text="@string/profileRoleParent" />
 
         <RadioButton
           android:id="@+id/profileRoleTeacherRadioButton"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="@string/profilesRoleTeacher" />
+          android:text="@string/profileRoleTeacher" />
 
         <RadioButton
           android:id="@+id/profileRoleStudentRadioButton"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="@string/profilesRoleStudent" />
+          android:text="@string/profileRoleStudent" />
 
         <RadioButton
           android:id="@+id/profileRoleOtherRadioButton"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="@string/profilesRoleOther" />
+          android:text="@string/profileRoleOther" />
       </RadioGroup>
 
       <EditText
@@ -189,7 +189,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="@string/profilesAskPilotSchool"
+        android:text="@string/profileAskPilotSchool"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -204,13 +204,13 @@
           android:id="@+id/profilePilotSchoolNoRadioButton"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="@string/profilesPilotNo" />
+          android:text="@string/profilePilotNo" />
 
         <RadioButton
           android:id="@+id/profilePilotSchoolYesRadioButton"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="@string/profilesPilotYes" />
+          android:text="@string/profilePilotYes" />
       </RadioGroup>
 
       <Spinner
@@ -231,7 +231,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="@string/profilesAskGrade"
+        android:text="@string/profileAskGrade"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -250,7 +250,7 @@
       android:layout_marginBottom="32dp"
       android:layout_marginTop="32dp"
       android:layout_gravity="center"
-      android:text="@string/profilesCreate" />
+      android:text="@string/profileCreate" />
   </LinearLayout>
 
 </ScrollView>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+  <string name="profileNameFirstField"></string>
+  <string name="profileNameLastField"></string>
+  <string name="profileCancel">Cancel</string>
+  <string name="profileCreationErrorGeneral">ເກີດ​ຂໍ້​ຜິດ​ຜາດ​ໃນ​ຂະ­ນະ​ສ້າງ​ບັນ­ຊີ​ຂອງ​ທ່ານ</string>
+  <string name="profileDeleteAsk">Delete profile?</string>
+  <string name="profileDeleteAskMessage">Are you sure you want to delete the profile \'%1$s\'?</string>
+  <string name="profileDeletionFailedMessage">An error occurred whilst trying to delete the profile: %1$s</string>
+  <string name="profileError">Error</string>
+  <string name="profileLogOut">Log Out</string>
+  <string name="profileLoggedInAs">You are currently logged in as: %1$s</string>
+  <string name="profilePlaceholder">Lorem ipsum dolor sit amet, probatus volutpat has at, vis adhuc iuvaret omittantur an, sadipscing conclusionemque his ad. Eam ut simul tempor. Primis consetetur appellantur vim eu, eum an iudico dolorum. Ad vis utamur honestatis, sanctus debitis referrentur an eam.</string>
+  <string name="profileUpdateError">@string/profileError</string>
+  <string name="profileUpdateFailedMessage">An error occurred whilst trying to update the profile: %1$s</string>
+  <string name="profileAccountDeletionErrorGeneral">ເກີດ​ຂໍ້ຜິດ​ຜາດ​ໃນ​ຂະ­ນະ​ລົບ​ບັນ­ຊີ​ຂອງ​ທ່ານ</string>
+  <string name="profileAccountSelectionErrorGeneral">ເກີດ​ຂໍ້​ຜິດ​ຜາດ​ໃນ​ຂະ­ນະ​ເລືອກ​ຊື​ຂອງ​ທ່ານ</string>
+  <string name="profileAskBirth">ວັນເດືອນປີເກີດຂອງທ່ານແມ່ນຫຍັງ?</string>
+  <string name="profileAskGender">ເພດຂອງທ່ານແມ່ນຫຍັງ?</string>
+  <string name="profileAskGrade">ທ່ານສຶກສາຢູ່ຊັ້ນໃດ?</string>
+  <string name="profileAskName">ຊຶ່ຂອງທ່ານແມ່ນຫຍັງ?</string>
+  <string name="profileAskPilotSchool">ໂຮງຮຽນຂອງທ່ານແມ່ນໃຊ້ໂປຮແກຮມທົດລອງ elibrary ບໍ?</string>
+  <string name="profileAskRole">ທ່ານແມ່ນ  ?</string>
+  <string name="profileCancelButton">ຍLກເລiກ</string>
+  <string name="profileCreate">ສ້າງການປຽ່ນແປງ</string>
+  <string name="profileCreateTitle">ສ້າງປະຫວັດ</string>
+  <string name="profileCreationErrorNameAlreadyUsed">ຊື່ໄດ້​ຖືກ​ນຳ​ໃຊ້​ແລ້ວ. ກະ​ລູນ​ນາ​ເລືອກ​ຊື​ໃໝ່່.</string>
+  <string name="profileDelete">ຈ້ອງການລົບ</string>
+  <string name="profileDeleteButton">ລົບ</string>
+  <string name="profileDeleteConfirm">ທ່ານແນ່ໃຈບໍຕ້ອງການລົບປະຫວັດຂອງທ່ານ?</string>
+  <string name="profileDeletionError">ເກິດຄວາມຜິດຜາດໃນຂະນະລົບປະຫວັດຂອງທ່ານ</string>
+  <string name="profileGenderFemale">ເພດຍິງ</string>
+  <string name="profileGenderMale">ເພດຊາຍ</string>
+  <string name="profileGenderOther">ບໍລະບຸ</string>
+  <string name="profileModify">ສ້າງການປຽ່ນແປງ</string>
+  <string name="profileModifyTitle">ປ່ຽນປະຫວັດ</string>
+  <string name="profilePilotNo">ບໍ</string>
+  <string name="profilePilotYes">ແມ່ນ.  ໂຮງຮຽນຂອງຂ້ອຍແມ່ນ…</string>
+  <string name="profilePleaseEnter">ກະ​ລຸນ​ນາ​ໃສ່​ຊື, ເພດ, ວັນ​ເດືອນ​ປິ​ເກິ​ດ</string>
+  <string name="profileRoleOther">ອຶ່ນໆ</string>
+  <string name="profileRoleParent">ພໍ່ແມ່</string>
+  <string name="profileRoleStudent">ນັກຮຽນ</string>
+  <string name="profileRoleTeacher">ອາຈານ</string>
+  <string name="profileSelect">ກະ­ລຸ­ນາ​ເລືອກ​ປະ­ຫວັດ​ຂອງ​ທ່ານ​ທິ​ມີ​ຢູ່​ແລ້ວ ຫລື ສ້າງ​ປະ­ຫວັດ​ໃໝ່່</string>
+  <string name="profileSelectionErrorGeneral">ເກີດ​ຂໍ້​ຜິດ​ຜາດ​ໃນ​ຂະ­ນະ​ເລືອກ​ປະ­ຫວັດ​ຂອງ​ທ່ານ</string>
+  <string name="profileSwitch">ສັບປ່ຽນປະຫວັດ</string>
+  <string name="profileSwitchConfirm">ທ່ານແນ່ໃຈບໍຕ້ອງການປ່ຽນປະຫວັດ?</string>
+  <string name="profileTimeOutSoon">ປະຫວັດຂອງທ່ານຈະອອກຈາກລະບົບໂດຍອາດຕະໂນມາດເມືອບໍມີການເຄືອນໄຫວ</string>
+  <string name="profileTimeOutSoonTitle">ປະຫວັດການເຄືອນໄຫວ</string>
+  <string name="profileTitle">ປະ­ຫວັດ</string>
+
+  <string name="currentlyBrowsing">You\'re currently browsing</string>
+
+  <string name="tabBooks">ປຶ້ມຂອງຂ້ອຍ</string>
+  <string name="tabCatalog">ແຄັດຕາລັອກ</string>
+  <string name="tabHolds"></string>
+  <string name="tabProfile">Profile</string>
+  <string name="tabSettings">ກ່ຽວກັບ</string>
+
+  <string name="settingsVersion">App version</string>
+  <string name="settingsVersionCore">Core version</string>
+
+  <string name="errorDetailsTitle">Error Details</string>
+  <string name="errorSendReport">Send To Support</string>
+  <string name="errorStepsTitle">Steps</string>
+  <string name="errorTitle">Here is the error log created by your issue:</string>
+
+</resources>

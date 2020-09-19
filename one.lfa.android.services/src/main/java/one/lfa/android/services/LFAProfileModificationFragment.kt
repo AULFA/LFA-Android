@@ -119,7 +119,7 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
 
     this.title = layout.findViewById(R.id.profileCreateTitle)
     if (this.parameters.profileID != null) {
-      this.title.setText(R.string.profilesModifyTitle)
+      this.title.setText(R.string.profileModifyTitle)
     }
 
     this.finishButton = layout.findViewById(R.id.profileCreationCreate)
@@ -321,9 +321,9 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
         }
       }
 
-      this.finishButton.setText(R.string.profilesModify)
+      this.finishButton.setText(R.string.profileModify)
     } else {
-      this.finishButton.setText(R.string.profilesCreate)
+      this.finishButton.setText(R.string.profileCreate)
     }
 
     this.profileSubscription =
