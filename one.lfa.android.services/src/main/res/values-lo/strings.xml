@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-  <string name="profileNameFirstField">First Name</string>
-  <string name="profileNameLastField">Last Name</string>
-  <string name="profileCancel">Cancel</string>
+  <string name="profileNameFirstField">ຊື່</string>
+  <string name="profileNameLastField">ນາມສະກຸນ</string>
+  <string name="profileCancel">ຍົກເລີກ</string>
   <string name="profileCreationErrorGeneral">ເກີດ​ຂໍ້​ຜິດ​ຜາດ​ໃນ​ຂະ­ນະ​ສ້າງ​ບັນ­ຊີ​ຂອງ​ທ່ານ</string>
-  <string name="profileDeleteAsk">Delete profile?</string>
-  <string name="profileDeleteAskMessage">Are you sure you want to delete the profile \'%1$s\'?</string>
-  <string name="profileDeletionFailedMessage">An error occurred whilst trying to delete the profile: %1$s</string>
-  <string name="profileError">Error</string>
-  <string name="profileLogOut">Log Out</string>
-  <string name="profileLoggedInAs">You are currently logged in as: %1$s</string>
+  <string name="profileDeleteAsk">ລຶບປະຫວັດ?</string>
+  <string name="profileDeleteAskMessage">ທ່ານແນ່ໃຈວ່າຈະລຶບປະຫວັດນີ້ບໍ່ \'%1$s\'?</string>
+  <string name="profileDeletionFailedMessage">ຂໍ້ຄັດຂ້ອງເກີດຂື້ນໃນຂະນະທີ່ທ່ານລຶບປະຫວັດ: %1$s</string>
+  <string name="profileError">ຂໍ້ຄັດຂ້ອງເກີດຂື້ນ</string>
+  <string name="profileLogOut">ອອກຈາກລະບົບ</string>
+  <string name="profileLoggedInAs">ປະຈຸບັນທ່ານເຂົ້າໂດຍນໍາໃຊ້: %1$s</string>
   <string name="profilePlaceholder">Lorem ipsum dolor sit amet, probatus volutpat has at, vis adhuc iuvaret omittantur an, sadipscing conclusionemque his ad. Eam ut simul tempor. Primis consetetur appellantur vim eu, eum an iudico dolorum. Ad vis utamur honestatis, sanctus debitis referrentur an eam.</string>
   <string name="profileUpdateError">@string/profileError</string>
-  <string name="profileUpdateFailedMessage">An error occurred whilst trying to update the profile: %1$s</string>
+  <string name="profileUpdateFailedMessage">ຂໍ້ຄັດຂ້ອງເກີດຂື້ນໃນຂະນະທີ່ທ່ານປັບປຸງປະຫວັດ: %1$s</string>
   <string name="profileAccountDeletionErrorGeneral">ເກີດ​ຂໍ້ຜິດ​ຜາດ​ໃນ​ຂະ­ນະ​ລົບ​ບັນ­ຊີ​ຂອງ​ທ່ານ</string>
   <string name="profileAccountSelectionErrorGeneral">ເກີດ​ຂໍ້​ຜິດ​ຜາດ​ໃນ​ຂະ­ນະ​ເລືອກ​ຊື​ຂອງ​ທ່ານ</string>
   <string name="profileAskBirth">ວັນເດືອນປີເກີດຂອງທ່ານແມ່ນຫຍັງ?</string>
@@ -21,7 +21,7 @@
   <string name="profileAskGrade">ທ່ານສຶກສາຢູ່ຊັ້ນໃດ?</string>
   <string name="profileAskName">ຊຶ່ຂອງທ່ານແມ່ນຫຍັງ?</string>
   <string name="profileAskPilotSchool">ໂຮງຮຽນຂອງທ່ານແມ່ນໃຊ້ໂປຮແກຮມທົດລອງ elibrary ບໍ?</string>
-  <string name="profileAskRole">ທ່ານແມ່ນ  ?</string>
+  <string name="profileAskRole">ທ່ານແມ່ນ ?</string>
   <string name="profileCancelButton">ຍLກເລiກ</string>
   <string name="profileCreate">ສ້າງການປຽ່ນແປງ</string>
   <string name="profileCreateTitle">ສ້າງປະຫວັດ</string>
@@ -50,20 +50,20 @@
   <string name="profileTimeOutSoonTitle">ປະຫວັດການເຄືອນໄຫວ</string>
   <string name="profileTitle">ປະ­ຫວັດ</string>
 
-  <string name="currentlyBrowsing">You\'re currently browsing</string>
+  <string name="currentlyBrowsing">ທ່ານກຳລັງຊອກຫາ</string>
 
   <string name="tabBooks">ປຶ້ມຂອງຂ້ອຍ</string>
   <string name="tabCatalog">ແຄັດຕາລັອກ</string>
-  <string name="tabHolds">Holds</string>
-  <string name="tabProfile">Profile</string>
+  <string name="tabHolds">ລໍຖ້າ</string>
+  <string name="tabProfile">ປະຫວັດ</string>
   <string name="tabSettings">ກ່ຽວກັບ</string>
 
-  <string name="settingsVersion">App version</string>
-  <string name="settingsVersionCore">Core version</string>
+  <string name="settingsVersion">ແອັບຫຼັກ</string>
+  <string name="settingsVersionCore">ຂໍ້ມູນຫຼັກ</string>
 
-  <string name="errorDetailsTitle">Error Details</string>
-  <string name="errorSendReport">Send To Support</string>
-  <string name="errorStepsTitle">Steps</string>
-  <string name="errorTitle">Here is the error log created by your issue:</string>
+  <string name="errorDetailsTitle">ລາຍລະອຽດຂໍ້ຄັດຂ້ອງ</string>
+  <string name="errorSendReport">ຂໍຄວາມຊ່ວຍເຫຼືອ</string>
+  <string name="errorStepsTitle">ຂັ້ນຕອນ</string>
+  <string name="errorTitle">ນີ້ເປັນຂໍ້ຄັດຂ້ອງທີ່ເກີດຂື້ນ:</string>
 
 </resources>
