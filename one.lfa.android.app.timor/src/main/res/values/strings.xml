@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+  <string name="currentlyBrowsing">Ita browsing hela</string>
+  <string name="errorDetailsTitle">Detalladu husi erru</string>
+  <string name="errorSendReport">Manda ba suporta</string>
+  <string name="errorStepsTitle">Etapa</string>
+  <string name="errorTitle">Ida-ne\'e mak erru husi ita-nian problema</string>
+  <string name="profileCancel">kansela</string>
+  <string name="profileDeleteAsk">apaga perfil</string>
+  <string name="profileDeleteAskMessage">Ita-boot serteza atu apaga perfil?</string>
+  <string name="profileDeletionFailedMessage">Iha erru balu bainhira atu apaga perfil:</string>
+  <string name="profileError">Erru</string>
+  <string name="profileLogOut">Taka</string>
+  <string name="profileLoggedInAs">Ita tama ona hanesan:</string>
+  <string name="profileNameFirstField">Naran dahuluk</string>
+  <string name="profileNameLastField">Apelidu</string>
+  <string name="profileUpdateFailedMessage">Iha erru balu bainhira atu atualizar perfil:</string>
+  <string name="settingsVersion">Versaun App</string>
+  <string name="settingsVersionCore">Versaun core</string>
+  <string name="tabHolds">Hein</string>
+  <string name="tabProfile">Perfil</string>
+</resources>

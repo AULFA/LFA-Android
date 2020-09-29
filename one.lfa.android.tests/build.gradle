@@ -6,4 +6,5 @@ dependencies {
   api libraries.kotlinStdlib
   api libraries.logbackClassic
   api libraries.mockitoAndroid
+  api libraries.apacheCSV
 }
