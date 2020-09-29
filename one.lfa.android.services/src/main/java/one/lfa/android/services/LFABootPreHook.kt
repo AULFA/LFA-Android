@@ -1,77 +1,152 @@
 package one.lfa.android.services
 
 import android.content.Context
-import android.os.Environment
-import com.google.common.base.Preconditions
 import org.nypl.simplified.boot.api.BootPreHookType
 import org.slf4j.LoggerFactory
 import java.io.File
 
 /**
- * A trivial boot hook that renames the old profile directory to the 2019-12-03 standard used
- * by the upstream NYPL code.
+ * A trivial boot hook that copies any old external storage to the upstream internal storage
+ * used by the NYPL app.
  */
 
 class LFABootPreHook : BootPreHookType {
 
   private val logger = LoggerFactory.getLogger(LFABootPreHook::class.java)
 
-  private fun determineDiskDataDirectory(context: Context): File {
+  /**
+   * A copying callback used to observe operations during unit testing.
+   */
 
-    /*
-     * If external storage is mounted and is on a device that doesn't allow
-     * the storage to be removed, use the external storage for data.
-     */
+  var onCopy : (File, File) -> Unit = { _,_ ->
 
-    if (Environment.MEDIA_MOUNTED == Environment.getExternalStorageState()) {
-      this.logger.debug("trying external storage")
-      if (!Environment.isExternalStorageRemovable()) {
-        val result = context.getExternalFilesDir(null)
-        this.logger.debug("external storage is not removable, using it ({})", result)
-        Preconditions.checkArgument(result!!.isDirectory, "Data directory {} is a directory", result)
-        return result
-      }
-    }
+  }
 
-    /*
-     * Otherwise, use internal storage.
-     */
+  /**
+   * A deletion callback used to observe operations during unit testing.
+   */
 
-    val result = context.filesDir
-    this.logger.debug("no non-removable external storage, using internal storage ({})", result)
-    Preconditions.checkArgument(result.isDirectory, "Data directory {} is a directory", result)
-    return result
+  var onDelete : (File) -> Unit = { _ ->
+
+  }
+
+  /**
+   * A directory creation callback used to observe operations during unit testing.
+   */
+
+  var onCreateDirectory: (File) -> Unit = { _ ->
+
   }
 
   override fun execute(context: Context) {
-    val baseDirectory =
-      this.determineDiskDataDirectory(context)
+    try {
+      this.logger.debug("starting")
 
-    val newBase =
-      File(baseDirectory, "v4.0")
-    val oldProfiles =
-      File(baseDirectory, "profiles")
-    val newProfiles =
-      File(newBase, "profiles")
-
-    this.logger.debug("baseDirectory: {}", baseDirectory)
-    this.logger.debug("newBase:       {}", newBase)
-    this.logger.debug("oldProfiles:   {} (is directory {})", oldProfiles, oldProfiles.isDirectory)
-    this.logger.debug("newProfiles:   {} (is directory {})", newProfiles, newProfiles.isDirectory)
-
-    newBase.mkdirs()
-    if (oldProfiles.isDirectory && !newProfiles.isDirectory) {
-      this.logger.debug(
-        "{} is a directory, and {} is not a directory, so renaming will be attempted",
-        oldProfiles,
-        newProfiles)
-
-      val renamed = oldProfiles.renameTo(newProfiles)
-      if (!renamed) {
-        this.logger.error("rename {} to {} failed!", oldProfiles, newProfiles)
+      val externalDir = context.getExternalFilesDir(null)
+      if (externalDir == null) {
+        this.logger.debug("external storage is null, no migration needed")
+        return
       }
-    } else {
-      this.logger.debug("pre boot hook did not need to run")
+
+      val internalProfilesDir =
+        File(File(context.filesDir, "v4.0"), "profiles")
+      val externalV4 =
+        File(externalDir, "v4.0")
+      val externalV4Profiles =
+        File(externalV4, "profiles")
+      val externalProfilesOld =
+        File(externalDir, "profiles")
+
+      if (externalProfilesOld.isDirectory) {
+        this.logger.debug("old-style external storage detected: {}", externalProfilesOld)
+        this.logger.debug("copying old-style external {} -> v4.0 external {}", externalProfilesOld, externalV4Profiles)
+        this.copy(externalProfilesOld, externalV4Profiles)
+        this.delete(externalProfilesOld)
+        this.logger.debug("deleted old-style external {}", externalProfilesOld)
+      }
+
+      if (externalV4.isDirectory) {
+        this.logger.debug("v4.0 external storage detected: {}", externalV4)
+        this.logger.debug("copying v4.0 external {} -> internal v4.0 {}", externalV4Profiles, internalProfilesDir)
+        this.copy(externalV4Profiles, internalProfilesDir)
+        this.delete(externalV4)
+        this.logger.debug("deleted v4.0 external {}", externalV4)
+      }
+    } catch (e: Exception) {
+      this.logger.error("critical exception raised during boot hook: ", e)
+    } finally {
+      this.logger.debug("finished pre-boot hook")
+    }
+  }
+
+  private fun delete(target: File) {
+    this.announceDelete(target)
+    target.deleteRecursively()
+  }
+
+  private fun copy(
+    source: File,
+    target: File
+  ) {
+    val everything =
+      source.walkTopDown().toList()
+
+    val directories =
+      everything.filter { it.isDirectory }.sorted()
+    val files =
+      everything.filter { it.isFile }.sorted()
+
+    for (sourceFile in directories) {
+      val relative = sourceFile.toRelativeString(source)
+      val targetFile = File(target, relative)
+      try {
+        this.announceCreateDirectory(targetFile)
+        targetFile.mkdirs()
+      } catch (e: Exception) {
+        this.logger.error("unable to copy {} -> {}", sourceFile, targetFile)
+      }
+    }
+
+    for (sourceFile in files) {
+      val relative = sourceFile.toRelativeString(source)
+      val targetFile = File(target, relative)
+
+      try {
+        this.announceCopy(sourceFile, targetFile)
+        sourceFile.copyTo(targetFile, overwrite = true)
+      } catch (e: Exception) {
+        this.logger.error("unable to copy {} -> {}", sourceFile, targetFile)
+      }
+    }
+  }
+
+  private fun announceCreateDirectory(file: File) {
+    try {
+      this.logger.debug("mkdirs {}", file)
+      this.onCreateDirectory(file)
+    } catch (e: Exception) {
+      // We don't care about exceptions here.
+    }
+  }
+
+  private fun announceDelete(file: File) {
+    try {
+      this.logger.debug("delete {}", file)
+      this.onDelete(file)
+    } catch (e: Exception) {
+      // We don't care about exceptions here.
+    }
+  }
+
+  private fun announceCopy(
+    source: File,
+    target: File
+  ) {
+    try {
+      this.logger.debug("copy {} -> {}", source, target)
+      this.onCopy(source, target)
+    } catch (e: Exception) {
+      // We don't care about exceptions here.
     }
   }
 }
