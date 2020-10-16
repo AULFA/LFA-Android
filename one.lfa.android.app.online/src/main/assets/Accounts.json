@@ -62,5 +62,21 @@
     "addAutomatically": true,
     "catalogURI": "https://lfatimorlestecollection.cantookstation.com/catalog/featuredresources.atom",
     "mainColor": "#ec1c24"
+  },
+  {
+    "@version": "20190708",
+    "idUUID": "urn:uuid:c6537298-674d-421a-8997-e6dfe5d9000d",
+    "displayName": "Indigenous",
+    "subtitle": "",
+    "logo": "simplified-asset:logos/indigenous.png",
+    "supportsSimplyESync": false,
+    "supportsBarcodeScanner": false,
+    "supportsBarcodeDisplay": false,
+    "supportsReservations": false,
+    "supportsCardCreator": false,
+    "supportsHelpCenter": false,
+    "addAutomatically": true,
+    "catalogURI": "https://lfaaustralianindigenouscollection.cantookstation.com/catalog/featuredresources.atom",
+    "mainColor": "#ec1c24"
   }
 ]
