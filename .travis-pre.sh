@@ -31,9 +31,9 @@ yes | sdkmanager tools \
 info "avdmanager: $(which avdmanager)"
 
 COMPONENTS="
-build-tools;28.0.3
+build-tools;29.0.3
 platform-tools
-platforms;android-28
+platforms;android-29
 tools
 "
 

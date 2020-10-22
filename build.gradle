@@ -28,10 +28,10 @@ plugins {
 }
 
 ext {
-  androidBuildToolsVersion = "29.0.2"
-  androidCompileSDKVersion = 28
+  androidBuildToolsVersion = "29.0.3"
+  androidCompileSDKVersion = 29
   androidMinimumSDKVersion = 21
-  androidTargetSDKVersion = 28
+  androidTargetSDKVersion = 29
 
   if (!project.hasProperty("nexusUsername")) {
     logger.warn("No nexusUsername property specified: Using an empty value")
