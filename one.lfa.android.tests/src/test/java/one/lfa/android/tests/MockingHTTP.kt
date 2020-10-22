@@ -67,8 +67,18 @@ class MockingHTTP : HTTPType {
   override fun get(
     auth: OptionType<HTTPAuthType>,
     uri: URI,
-    offset: Long): HTTPResultType<InputStream> {
+    offset: Long
+  ): HTTPResultType<InputStream> {
+    LOG.debug("get: {} {} {}", auth, uri, offset)
+    return response(uri)
+  }
 
+  override fun get(
+    auth: OptionType<HTTPAuthType>,
+    uri: URI,
+    offset: Long,
+    noCache: Boolean
+  ): HTTPResultType<InputStream> {
     LOG.debug("get: {} {} {}", auth, uri, offset)
     return response(uri)
   }

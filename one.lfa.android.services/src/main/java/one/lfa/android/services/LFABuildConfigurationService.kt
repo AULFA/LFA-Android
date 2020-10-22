@@ -24,6 +24,9 @@ class LFABuildConfigurationService : BuildConfigurationServiceType {
   override val showSettingsTab: Boolean
     get() = true
 
+  override val simplifiedVersion: String
+    get() = BuildConfig.SIMPLIFIED_VERSION
+
   override val supportErrorReportEmailAddress: String
     get() = "co+org.libraryforall.errors@io7m.com"
 
