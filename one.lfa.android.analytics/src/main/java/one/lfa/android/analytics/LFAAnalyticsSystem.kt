@@ -73,6 +73,8 @@ class LFAAnalyticsSystem(
 
   init {
     this.executor.execute {
+      this.logger.debug("analytics log size:  {}", this.lfaConfiguration.logFileSizeLimit)
+      this.logger.debug("analytics device id: {}", this.lfaConfiguration.deviceID)
       this.logger.debug("creating analytics directory {}", this.baseDirectory)
       DirectoryUtilities.directoryCreate(this.baseDirectory)
       DirectoryUtilities.directoryCreate(this.outbox)
