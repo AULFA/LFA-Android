@@ -253,7 +253,7 @@ class LFAAnalyticsSystem(
         "book_opened,${event.profileUUID},${event.profileDisplayName},${event.opdsEntry.title}"
 
       is AnalyticsEvent.BookPageTurned ->
-        "book_open_page,${event.bookPage}/${event.bookPagesTotal},${event.opdsEntry.title}"
+        "book_open_page,${event.bookPage+1}/${event.bookPagesTotal},${event.bookPageTitle}"
 
       is AnalyticsEvent.BookClosed ->
         null
