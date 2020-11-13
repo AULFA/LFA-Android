@@ -4,4 +4,4 @@
 1970-01-01T00:00:00,catalog_searched,Book0
 1970-01-01T00:00:00,catalog_searched,Book1
 1970-01-01T00:00:00,book_opened,a0316364-fd7f-41be-8907-95dac45fb647,Name,Title
-1970-01-01T00:00:00,book_open_page,0/100,Title
+1970-01-01T00:00:00,book_open_page,1/100,Page Title
