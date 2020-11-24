@@ -59,7 +59,7 @@ info "downloading credentials"
 scp -B -P 1022 travis-ci@builds.lfa.one:online-app-credentials.json .    || exit 1
 scp -B -P 1022 travis-ci@builds.lfa.one:lfaAnalyticsConfiguration.xml .  || exit 1
 
-VARIANTS="online png_offline grande laos laos.online timor"
+VARIANTS="online png_offline grande laos laos.online timor ethiopia"
 
 for VARIANT in ${VARIANTS}
 do
