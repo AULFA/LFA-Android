@@ -42,7 +42,7 @@ ext {
     nexusPassword = ""
   }
 
-  simplifiedVersion = "6.3.2-SNAPSHOT"
+  simplifiedVersion = "6.4.1"
 }
 
 static def sha256Of(File file) {
