@@ -78,5 +78,21 @@
     "addAutomatically": true,
     "catalogURI": "https://lfaaustralianindigenouscollection.cantookstation.com/catalog/featuredresources.atom",
     "mainColor": "#ec1c24"
+  },
+  {
+    "@version": "20190708",
+    "idUUID": "urn:uuid:3cd65800-4d21-4c56-8506-5843565a3b75",
+    "displayName": "Global English",
+    "subtitle": "",
+    "logo": "simplified-asset:logos/globe.png",
+    "supportsSimplyESync": false,
+    "supportsBarcodeScanner": false,
+    "supportsBarcodeDisplay": false,
+    "supportsReservations": false,
+    "supportsCardCreator": false,
+    "supportsHelpCenter": false,
+    "addAutomatically": true,
+    "catalogURI": "https://lfaglobalcollection.cantookstation.com/catalog/featuredresources.atom",
+    "mainColor": "#ec1c24"
   }
 ]
