@@ -2,17 +2,62 @@
 
 <resources>
   <string-array name="lfaPilotSchools">
-    <item>May Memorial Elementary</item>
-    <item>Sunbeam Elementary</item>
-    <item>Ngintsip Elementary</item>
-    <item>Flierl Elementary</item>
-    <item>Pinu Elementary</item>
-    <item>Ginigolo Elementary</item>
-    <item>Siar Elementary</item>
-    <item>Gum Elementary</item>
-    <item>Tumun Gain Elementary</item>
+    <item>Aiome SDA Elementary</item>
+    <item>Akurkai Elementary</item>
+    <item>Amapokina Elementary</item>
+    <item>AngaAfiang Elementary</item>
+    <item>Anminik Elementary</item>
     <item>Antiragen Elementary</item>
-    <item>Inauaia Elementary</item>
+    <item>Aven Elementary</item>
+    <item>Bamsos Elementary</item>
+    <item>Bog (Ombusi) Elementary</item>
+    <item>Bonzoc Elementary</item>
+    <item>Bopirumpun Elementary</item>
     <item>Boregaina Elementary</item>
+    <item>Buingim Elementary</item>
+    <item>Burr Elementary</item>
+    <item>Erima Skul Elementary</item>
+    <item>Finongan Elementary</item>
+    <item>Flierl Elementary</item>
+    <item>Gaire Elementary</item>
+    <item>Garinam Elementary</item>
+    <item>Gavuone Elementary</item>
+    <item>Ginigolo Elementary</item>
+    <item>Gum Elementary</item>
+    <item>Gumumo Elementary</item>
+    <item>Hudini Elementary</item>
+    <item>Inauaia Elementary</item>
+    <item>Ipisan Elementary</item>
+    <item>Jobto Elementary</item>
+    <item>Kemen Elementary</item>
+    <item>Kesaut Elementary</item>
+    <item>Konogul Elementary</item>
+    <item>Kupiano Station Elementary</item>
+    <item>Laugui Elementary</item>
+    <item>Lutu Busamang Elementary</item>
+    <item>Madzam Elementary</item>
+    <item>Malamai Elementary</item>
+    <item>Marawasa Elementary</item>
+    <item>Mawan Elementary</item>
+    <item>May Memorial Elementary</item>
+    <item>Mopo Elementary</item>
+    <item>Munum Elementary</item>
+    <item>Ngintsip Elementary</item>
+    <item>Pinu Elementary</item>
+    <item>Potaput Elementary</item>
+    <item>Rearea Elementary</item>
+    <item>Siar Elementary</item>
+    <item>Sukurum Elementary</item>
+    <item>Sunbeam Elementary</item>
+    <item>Tebensarik Elementary</item>
+    <item>Tumun Gain Elementary</item>
+    <item>Uria Elementary</item>
+    <item>Usema Elementary</item>
+    <item>Uyam Elementary</item>
+    <item>Wainsa Elementary</item>
+    <item>Wasin Elementary</item>
+    <item>Welwel Elementary</item>
+    <item>Yangalang Elementary</item>
+    <item>Zuebak Elementary</item>
   </string-array>
 </resources>

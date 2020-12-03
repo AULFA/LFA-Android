@@ -75,4 +75,5 @@ dependencies {
   api project(":one.lfa.android.services")
 
   api libraries.nyplSimplifiedMain
+  api libraries.nyplSimplifiedSourceFileBased
 }
