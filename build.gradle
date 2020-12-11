@@ -33,13 +33,31 @@ ext {
   androidMinimumSDKVersion = 21
   androidTargetSDKVersion = 29
 
-  if (!project.hasProperty("nexusUsername")) {
-    logger.warn("No nexusUsername property specified: Using an empty value")
-    nexusUsername = ""
+  if (!project.hasProperty("mavenCentralUsername")) {
+    logger.warn("No mavenCentralUsername property specified: Using an empty value")
+    mavenCentralUsername = ""
   }
-  if (!project.hasProperty("nexusPassword")) {
-    logger.warn("No nexusPassword property specified: Using an empty value")
-    nexusPassword = ""
+  if (!project.hasProperty("mavenCentralPassword")) {
+    logger.warn("No mavenCentralPassword property specified: Using an empty value")
+    mavenCentralPassword = ""
+  }
+
+  if (project.hasProperty("one.lfa.directory.publish")) {
+    useDirectoryPublishPath = project.property("one.lfa.directory.publish")
+    useDirectoryPublish = true
+    logger.warn("one.lfa.directory.publish is set: We will publish artifacts to ${useDirectoryPublishPath}")
+  } else {
+    logger.warn("one.lfa.directory.publish is not set: We will not publish artifacts to a custom directory")
+    useDirectoryPublish = false
+    useDirectoryPublishPath = null
+  }
+
+  if (project.hasProperty("one.lfa.no_signing")) {
+    disableSigning = true
+    logger.warn("one.lfa.no_signing is set: We will not sign artifacts")
+  } else {
+    disableSigning = false
+    logger.warn("one.lfa.no_signing is not set: We will attempt to sign artifacts")
   }
 
   simplifiedVersion = "6.3.2-SNAPSHOT"
@@ -329,22 +347,35 @@ Automatic-Module-Name: ${POM_AUTOMATIC_MODULE_NAME}
     }
 
     repositories {
-      maven {
-        def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-        def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
-        url = version.endsWith("SNAPSHOT") ? snapshotsRepoUrl : releasesRepoUrl
+      if (useDirectoryPublish) {
+        logger.info("using ${useDirectoryPublishPath} for publication")
 
-        credentials(PasswordCredentials) {
-          username nexusUsername
-          password nexusPassword
+        maven {
+          name = "Directory"
+          url = "file://${useDirectoryPublishPath}"
+        }
+      }
+
+      if (version.endsWith("-SNAPSHOT")) {
+        maven {
+          url = "https://oss.sonatype.org/content/repositories/snapshots/"
+          name = "SonatypeSnapshots"
+          credentials(PasswordCredentials) {
+            username mavenCentralUsername
+            password mavenCentralPassword
+          }
         }
       }
     }
   }
 
-  signing {
-    useGpgCmd()
-    sign publishing.publications.basicJar
+  if (!disableSigning) {
+    apply plugin: "signing"
+
+    signing {
+      useGpgCmd()
+      sign publishing.publications.basicJar
+    }
   }
 
   repositories {
