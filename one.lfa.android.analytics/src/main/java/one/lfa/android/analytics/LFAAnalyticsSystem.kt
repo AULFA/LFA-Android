@@ -367,6 +367,10 @@ class LFAAnalyticsSystem(
       val analyticsDir = File(cacheDir, "analytics")
       analyticsDir.mkdirs()
       val outputFile = File(analyticsDir, file.name)
+      if ( outputFile.exists() && outputFile.length() == file.length() ) {
+        this.logger.debug("previously copied, skipping {} -> {}", file, outputFile)
+        return
+      }
       this.logger.debug("copying {} -> {}", file, outputFile)
       FileUtilities.fileCopy(file, outputFile)
       this.logger.debug("copied {} -> {}", file, outputFile)
