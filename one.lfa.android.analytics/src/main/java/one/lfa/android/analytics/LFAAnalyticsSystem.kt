@@ -377,7 +377,7 @@ class LFAAnalyticsSystem(
 
   private fun tokenUsername(): String {
     val schoolName =
-      checkNotNull(this.latestSchoolName)
+      this.orEmpty(this.latestSchoolName)
     val timestamp =
       this.dateFormatter.print(LocalDateTime.now())
 
