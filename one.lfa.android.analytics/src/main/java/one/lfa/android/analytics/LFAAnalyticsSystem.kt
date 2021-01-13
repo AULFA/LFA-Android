@@ -278,7 +278,7 @@ class LFAAnalyticsSystem(
         } finally {
           try {
             this.logger.debug("pausing after send attempt")
-            Thread.sleep(5_000L)
+            Thread.sleep(100L)
           } catch (e: Exception) {
             this.logger.debug("exception raised during sleep: ", e)
           }
