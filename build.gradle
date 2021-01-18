@@ -15,7 +15,6 @@ buildscript {
 
   dependencies {
     classpath "biz.aQute.bnd:biz.aQute.bnd.gradle:5.2.0"
-    classpath "digital.wup:android-maven-publish:3.6.3"
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     classpath 'com.android.tools.build:gradle:4.1.1'
   }
@@ -23,7 +22,6 @@ buildscript {
 
 plugins {
   id "com.github.ben-manes.versions" version "0.27.0"
-  id "digital.wup.android-maven-publish" version "3.6.3"
   id "ru.vyarus.animalsniffer" version "1.5.0"
 }
 
@@ -32,33 +30,6 @@ ext {
   androidCompileSDKVersion = 29
   androidMinimumSDKVersion = 21
   androidTargetSDKVersion = 29
-
-  if (!project.hasProperty("mavenCentralUsername")) {
-    logger.warn("No mavenCentralUsername property specified: Using an empty value")
-    mavenCentralUsername = ""
-  }
-  if (!project.hasProperty("mavenCentralPassword")) {
-    logger.warn("No mavenCentralPassword property specified: Using an empty value")
-    mavenCentralPassword = ""
-  }
-
-  if (project.hasProperty("one.lfa.directory.publish")) {
-    useDirectoryPublishPath = project.property("one.lfa.directory.publish")
-    useDirectoryPublish = true
-    logger.warn("one.lfa.directory.publish is set: We will publish artifacts to ${useDirectoryPublishPath}")
-  } else {
-    logger.warn("one.lfa.directory.publish is not set: We will not publish artifacts to a custom directory")
-    useDirectoryPublish = false
-    useDirectoryPublishPath = null
-  }
-
-  if (project.hasProperty("one.lfa.no_signing")) {
-    disableSigning = true
-    logger.warn("one.lfa.no_signing is set: We will not sign artifacts")
-  } else {
-    disableSigning = false
-    logger.warn("one.lfa.no_signing is not set: We will attempt to sign artifacts")
-  }
 
   simplifiedVersion = "6.6.0-SNAPSHOT"
 }
@@ -272,113 +243,6 @@ Automatic-Module-Name: ${POM_AUTOMATIC_MODULE_NAME}
     from "src/main/java", "src/main/resources"
   }
 
-  apply plugin: "digital.wup.android-maven-publish"
-  apply plugin: "signing"
-
-  publishing {
-    publications {
-      basicJar(MavenPublication) {
-
-        switch (POM_PACKAGING) {
-          case "jar":
-            from components.java
-            break
-
-          case "apk":
-            break
-
-          case "aar":
-            from components.android
-            break
-        }
-
-        artifact sourcesJar
-        artifact javadocsJar
-
-        pom {
-          artifactId = POM_ARTIFACT_ID
-          name = POM_NAME
-          packaging = POM_PACKAGING
-          description = POM_DESCRIPTION
-          url = POM_URL
-
-          scm {
-            connection = POM_SCM_CONNECTION
-            developerConnection = POM_SCM_DEV_CONNECTION
-            url = POM_SCM_URL
-          }
-
-          licenses {
-            license {
-              name = POM_LICENCE_NAME
-              url = POM_LICENCE_URL
-            }
-          }
-
-          developers {
-            developer {
-              id = "io7m"
-              name = "Mark Raynsford"
-              email = "code@io7m.com"
-              url = "https://www.io7m.com"
-            }
-            developer {
-              id = "winniequinn"
-              name = "Winnie Quinn"
-              url = "https://www.winniequinn.com/"
-            }
-            developer {
-              id = "gioneill"
-              name = "Greg O'Neill"
-              url = "https://github.com/gioneill"
-            }
-            developer {
-              id = "mattniehoff"
-              name = "Matt Niehoff"
-              url = "https://github.com/mattniehoff"
-            }
-            developer {
-              id = "MalcolmMcFly"
-              name = "Malcolm Woods"
-              url = "https://github.com/MalcolmMcFly"
-            }
-          }
-        }
-      }
-    }
-
-    repositories {
-      if (useDirectoryPublish) {
-        logger.info("using ${useDirectoryPublishPath} for publication")
-
-        maven {
-          name = "Directory"
-          url = "file://${useDirectoryPublishPath}"
-        }
-      }
-
-      if (version.endsWith("-SNAPSHOT")) {
-        maven {
-          url = "https://oss.sonatype.org/content/repositories/snapshots/"
-          name = "SonatypeSnapshots"
-          credentials(PasswordCredentials) {
-            username mavenCentralUsername
-            password mavenCentralPassword
-          }
-        }
-      }
-    }
-  }
-
-  if (!disableSigning) {
-    apply plugin: "signing"
-
-    signing {
-      useGpgCmd()
-      sign publishing.publications.basicJar
-    }
-  }
-
   repositories {
     mavenLocal()
     mavenCentral()
@@ -393,3 +257,14 @@ Automatic-Module-Name: ${POM_AUTOMATIC_MODULE_NAME}
   }
 }
 
+/**
+ * Empty tasks called by CI. We don't do semantic versioning analysis or linting here yet.
+ */
+
+task verifySemanticVersioning {
+
+}
+
+task ktlint {
+
+}
