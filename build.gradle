@@ -17,7 +17,7 @@ buildscript {
     classpath "biz.aQute.bnd:biz.aQute.bnd.gradle:5.2.0"
     classpath "digital.wup:android-maven-publish:3.6.3"
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    classpath 'com.android.tools.build:gradle:4.1.0'
+    classpath 'com.android.tools.build:gradle:4.1.1'
   }
 }
 
@@ -60,7 +60,7 @@ ext {
     logger.warn("one.lfa.no_signing is not set: We will attempt to sign artifacts")
   }
 
-  simplifiedVersion = "6.3.2-SNAPSHOT"
+  simplifiedVersion = "6.6.0-SNAPSHOT"
 }
 
 static def sha256Of(File file) {
@@ -133,6 +133,7 @@ ext.libraries = [
   kotlinStdlib                       : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
   logbackClassic                     : "ch.qos.logback:logback-classic:1.2.3",
   mockitoAndroid                     : "org.mockito:mockito-android:2.22.0",
+  okhttp3_mockwebserver              : "com.squareup.okhttp3:mockwebserver:4.8.1",
   nyplSimplifiedAnalyticsAPI         : "org.librarysimplified:org.librarysimplified.analytics.api:${simplifiedVersion}",
   nyplSimplifiedBootAPI              : "org.librarysimplified:org.librarysimplified.boot.api:${simplifiedVersion}",
   nyplSimplifiedBuildConfig          : "org.librarysimplified:org.librarysimplified.buildconfig.api:${simplifiedVersion}",

@@ -2,6 +2,8 @@ package one.lfa.android.tests
 
 import android.content.Context
 import com.io7m.jfunctional.Option
+import okhttp3.mockwebserver.MockResponse
+import okhttp3.mockwebserver.MockWebServer
 import one.lfa.android.analytics.LFAAnalyticsAuthentication
 import one.lfa.android.analytics.LFAAnalyticsConfiguration
 import one.lfa.android.analytics.LFAAnalyticsServerConfiguration
@@ -10,30 +12,37 @@ import org.joda.time.DateTime
 import org.joda.time.LocalDateTime
 import org.junit.After
 import org.junit.Assert
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.ExpectedException
+import org.librarysimplified.http.api.LSHTTPClientConfiguration
+import org.librarysimplified.http.api.LSHTTPClientType
+import org.librarysimplified.http.vanilla.LSHTTPClients
 import org.mockito.Mockito
 import org.nypl.simplified.analytics.api.AnalyticsConfiguration
 import org.nypl.simplified.analytics.api.AnalyticsEvent
-import org.nypl.simplified.http.core.HTTPResultError
-import org.nypl.simplified.http.core.HTTPResultOK
 import org.nypl.simplified.opds.core.OPDSAcquisitionFeedEntry
 import org.nypl.simplified.opds.core.OPDSAvailabilityLoaned
 import org.slf4j.LoggerFactory
 import java.io.ByteArrayInputStream
 import java.io.File
 import java.io.FileNotFoundException
-import java.io.InputStream
 import java.net.URI
+import java.nio.charset.StandardCharsets
 import java.util.UUID
 import java.util.concurrent.Callable
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
+import java.util.zip.GZIPInputStream
 
 abstract class LFAAnalyticsContract {
 
+  private lateinit var http: LSHTTPClientType
+  private lateinit var server: MockWebServer
   private lateinit var executor: ExecutorService
 
   private val LOG =
@@ -45,12 +54,21 @@ abstract class LFAAnalyticsContract {
 
   @Before
   fun setup() {
+    val config =
+      LSHTTPClientConfiguration(
+        applicationName = "tests",
+        applicationVersion = "1.0.0"
+      )
+    this.http = LSHTTPClients().create(Mockito.mock(Context::class.java), config)
     this.executor = Executors.newSingleThreadExecutor()
+    this.server = MockWebServer()
+    this.server.start(20000)
   }
 
   @After
   fun tearDown() {
     this.executor.shutdown()
+    this.server.close()
   }
 
   /**
@@ -73,34 +91,23 @@ abstract class LFAAnalyticsContract {
         logFileSizeLimit = 100,
         servers = listOf(
           LFAAnalyticsServerConfiguration(
-            address = URI.create("http://www.example.com/analytics0"),
+            address = this.server.url("analytics0").toUri(),
             authentication = LFAAnalyticsAuthentication.None
           ),
           LFAAnalyticsServerConfiguration(
-            address = URI.create("http://www.example.com/analytics1"),
+            address = this.server.url("analytics1").toUri(),
             authentication = LFAAnalyticsAuthentication.None
           ),
           LFAAnalyticsServerConfiguration(
-            address = URI.create("http://www.example.com/analytics2"),
+            address = this.server.url("analytics2").toUri(),
             authentication = LFAAnalyticsAuthentication.None
           )
         )
       )
 
-    val http = MockingHTTP()
-    val error =
-      HTTPResultError<InputStream>(
-        400,
-        "OUCH!",
-        0L,
-        mutableMapOf(),
-        0L,
-        ByteArrayInputStream(ByteArray(0)),
-        Option.none())
-
     for (server in lfaConfiguration.servers) {
-      for (i in 1..3) {
-        http.addResponse(server.address, error)
+      for (i in 1..10) {
+        this.server.enqueue(MockResponse().setResponseCode(400))
       }
     }
 
@@ -138,13 +145,7 @@ abstract class LFAAnalyticsContract {
     this.executor.submit(Callable { }).get()
 
     val fileCount = File(file, "outbox").list().size
-    Assert.assertEquals(4, fileCount)
-
-    for (server in lfaConfiguration.servers) {
-      for (i in 1..5) {
-        Assert.assertTrue(http.responsesNow()[server.address]!!.isEmpty())
-      }
-    }
+    assertEquals(4, fileCount)
   }
 
   /**
@@ -160,40 +161,32 @@ abstract class LFAAnalyticsContract {
     file.delete()
     file.mkdirs()
 
-    val http = MockingHTTP()
-
     val lfaConfiguration =
       LFAAnalyticsConfiguration(
         deviceID = "eaf06952-141c-4f16-8516-1a2c01503e87",
         logFileSizeLimit = 100,
         servers = listOf(
           LFAAnalyticsServerConfiguration(
-            address = URI.create("http://www.example.com/analytics0"),
+            address = this.server.url("analytics0").toUri(),
             authentication = LFAAnalyticsAuthentication.None
           ),
           LFAAnalyticsServerConfiguration(
-            address = URI.create("http://www.example.com/analytics1"),
+            address = this.server.url("analytics1").toUri(),
             authentication = LFAAnalyticsAuthentication.None
           ),
           LFAAnalyticsServerConfiguration(
-            address = URI.create("http://www.example.com/analytics2"),
+            address = this.server.url("analytics2").toUri(),
             authentication = LFAAnalyticsAuthentication.None
           )
         )
       )
 
-    http.addResponse(
-      lfaConfiguration.servers[0].address,
-      HTTPResultOK<InputStream>(
-        "OK",
-        200,
-        ByteArrayInputStream(ByteArray(0)),
-        0L,
-        mutableMapOf(),
-        0L))
-
     val config =
       AnalyticsConfiguration(context, http)
+
+    for (server in lfaConfiguration.servers) {
+      this.server.enqueue(MockResponse().setResponseCode(200))
+    }
 
     val system =
       LFAAnalyticsSystem(
@@ -202,8 +195,6 @@ abstract class LFAAnalyticsContract {
         lfaConfiguration = lfaConfiguration,
         baseDirectory = file,
         executor = this.executor)
-
-    Assert.assertTrue(!http.responsesNow().isEmpty())
 
     system.onAnalyticsEvent(
       AnalyticsEvent.ProfileCreated(
@@ -227,8 +218,20 @@ abstract class LFAAnalyticsContract {
     Thread.sleep(2000)
     this.executor.submit(Callable { }).get()
 
-    Assert.assertTrue(File(file, "outbox").list().size == 0)
-    Assert.assertTrue(http.responsesNow()[lfaConfiguration.servers[0].address]!!.isEmpty())
+    val outboxDirectory = File(file, "outbox")
+    assertTrue(outboxDirectory.list().isEmpty())
+
+    val request0 = this.server.takeRequest()
+    assertEquals("POST", request0.method)
+    assertTrue(request0.bodySize > 90L)
+
+    val uncompressedBytes =
+      GZIPInputStream(ByteArrayInputStream(request0.body.readByteArray())).readBytes()
+    val uncompressedText =
+      String(uncompressedBytes, StandardCharsets.UTF_8)
+
+    LOG.debug("text: {}", uncompressedText)
+    assertTrue(uncompressedText.contains("profile_created"))
   }
 
   /**
@@ -244,32 +247,22 @@ abstract class LFAAnalyticsContract {
     file.delete()
     file.mkdirs()
 
-    val http = MockingHTTP()
-
     val lfaConfiguration =
       LFAAnalyticsConfiguration(
         deviceID = "eaf06952-141c-4f16-8516-1a2c01503e87",
         logFileSizeLimit = 1024,
         servers = listOf(
           LFAAnalyticsServerConfiguration(
-            address = URI.create("http://www.example.com/0"),
+            address = this.server.url("analytics0").toUri(),
             authentication = LFAAnalyticsAuthentication.None
           )
         )
       )
 
-    http.addResponse(
-      lfaConfiguration.servers[0].address,
-      HTTPResultOK<InputStream>(
-        "OK",
-        200,
-        ByteArrayInputStream(ByteArray(0)),
-        0L,
-        mutableMapOf(),
-        0L))
-
     val config =
       AnalyticsConfiguration(context, http)
+
+    this.server.enqueue(MockResponse().setResponseCode(200))
 
     val system =
       LFAAnalyticsSystem(
@@ -278,8 +271,6 @@ abstract class LFAAnalyticsContract {
         lfaConfiguration = lfaConfiguration,
         baseDirectory = file,
         executor = this.executor)
-
-    Assert.assertTrue(!http.responsesNow().isEmpty())
 
     system.onAnalyticsEvent(
       AnalyticsEvent.ApplicationOpened(
@@ -392,7 +383,7 @@ abstract class LFAAnalyticsContract {
     Thread.sleep(2000)
     this.executor.submit(Callable { }).get()
 
-    Assert.assertEquals(
+    assertEquals(
       resourceText("analyticsLog.txt"),
       File(file, "logFile.txt").readText()
     )

@@ -15,6 +15,9 @@ class LFABuildConfigurationService : BuildConfigurationServiceType {
   override val oauthCallbackScheme: BuildConfigOAuthScheme
     get() = BuildConfigOAuthScheme("lfa_oauth")
 
+  override val showChangeAccountsUi: Boolean
+    get() = true
+
   override val showDebugBookDetailStatus: Boolean
     get() = false
 

@@ -8,5 +8,6 @@ dependencies {
   api libraries.mockitoAndroid
   api libraries.apacheCSV
 
+  testImplementation libraries.okhttp3_mockwebserver
   testImplementation libraries.logbackClassic
 }

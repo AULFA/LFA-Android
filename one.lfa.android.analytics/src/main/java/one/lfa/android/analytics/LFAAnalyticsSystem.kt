@@ -8,21 +8,19 @@ import androidx.work.WorkManager
 import com.io7m.jfunctional.Option
 import com.io7m.jfunctional.OptionType
 import com.io7m.junreachable.UnreachableCodeException
+import one.irradia.mime.api.MIMEType
 import org.joda.time.LocalDateTime
 import org.joda.time.format.DateTimeFormatterBuilder
 import org.joda.time.format.ISODateTimeFormat
+import org.librarysimplified.http.api.LSHTTPAuthorizationBasic
+import org.librarysimplified.http.api.LSHTTPAuthorizationType
+import org.librarysimplified.http.api.LSHTTPRequestBuilderType
+import org.librarysimplified.http.api.LSHTTPResponseStatus
 import org.nypl.simplified.analytics.api.AnalyticsConfiguration
 import org.nypl.simplified.analytics.api.AnalyticsEvent
 import org.nypl.simplified.analytics.api.AnalyticsSystem
 import org.nypl.simplified.files.DirectoryUtilities
 import org.nypl.simplified.files.FileUtilities
-import org.nypl.simplified.http.core.HTTPAuthBasic
-import org.nypl.simplified.http.core.HTTPAuthType
-import org.nypl.simplified.http.core.HTTPProblemReportLogging
-import org.nypl.simplified.http.core.HTTPResultError
-import org.nypl.simplified.http.core.HTTPResultException
-import org.nypl.simplified.http.core.HTTPResultMatcherType
-import org.nypl.simplified.http.core.HTTPResultOKType
 import org.slf4j.LoggerFactory
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -301,59 +299,35 @@ class LFAAnalyticsSystem(
       return
     }
 
-    var sent = false
     for (serverConfiguration in this.lfaConfiguration.servers) {
       this.logger.debug("post {}", serverConfiguration.address)
 
-      val auth: OptionType<HTTPAuthType> =
+      val auth =
         this.httpAuthFor(serverConfiguration.authentication)
 
-      val result =
-        this.baseConfiguration.http.post(
-          auth,
-          serverConfiguration.address,
-          data,
-          "application/json"
-        )
+      val request =
+        this.baseConfiguration.http.newRequest(serverConfiguration.address)
+          .setMethod(LSHTTPRequestBuilderType.Method.Post(data, MIMEType("application", "json", mapOf())))
+          .setAuthorization(auth)
+          .build()
 
-      sent = sent || result.matchResult(
-        object : HTTPResultMatcherType<InputStream, Boolean, Exception> {
-          override fun onHTTPError(
-            error: HTTPResultError<InputStream>
-          ): Boolean {
-            HTTPProblemReportLogging.logError(
-              this@LFAAnalyticsSystem.logger,
-              serverConfiguration.address,
-              error.message,
-              error.status,
-              error.problemReport
-            )
-            return false
-          }
-
-          override fun onHTTPException(
-            exception: HTTPResultException<InputStream>
-          ): Boolean {
-            this@LFAAnalyticsSystem.logger.debug("failed to send analytics data: ", exception.error)
-            return false
-          }
-
-          @Throws(Exception::class)
-          override fun onHTTPOK(
-            result: HTTPResultOKType<InputStream>
-          ): Boolean {
-            this@LFAAnalyticsSystem.logger.debug("server accepted {}, deleting it", file)
-            file.delete()
-            return true
-          }
-        })
+      val result = request.execute()
+      when (val status = result.status) {
+        is LSHTTPResponseStatus.Responded.OK -> {
+          this.logger.debug("server accepted {}, deleting it", file)
+          file.delete()
+          return
+        }
+        is LSHTTPResponseStatus.Responded.Error -> {
+          this.logger.error("failed to send analytics data: {}", status.properties.status)
+        }
+        is LSHTTPResponseStatus.Failed -> {
+          this.logger.error("failed to send analytics data: {}", status.exception)
+        }
+      }
     }
 
-    if (sent) {
-      return
-    }
-
-    this.logger.error("failed to send analytics data to any available URI")
+    this.logger.error("failed to send analytics data to any server")
   }
 
   private fun copyToExternalStorage(file: File) {
@@ -391,12 +365,12 @@ class LFAAnalyticsSystem(
 
   private fun httpAuthFor(
     authentication: LFAAnalyticsAuthentication
-  ): OptionType<HTTPAuthType> {
+  ): LSHTTPAuthorizationType? {
     return when (authentication) {
       LFAAnalyticsAuthentication.None ->
-        Option.none()
+        null
       is LFAAnalyticsAuthentication.TokenBased ->
-        Option.some(HTTPAuthBasic.create(this.tokenUsername(), authentication.token))
+        LSHTTPAuthorizationBasic.ofUsernamePassword(this.tokenUsername(), authentication.token)
     }
   }
 

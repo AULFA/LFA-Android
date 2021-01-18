@@ -42,7 +42,6 @@ import org.nypl.simplified.ui.profiles.ProfileModificationAbstractFragment
 import org.nypl.simplified.ui.profiles.ProfileModificationFragmentParameters
 import org.nypl.simplified.ui.profiles.ProfilesNavigationControllerType
 import org.nypl.simplified.ui.thread.api.UIThreadServiceType
-import org.nypl.simplified.ui.toolbar.ToolbarHostType
 import org.slf4j.LoggerFactory
 import java.util.Locale
 
@@ -215,28 +214,6 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
     super.onStart()
 
     val fragmentActivity = this.requireActivity()
-    val toolbarHost = fragmentActivity as ToolbarHostType
-    val toolbar = toolbarHost.findToolbar()
-    toolbarHost.toolbarClearMenu()
-    toolbarHost.toolbarUnsetArrow()
-    toolbar.visibility = View.VISIBLE
-    toolbar.setTitle(R.string.profilesTitle)
-    toolbar.subtitle = ""
-
-    toolbarHost.toolbarSetBackArrowConditionally(
-      context = fragmentActivity,
-      onArrowClicked = {
-        try {
-          NavigationControllers.find(fragmentActivity, ProfilesNavigationControllerType::class.java)
-            .popBackStack()
-        } catch (e: Exception) {
-          this.logger.error("could not pop backstack: ", e)
-        }
-      },
-      shouldArrowBePresent = {
-        true
-      })
-
     val currentProfile =
       try {
         if (this.parameters.profileID != null) {
@@ -376,7 +353,7 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
         ProfileCreationEvent.ProfileCreationFailed.ErrorCode.ERROR_DISPLAY_NAME_ALREADY_USED ->
           context.getString(R.string.profileCreationErrorNameAlreadyUsed)
         null, ProfileCreationEvent.ProfileCreationFailed.ErrorCode.ERROR_GENERAL ->
-          context.getString(R.string.profileCreationErrorGeneral, someOrEmpty(event.exception()))
+          context.getString(R.string.profileCreationErrorGeneral)
       })
       .setIcon(R.drawable.profile_failure)
       .create()
