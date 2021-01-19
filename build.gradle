@@ -44,7 +44,7 @@ task preFlightChecks {
   logger.info("running pre-flight checks")
 
   def keystoreHash = "20dfb53906594f4ae7a77df3d92f87f1c003c6a824b0b541c23c3185fd603da8"
-  def analyticsHash = "9daa1c0af70d9c577877004dbf190ad1f8d21f571608488a86cd3a8d81073d68"
+  def analyticsHash = "917e2f8e6344d49824e913257a824011877008a510e35424f5b38814981ce14c"
   def credsHash = "1e321ca0a44cb904686d9c418a9d998c464721cb8b3f2f6c65cbd20118c2208a"
 
   def requiredFiles = [:]
