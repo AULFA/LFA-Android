@@ -38,3 +38,8 @@ copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.laos/src/main/assets/l
 copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.online/src/main/assets/lfaAnalytics.xml
 copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.png_offline/src/main/assets/lfaAnalytics.xml
 copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.timor/src/main/assets/lfaAnalytics.xml
+
+mkdir -p "$HOME/.gradle" ||
+  fatal "could not create gradle configuration directory"
+cat .ci/credentials/lfa-keystore.properties >> "$HOME/.gradle/gradle.properties" ||
+  fatal "could not write credentials"
