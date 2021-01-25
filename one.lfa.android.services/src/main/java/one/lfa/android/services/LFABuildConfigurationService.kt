@@ -12,6 +12,9 @@ class LFABuildConfigurationService : BuildConfigurationServiceType {
   override val allowAccountsRegistryAccess: Boolean
     get() = false
 
+  override val allowExternalReaderLinks: Boolean
+    get() = false
+
   override val oauthCallbackScheme: BuildConfigOAuthScheme
     get() = BuildConfigOAuthScheme("lfa_oauth")
 
