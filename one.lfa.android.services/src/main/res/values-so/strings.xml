@@ -241,6 +241,8 @@
 <string name="tabBooks">Buugaag</string>
 <string name="tabCatalog">Liis</string>
 <string name="tabHolds">Haysada</string>
+<string name="tabProfile">Baroofayl</string>
+<string name="tabSettings">Habayn</string>
 <string name="table_of_contents_empty_message">Shaqadani ma laha tusmada buuga</string>
 <string name="table_of_contents_title">tusmada buuga</string>
 <string name="unexpectedException">Ka reebitaan lama filaana ayaa dhacay</string>
