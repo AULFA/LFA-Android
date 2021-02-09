@@ -44,11 +44,67 @@
   <string name="profileRoleTeacher">ອາຈານ</string>
   <string name="profileSelect">ກະ­ລຸ­ນາ​ເລືອກ​ປະ­ຫວັດ​ຂອງ​ທ່ານ​ທິ​ມີ​ຢູ່​ແລ້ວ ຫລື ສ້າງ​ປະ­ຫວັດ​ໃໝ່່</string>
   <string name="profileSelectionErrorGeneral">ເກີດ​ຂໍ້​ຜິດ​ຜາດ​ໃນ​ຂະ­ນະ​ເລືອກ​ປະ­ຫວັດ​ຂອງ​ທ່ານ</string>
-  <string name="profileSwitch">ສັບປ່ຽນປະຫວັດ</string>
-  <string name="profileSwitchConfirm">ທ່ານແນ່ໃຈບໍຕ້ອງການປ່ຽນປະຫວັດ?</string>
+
   <string name="profileTimeOutSoon">ປະຫວັດຂອງທ່ານຈະອອກຈາກລະບົບໂດຍອາດຕະໂນມາດເມືອບໍມີການເຄືອນໄຫວ</string>
   <string name="profileTimeOutSoonTitle">ປະຫວັດການເຄືອນໄຫວ</string>
   <string name="profileTitle">ປະ­ຫວັດ</string>
+  <string name="profilesTitle">ປະຫັວດ</string>
+  <string name="profilesSwitch">ສັບປ່ຽນປະຫວັດ</string>
+  <string name="profilesSwitchConfirm">ທ່ານແນ່ໃຈບໍຕ້ອງການປ່ຽນປະຫວັດ?</string>
+
+  <string name="catalogAccounts">ເລືອກຫ້ອງສະໝຸດ ພາກສ່ວນອື່ນ</string>
+  <string name="catalogBookAvailabilityHeldIndefinite">ປື້ມເຫຼັມນີ້ ມີການບັນທຶກ ເພື່ອສືບຕໍ່ການອ່ານ</string>
+  <string name="catalogBookAvailabilityHeldQueue">ທ່ານຈັດລໍາດັບທີ່ %1$d ສໍາລັບປື້ມເຫຼັ້ມນີ້</string>
+  <string name="catalogBookAvailabilityHeldTimed">ທ່ານຈະສາມາດຢືມປື້ມເຫຼັ້ມນີ້ ໃນ %1$s.</string>
+  <string name="catalogBookAvailabilityHoldable">ປື້ມຕ່າງໆ ສະບັບນີ້ ມີການຢືມຄົບທຸກເຫຼັ້ມ</string>
+  <string name="catalogBookAvailabilityLoanable">ປື້ມເຫຼັ້ມນີ້ ສາມາດຢືມໄດ້.</string>
+  <string name="catalogBookAvailabilityLoanedIndefinite">ທ່ານ ຢືມປື້ມ ເຫຼັ້ມນີ້.</string>
+  <string name="catalogBookAvailabilityLoanedTimed">ທ່ານ ຢືມປື້ມ ເຫຼັ້ມນີ້ສໍາລັບ %1$s.</string>
+  <string name="catalogBookAvailabilityOpenAccess">ປື້ມເຫຼັ້ມນີ້ ໄດ້ຮັບການຮັກສາໂດຍທ່ານເອງ.</string>
+  <string name="catalogBookAvailabilityReservedIndefinite">ທ່ານໄດ້ຈອງປື້ມ ເຫຼັ້ມນີ້.</string>
+  <string name="catalogBookAvailabilityReservedTimed">ການຈອງຂອງທ່ານຈະໝົດລົງໃນ%1$s.</string>
+  <string name="catalogBookAvailabilityRevoked">ປື້ມເຫຼັ້ມນີ້ ຕ້ອງໄດ້ສົ່ງກັບຄືນ.</string>
+  <string name="catalogBookCoverDescription">ຮູບໜ້າປົກປື້ມ</string>
+  <string name="catalogBookFormatAudioBook">ປື້ມປະກອບດ້ວຍສຽງ</string>
+  <string name="catalogBookFormatEPUB">ປື້ມດີຈິຕອນ</string>
+  <string name="catalogBookFormatPDF">ພີດີເອຟ໌</string>
+  <string name="catalogBookIntervalDays">ມື້</string>
+  <string name="catalogBookIntervalDaysShort">ມື້</string>
+  <string name="catalogBookIntervalHours">ຊົ່ວໂມງ</string>
+  <string name="catalogBookIntervalHoursShort">ຊົ່ວໂມງ</string>
+  <string name="catalogBookIntervalMonthsShort">ນາທີ</string>
+  <string name="catalogBookIntervalSubHour">ຊົ່ວໂມງ</string>
+  <string name="catalogBookIntervalWeeksShort">ອາທິດ</string>
+  <string name="catalogBookIntervalYearsShort">ປີ</string>
+  <string name="catalogCancel">ຍົກເລີກ</string>
+  <string name="catalogCancelHold">ຍົກເລີກການຈອງ</string>
+  <string name="catalogCancelling">ກຳລັງຍົກເລີກ....</string>
+  <string name="catalogCorrupted">ບໍ່ພົບເຫັນຂໍ້ມູນກ່ຽວກັບປື້ມເຫຼັ້ມນີ້. ກະລຸນາຕັ້ງຄ່າ ຫຼື ເຂົ້າບັນຊີໃໝ່ ເພື່ອລອງແກ້ໄຂບັນຫາດັ່ງກ່າວໄດ້.</string>
+  <string name="catalogDescription">ຂໍ້ມູນ</string>
+  <string name="catalogDetails">ລາຍລະອຽດ</string>
+  <string name="catalogDismiss">ຍົກເລີກ</string>
+  <string name="catalogDownload">ດາວໂຫຼດ</string>
+  <string name="catalogGet">ນໍາໃຊ້</string>
+  <string name="catalogHoldCannotCancel">ການຈອງ ບໍ່ສາມາດຍົກເລີກໄດ້.</string>
+  <string name="catalogInformation">ຂໍ້ມູນ</string>
+  <string name="catalogListen">ຟັງ</string>
+  <string name="catalogMetaCategories">ໝວດ</string>
+  <string name="catalogMetaDistributor">ຜູ້ກະຈ່າຍ</string>
+  <string name="catalogMetaPublicationDate">ຈັດພິມ</string>
+  <string name="catalogMetaPublisher">ສໍານັກພິມ</string>
+  <string name="catalogMetaUpdatedDate">ປັບປຸງຂໍ້ມູນ</string>
+  <string name="catalogOperationFailed">ບໍ່ສາມາດດໍາເນີນການໃຫ້ສໍາເລັດໄດ້</string>
+  <string name="catalogRead">ອ່ານ</string>
+  <string name="catalogRelatedBooks">ປຶ້ມທີ່ກ່ຽວຂ້ອງ</string>
+  <string name="catalogReload">ດາວໂຫຼດໃໝ່</string>
+  <string name="catalogReportIssue">ລາຍງານບັນຫາ</string>
+  <string name="catalogRequesting">ການຮ້ອງຂໍ</string>
+  <string name="catalogReserve">ການຈອງ</string>
+  <string name="catalogRetry">ລອງອີກຄັ້ງ</string>
+  <string name="catalogReturn">ກັບຄືນ</string>
+  <string name="catalogSearch">ຄົ້ນຫາ</string>
+  <string name="catalogSearchIn">ຄົ້ນຫາ ໃນ %1$s...</string>
+  <string name="catalogDelete">ລືບ</string>
 
   <string name="currentlyBrowsing">ທ່ານກຳລັງຊອກຫາ</string>
 
@@ -58,12 +114,21 @@
   <string name="tabProfile">ປະຫວັດ</string>
   <string name="tabSettings">ກ່ຽວກັບ</string>
 
-  <string name="settingsVersion">ແອັບຫຼັກ</string>
-  <string name="settingsVersionCore">ຂໍ້ມູນຫຼັກ</string>
-
   <string name="errorDetailsTitle">ລາຍລະອຽດຂໍ້ຄັດຂ້ອງ</string>
   <string name="errorSendReport">ຂໍຄວາມຊ່ວຍເຫຼືອ</string>
   <string name="errorStepsTitle">ຂັ້ນຕອນ</string>
   <string name="errorTitle">ນີ້ເປັນຂໍ້ຄັດຂ້ອງທີ່ເກີດຂື້ນ:</string>
 
+  <string name="settings">ກ່ຽວກັບ</string>
+  <string name="settingsInfo"></string>
+  <string name="settingsBuild">ສ້າງ</string>
+  <string name="settingsVersion">ແອັບຫຼັກ</string>
+  <string name="settingsVersionCore">ຂໍ້ມູນຫຼັກ</string>
+  <string name="settingsLogout">ອອກລະບົບ</string>
+
+  <string name="accountLogout">Log out ອອກລະບົບ</string>
+
+  <string name="feedSortBy">ຈັດລຽງໂດຍ</string>
+  <string name="feedByAuthor">ຜູ້ຂຽນ</string>
+  <string name="feedByTitle">ຊື່ເລື່ອງ</string>
 </resources>
