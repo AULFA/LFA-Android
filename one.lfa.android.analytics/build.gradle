@@ -1,9 +1,8 @@
 dependencies {
-  api libraries.nyplSimplifiedAnalyticsAPI
-  api libraries.nyplSimplifiedFiles
-  api libraries.nyplSimplifiedThreads
   api libraries.slf4j
 
-  implementation libraries.androidXWorkManager
   implementation project(":one.lfa.android.services")
+
+  implementation libraries.simplified_main
+  implementation libraries.androidx_work_manager
 }

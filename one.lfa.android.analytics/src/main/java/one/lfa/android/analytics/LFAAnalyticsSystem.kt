@@ -5,8 +5,6 @@ import androidx.work.Constraints
 import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
-import com.io7m.jfunctional.Option
-import com.io7m.jfunctional.OptionType
 import com.io7m.junreachable.UnreachableCodeException
 import one.irradia.mime.api.MIMEType
 import org.joda.time.LocalDateTime

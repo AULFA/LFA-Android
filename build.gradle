@@ -30,8 +30,6 @@ ext {
   androidCompileSDKVersion = 29
   androidMinimumSDKVersion = 21
   androidTargetSDKVersion = 29
-
-  simplifiedVersion = "6.6.1-SNAPSHOT"
 }
 
 static def sha256Of(File file) {
@@ -84,52 +82,67 @@ task preFlightChecks {
   }
 }
 
-subprojects {
-  //
-  // We currently have transitive dependencies that specify dependencies on newer versions
-  // of SLF4J. These are subtly incompatible with Logback-Android, and it will be a while before
-  // new versions appear of both artifacts. Remove this when both are updated!
-  //
-  configurations.all {
-    resolutionStrategy.force libraries.slf4j
-  }
-}
+ext.versions = [
+  logback_android: '2.0.0',
+  logback_classic: '1.2.3',
+  slf4j          : '1.7.25',
+  simplified     : '6.6.1-SNAPSHOT',
+]
 
 ext.libraries = [
-  apacheCSV                          : "org.apache.commons:commons-csv:1.8",
-  androidXWorkManager                : "androidx.work:work-runtime-ktx:2.2.0",
-  googleAutoValue                    : "com.google.auto.value:auto-value:1.5",
-  irradiaDatePicker                  : "one.irradia.datepicker:one.irradia.datepicker.views:1.0.0",
-  junit                              : "junit:junit:4.12",
-  kotlinStdlib                       : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
-  logbackClassic                     : "ch.qos.logback:logback-classic:1.2.3",
-  mockitoAndroid                     : "org.mockito:mockito-android:2.22.0",
-  okhttp3_mockwebserver              : "com.squareup.okhttp3:mockwebserver:4.8.1",
-  nyplSimplifiedAnalyticsAPI         : "org.librarysimplified:org.librarysimplified.analytics.api:${simplifiedVersion}",
-  nyplSimplifiedBootAPI              : "org.librarysimplified:org.librarysimplified.boot.api:${simplifiedVersion}",
-  nyplSimplifiedBuildConfig          : "org.librarysimplified:org.librarysimplified.buildconfig.api:${simplifiedVersion}",
-  nyplSimplifiedFiles                : "org.librarysimplified:org.librarysimplified.files:${simplifiedVersion}",
-  nyplSimplifiedFutures              : "org.librarysimplified:org.librarysimplified.futures:${simplifiedVersion}",
-  nyplSimplifiedMain                 : "org.librarysimplified:org.librarysimplified.main:${simplifiedVersion}",
-  nyplSimplifiedNavigationAPI        : "org.librarysimplified:org.librarysimplified.ui.navigation.api:${simplifiedVersion}",
-  nyplSimplifiedProfilesAPI          : "org.librarysimplified:org.librarysimplified.profiles.api:${simplifiedVersion}",
-  nyplSimplifiedProfilesControllerAPI: "org.librarysimplified:org.librarysimplified.profiles.controller.api:${simplifiedVersion}",
-  nyplSimplifiedServicesAPI          : "org.librarysimplified:org.librarysimplified.services.api:${simplifiedVersion}",
-  nyplSimplifiedSourceFileBased      : "org.librarysimplified:org.librarysimplified.accounts.source.filebased:${simplifiedVersion}",
-  nyplSimplifiedThreads              : "org.librarysimplified:org.librarysimplified.threads:${simplifiedVersion}",
-  nyplSimplifiedUIBranding           : "org.librarysimplified:org.librarysimplified.ui.branding:${simplifiedVersion}",
-  nyplSimplifiedUICatalog            : "org.librarysimplified:org.librarysimplified.ui.catalog:${simplifiedVersion}",
-  nyplSimplifiedUIProfiles           : "org.librarysimplified:org.librarysimplified.ui.profiles:${simplifiedVersion}",
-  nyplSimplifiedUISettings           : "org.librarysimplified:org.librarysimplified.ui.settings:${simplifiedVersion}",
-  nyplSimplifiedUITheme              : "org.librarysimplified:org.librarysimplified.ui.theme:${simplifiedVersion}",
-  nyplSimplifiedUIThreadAPI          : "org.librarysimplified:org.librarysimplified.ui.thread.api:${simplifiedVersion}",
-  nyplSourceSPI                      : "org.librarysimplified:org.librarysimplified.accounts.source.spi:${simplifiedVersion}",
-  slf4j                              : "org.slf4j:slf4j-api:1.7.25",
+  apache_csv           : "org.apache.commons:commons-csv:1.8",
+  androidx_work_manager: "androidx.work:work-runtime-ktx:2.2.0",
+  google_auto_value    : "com.google.auto.value:auto-value:1.5",
+  irradia_date_picker  : "one.irradia.datepicker:one.irradia.datepicker.views:1.0.0",
+  junit                : "junit:junit:4.12",
+  kotlin_stdlib        : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+  kotlin_reflect       : "org.jetbrains.kotlin:kotlin-reflect:${kotlin_version}",
+  logback_android      : "com.github.tony19:logback-android:${versions.logback_android}",
+  logback_classic      : "ch.qos.logback:logback-classic:${versions.logback_classic}",
+  mockito_android      : "org.mockito:mockito-android:2.22.0",
+  okhttp3_mockwebserver: "com.squareup.okhttp3:mockwebserver:4.8.1",
+  slf4j                : "org.slf4j:slf4j-api:${versions.slf4j}",
+  simplified_main      : "org.librarysimplified:org.librarysimplified.main:${versions.simplified}",
 ]
 
 allprojects {
   group = project.ext["GROUP"]
   version = project.ext["VERSION_NAME"]
+}
+
+configurations.all {
+
+  /*
+   * Force all Library Simplified modules to unconditionally use the same version.
+   */
+
+  resolutionStrategy.eachDependency { details ->
+    if (details.requested.group == 'org.librarysimplified') {
+      details.useVersion "${simplifiedVersion}"
+    }
+  }
+
+  /*
+  * We currently have transitive dependencies that specify dependencies on newer versions
+  * of SLF4J. These are subtly incompatible with Logback-Android, and it will be a while before
+  * new versions appear of both artifacts. Remove this when both are updated!
+   */
+
+  resolutionStrategy.eachDependency { details ->
+    if (details.requested.group == 'org.slf4j') {
+      details.useVersion "${versions.slf4j}"
+    }
+  }
+
+  /*
+   * one.irradia.mime.api depends on an outdated version of kotlin-reflect
+   */
+
+  resolutionStrategy.eachDependency { details ->
+    if (details.requested.group == 'org.jetbrains.kotlin') {
+      details.useVersion "${kotlin_version}"
+    }
+  }
 }
 
 subprojects { project ->

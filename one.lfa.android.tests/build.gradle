@@ -3,11 +3,13 @@ dependencies {
   api project(":one.lfa.android.services")
 
   api libraries.junit
-  api libraries.kotlinStdlib
-  api libraries.logbackClassic
-  api libraries.mockitoAndroid
-  api libraries.apacheCSV
+  api libraries.kotlin_stdlib
+  api libraries.logback_classic
+  api libraries.mockito_android
+  api libraries.apache_csv
+
+  implementation libraries.simplified_main
 
   testImplementation libraries.okhttp3_mockwebserver
-  testImplementation libraries.logbackClassic
+  testImplementation libraries.logback_classic
 }

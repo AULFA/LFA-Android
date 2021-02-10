@@ -1,18 +1,6 @@
 dependencies {
-  api libraries.irradiaDatePicker
-  api libraries.nyplSimplifiedBootAPI
-  api libraries.nyplSimplifiedBuildConfig
-  api libraries.nyplSimplifiedFutures
-  api libraries.nyplSimplifiedMain
-  api libraries.nyplSimplifiedNavigationAPI
-  api libraries.nyplSimplifiedProfilesAPI
-  api libraries.nyplSimplifiedProfilesControllerAPI
-  api libraries.nyplSimplifiedServicesAPI
-  api libraries.nyplSimplifiedUIBranding
-  api libraries.nyplSimplifiedUICatalog
-  api libraries.nyplSimplifiedUIProfiles
-  api libraries.nyplSimplifiedUISettings
-  api libraries.nyplSimplifiedUITheme
-  api libraries.nyplSimplifiedUIThreadAPI
+  api libraries.irradia_date_picker
   api libraries.slf4j
+
+  implementation libraries.simplified_main
 }
