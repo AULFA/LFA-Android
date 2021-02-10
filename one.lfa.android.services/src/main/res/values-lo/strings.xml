@@ -21,7 +21,7 @@
   <string name="profileAskGrade">ທ່ານສຶກສາຢູ່ຊັ້ນໃດ?</string>
   <string name="profileAskName">ຊຶ່ຂອງທ່ານແມ່ນຫຍັງ?</string>
   <string name="profileAskPilotSchool">ໂຮງຮຽນຂອງທ່ານແມ່ນໃຊ້ໂປຮແກຮມທົດລອງ elibrary ບໍ?</string>
-  <string name="profileAskRole">ທ່ານແມ່ນ ?</string>
+  <string name="profileAskRole">ທ່ານແມ່ນ %1$s?</string>
   <string name="profileCancelButton">ຍLກເລiກ</string>
   <string name="profileCreate">ສ້າງການປຽ່ນແປງ</string>
   <string name="profileCreateTitle">ສ້າງປະຫວັດ</string>
