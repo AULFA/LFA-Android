@@ -126,7 +126,7 @@
   <string name="settingsVersionCore">ຂໍ້ມູນຫຼັກ</string>
   <string name="settingsLogout">ອອກລະບົບ</string>
 
-  <string name="accountLogout">Log out ອອກລະບົບ</string>
+  <string name="accountLogout">ອອກລະບົບ</string>
 
   <string name="feedSortBy">ຈັດລຽງໂດຍ</string>
   <string name="feedByAuthor">ຜູ້ຂຽນ</string>
