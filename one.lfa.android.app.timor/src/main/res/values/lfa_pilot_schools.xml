@@ -2,5 +2,12 @@
 
 <resources>
   <string-array name="lfaPilotSchools">
+      <item>Aitehen Reading Nook</item>
+      <item>Beboro School</item>
+      <item>Hatumetak School</item>
+      <item>Kairui School</item>
+      <item>Laclo Reading Nook</item>
+      <item>Lifau School</item>
+      <item>Obrato School</item>
   </string-array>
 </resources>

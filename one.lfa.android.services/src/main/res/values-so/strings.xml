@@ -60,6 +60,7 @@
 <string name="catalogCancelHold">Boos celintan baabii</string>
 <string name="catalogCancelling">Baabiinaya</string>
 <string name="catalogCorrupted">Xog sharaxaha buugani waa uu dhaawacmay mana shaqaynayo lamana soo bandhigi karo dib usoo kicinta taxanaha ama waafajinta xisaabtaadu waxa laga yaabaa inay xaliso</string>
+<string name="catalogDelete">Tirtir</string>
 <string name="catalogDescription">Sharaxaad</string>
 <string name="catalogDismiss">Jarid</string>
 <string name="catalogDownload">soo deji</string>
@@ -74,14 +75,14 @@
 <string name="catalogMetaPublisher">Shaaciye</string>
 <string name="catalogMetaUpdatedDate">Waa la cusboonaysiiyay</string>
 <string name="catalogOperationFailed">Hawlgalka lama dhamaystiri karo</string>
-<string name="catalogRead">akhri</string>
+<string name="catalogRead">Akhri</string>
 <string name="catalogRelatedBooks">Buugagta la xidhiidha</string>
 <string name="catalogReload">dib usoo kici</string>
 <string name="catalogReportIssue">Ka warbixin arin</string>
 <string name="catalogRequesting">Codsanaya</string>
 <string name="catalogReserve">Kaydi</string>
 <string name="catalogRetry">Isku day markale</string>
-<string name="catalogSearch">baadh</string>
+<string name="catalogSearch">Baadh</string>
 <string name="catalogSearchIn">Ka baadh%1$s...</string>
 <string name="currentlyBrowsing">hadda waad daalacanaysaa</string>
 <string name="errorDetailsTitle">faahfaahinaha khaladka</string>
@@ -241,6 +242,8 @@
 <string name="tabBooks">Buugaag</string>
 <string name="tabCatalog">Liis</string>
 <string name="tabHolds">Haysada</string>
+<string name="tabProfile">Baroofayl</string>
+<string name="tabSettings">Habayn</string>
 <string name="table_of_contents_empty_message">Shaqadani ma laha tusmada buuga</string>
 <string name="table_of_contents_title">tusmada buuga</string>
 <string name="unexpectedException">Ka reebitaan lama filaana ayaa dhacay</string>
