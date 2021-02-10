@@ -78,7 +78,7 @@
   <string name="catalogBookIntervalYearsShort">ປີ</string>
   <string name="catalogCancel">ຍົກເລີກ</string>
   <string name="catalogCancelHold">ຍົກເລີກການຈອງ</string>
-  <string name="catalogCancelling">ກຳລັງຍົກເລີກ....</string>
+  <string name="catalogCancelling">ກຳລັງຍົກເລີກ...</string>
   <string name="catalogCorrupted">ບໍ່ພົບເຫັນຂໍ້ມູນກ່ຽວກັບປື້ມເຫຼັ້ມນີ້. ກະລຸນາຕັ້ງຄ່າ ຫຼື ເຂົ້າບັນຊີໃໝ່ ເພື່ອລອງແກ້ໄຂບັນຫາດັ່ງກ່າວໄດ້.</string>
   <string name="catalogDescription">ຂໍ້ມູນ</string>
   <string name="catalogDetails">ລາຍລະອຽດ</string>
