@@ -44,10 +44,10 @@
   <string name="profileRoleTeacher">ອາຈານ</string>
   <string name="profileSelect">ກະ­ລຸ­ນາ​ເລືອກ​ປະ­ຫວັດ​ຂອງ​ທ່ານ​ທິ​ມີ​ຢູ່​ແລ້ວ ຫລື ສ້າງ​ປະ­ຫວັດ​ໃໝ່່</string>
   <string name="profileSelectionErrorGeneral">ເກີດ​ຂໍ້​ຜິດ​ຜາດ​ໃນ​ຂະ­ນະ​ເລືອກ​ປະ­ຫວັດ​ຂອງ​ທ່ານ</string>
-
   <string name="profileTimeOutSoon">ປະຫວັດຂອງທ່ານຈະອອກຈາກລະບົບໂດຍອາດຕະໂນມາດເມືອບໍມີການເຄືອນໄຫວ</string>
   <string name="profileTimeOutSoonTitle">ປະຫວັດການເຄືອນໄຫວ</string>
   <string name="profileTitle">ປະ­ຫວັດ</string>
+
   <string name="profilesTitle">ປະຫັວດ</string>
   <string name="profilesSwitch">ສັບປ່ຽນປະຫວັດ</string>
   <string name="profilesSwitchConfirm">ທ່ານແນ່ໃຈບໍຕ້ອງການປ່ຽນປະຫວັດ?</string>
