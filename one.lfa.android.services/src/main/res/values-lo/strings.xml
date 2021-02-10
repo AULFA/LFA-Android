@@ -58,7 +58,7 @@
   <string name="catalogBookAvailabilityHeldTimed">ທ່ານຈະສາມາດຢືມປື້ມເຫຼັ້ມນີ້ ໃນ %1$s.</string>
   <string name="catalogBookAvailabilityHoldable">ປື້ມຕ່າງໆ ສະບັບນີ້ ມີການຢືມຄົບທຸກເຫຼັ້ມ</string>
   <string name="catalogBookAvailabilityLoanable">ປື້ມເຫຼັ້ມນີ້ ສາມາດຢືມໄດ້.</string>
-  <string name="catalogBookAvailabilityLoanedIndefinite">ທ່ານ ຢືມປື້ມ ເຫຼັ້ມນີ້.</string>
+  <string name="catalogBookAvailabilityLoanedIndefinite"></string>
   <string name="catalogBookAvailabilityLoanedTimed">ທ່ານ ຢືມປື້ມ ເຫຼັ້ມນີ້ສໍາລັບ %1$s.</string>
   <string name="catalogBookAvailabilityOpenAccess">ປື້ມເຫຼັ້ມນີ້ ໄດ້ຮັບການຮັກສາໂດຍທ່ານເອງ.</string>
   <string name="catalogBookAvailabilityReservedIndefinite">ທ່ານໄດ້ຈອງປື້ມ ເຫຼັ້ມນີ້.</string>
