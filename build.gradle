@@ -110,42 +110,49 @@ allprojects {
   version = project.ext["VERSION_NAME"]
 }
 
-configurations.all {
-
-  /*
-   * Force all Library Simplified modules to unconditionally use the same version.
-   */
-
-  resolutionStrategy.eachDependency { details ->
-    if (details.requested.group == 'org.librarysimplified') {
-      details.useVersion "${simplifiedVersion}"
-    }
-  }
-
-  /*
-  * We currently have transitive dependencies that specify dependencies on newer versions
-  * of SLF4J. These are subtly incompatible with Logback-Android, and it will be a while before
-  * new versions appear of both artifacts. Remove this when both are updated!
-   */
-
-  resolutionStrategy.eachDependency { details ->
-    if (details.requested.group == 'org.slf4j') {
-      details.useVersion "${versions.slf4j}"
-    }
-  }
-
-  /*
-   * one.irradia.mime.api depends on an outdated version of kotlin-reflect
-   */
-
-  resolutionStrategy.eachDependency { details ->
-    if (details.requested.group == 'org.jetbrains.kotlin') {
-      details.useVersion "${kotlin_version}"
-    }
-  }
-}
-
 subprojects { project ->
+
+  configurations.all {
+
+    /*
+     * Force all Library Simplified modules to unconditionally use the same version.
+     */
+
+    resolutionStrategy.eachDependency { details ->
+      if (details.requested.group == 'org.librarysimplified') {
+        switch (details.requested.name) {
+          case 'org.librarysimplified.readium':
+          case 'org.librarysimplified.readium.shared_js':
+            break
+          default:
+            details.useVersion "${versions.simplified}"
+            break
+        }
+      }
+    }
+
+    /*
+     * We currently have transitive dependencies that specify dependencies on newer versions
+     * of SLF4J. These are subtly incompatible with Logback-Android, and it will be a while before
+     * new versions appear of both artifacts. Remove this when both are updated!
+     */
+
+    resolutionStrategy.eachDependency { details ->
+      if (details.requested.group == 'org.slf4j') {
+        details.useVersion "${versions.slf4j}"
+      }
+    }
+
+    /*
+     * one.irradia.mime.api depends on an outdated version of kotlin-reflect
+     */
+
+    resolutionStrategy.eachDependency { details ->
+      if (details.requested.group == 'org.jetbrains.kotlin') {
+        details.useVersion "${kotlin_version}"
+      }
+    }
+  }
 
   switch (POM_PACKAGING) {
     case "jar":
