@@ -39,7 +39,7 @@
 <string name="catalogBookAvailabilityHeldTimed">Waxaad awoodi kartaa buugan inaad ka amaahato%1$s.</string>
 <string name="catalogBookAvailabilityHoldable">Dhamaan nuqulada buugan waa la wada amaahday</string>
 <string name="catalogBookAvailabilityLoanable">Buugan waa lagu amaahin karaa</string>
-<string name="catalogBookAvailabilityLoanedIndefinite">Buugan waa lagu amaahiyay</string>
+<string name="catalogBookAvailabilityLoanedIndefinite"></string>
 <string name="catalogBookAvailabilityLoanedTimed">Buugan waa lagu amaahiyay%1$s.</string>
 <string name="catalogBookAvailabilityOpenAccess">Buugan adigaa iska leh</string>
 <string name="catalogBookAvailabilityReservedIndefinite">Buugan waa laguu keydiyay</string>
