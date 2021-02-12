@@ -120,9 +120,9 @@
   <string name="errorTitle">Ida-ne\'e mak erru husi ita-nian problema</string>
 
   <string name="settings">Kona-bá</string>
-  <string name="settingsInfo"></string>
-  <string name="settingsBuild">Aplikasaun versaun</string>
-  <string name="settingsVersion"></string>
+  <string name="settingsInfo">Foti sa\'e</string>
+  <string name="settingsBuild">Build</string>
+  <string name="settingsVersion">Aplikasaun versaun</string>
   <string name="settingsVersionCore">Versaun core</string>
   <string name="settingsLogout">Sai</string>
 
