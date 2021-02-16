@@ -75,5 +75,6 @@ dependencies {
   api project(":one.lfa.android.services")
 
   implementation libraries.simplified_main
+  implementation libraries.simplified_accounts_source_file
 }
 

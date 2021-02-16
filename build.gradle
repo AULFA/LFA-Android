@@ -90,19 +90,20 @@ ext.versions = [
 ]
 
 ext.libraries = [
-  apache_csv           : "org.apache.commons:commons-csv:1.8",
-  androidx_work_manager: "androidx.work:work-runtime-ktx:2.2.0",
-  google_auto_value    : "com.google.auto.value:auto-value:1.5",
-  irradia_date_picker  : "one.irradia.datepicker:one.irradia.datepicker.views:1.0.0",
-  junit                : "junit:junit:4.12",
-  kotlin_stdlib        : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
-  kotlin_reflect       : "org.jetbrains.kotlin:kotlin-reflect:${kotlin_version}",
-  logback_android      : "com.github.tony19:logback-android:${versions.logback_android}",
-  logback_classic      : "ch.qos.logback:logback-classic:${versions.logback_classic}",
-  mockito_android      : "org.mockito:mockito-android:2.22.0",
-  okhttp3_mockwebserver: "com.squareup.okhttp3:mockwebserver:4.8.1",
-  slf4j                : "org.slf4j:slf4j-api:${versions.slf4j}",
-  simplified_main      : "org.librarysimplified:org.librarysimplified.main:${versions.simplified}",
+  apache_csv                     : "org.apache.commons:commons-csv:1.8",
+  androidx_work_manager          : "androidx.work:work-runtime-ktx:2.2.0",
+  google_auto_value              : "com.google.auto.value:auto-value:1.5",
+  irradia_date_picker            : "one.irradia.datepicker:one.irradia.datepicker.views:1.0.0",
+  junit                          : "junit:junit:4.12",
+  kotlin_stdlib                  : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+  kotlin_reflect                 : "org.jetbrains.kotlin:kotlin-reflect:${kotlin_version}",
+  logback_android                : "com.github.tony19:logback-android:${versions.logback_android}",
+  logback_classic                : "ch.qos.logback:logback-classic:${versions.logback_classic}",
+  mockito_android                : "org.mockito:mockito-android:2.22.0",
+  okhttp3_mockwebserver          : "com.squareup.okhttp3:mockwebserver:4.8.1",
+  slf4j                          : "org.slf4j:slf4j-api:${versions.slf4j}",
+  simplified_main                : "org.librarysimplified:org.librarysimplified.main:${versions.simplified}",
+  simplified_accounts_source_file: "org.librarysimplified:org.librarysimplified.accounts.source.filebased:${versions.simplified}",
 ]
 
 allprojects {
