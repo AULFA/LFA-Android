@@ -86,7 +86,7 @@ ext.versions = [
   logback_android: '2.0.0',
   logback_classic: '1.2.3',
   slf4j          : '1.7.25',
-  simplified     : '6.6.1-SNAPSHOT',
+  simplified     : '6.6.2-SNAPSHOT',
 ]
 
 ext.libraries = [

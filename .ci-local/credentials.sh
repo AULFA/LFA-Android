@@ -28,11 +28,15 @@ copy()
 }
 
 copy .ci/credentials/lfa-keystore.jks lfa-keystore.jks
+
 copy .ci/credentials/online-app-credentials.json one.lfa.android.app.grande/src/main/assets/account_bundled_credentials.json
+copy .ci/credentials/online-app-credentials.json one.lfa.android.app.indigenous/src/main/assets/account_bundled_credentials.json
 copy .ci/credentials/online-app-credentials.json one.lfa.android.app.laos.online/src/main/assets/account_bundled_credentials.json
 copy .ci/credentials/online-app-credentials.json one.lfa.android.app.laos/src/main/assets/account_bundled_credentials.json
 copy .ci/credentials/online-app-credentials.json one.lfa.android.app.online/src/main/assets/account_bundled_credentials.json
+
 copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.grande/src/main/assets/lfaAnalytics.xml
+copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.indigenous/src/main/assets/lfaAnalytics.xml
 copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.laos.online/src/main/assets/lfaAnalytics.xml
 copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.laos/src/main/assets/lfaAnalytics.xml
 copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.online/src/main/assets/lfaAnalytics.xml
