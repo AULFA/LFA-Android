@@ -44,4 +44,7 @@ class LFABuildConfigurationService : BuildConfigurationServiceType {
 
   override val vcsCommit: String
     get() = BuildConfig.GIT_COMMIT
+
+  override val showAgeGateUi: Boolean
+    get() = false
 }
