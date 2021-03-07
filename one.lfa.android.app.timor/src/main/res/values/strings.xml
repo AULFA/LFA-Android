@@ -21,7 +21,7 @@
   <string name="profileAskGrade">Ó nia eskola tama iha grau ida ne\'ebé?</string>
   <string name="profileAskName">Ó naran sá?</string>
   <string name="profileAskPilotSchool"></string>
-  <string name="profileAskRole">Ó halo saida %1$s?</string>
+  <string name="profileAskRole">Ó halo saida ..?</string>
   <string name="profileCancelButton">Kansela</string>
   <string name="profileCreate">Kria</string>
   <string name="profileCreateTitle">Kria A pesoal</string>
