@@ -304,6 +304,8 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
       this.finishButton.setText(R.string.profileCreate)
     }
 
+    updateUIState()
+
     this.profileSubscription =
       this.profilesController.profileEvents()
         .subscribe(this::onProfileEvent)
@@ -588,8 +590,16 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
     this.uiThread.checkIsUIThread()
 
     if (this.roleRadioGroup.checkedRadioButtonId == R.id.profileRoleStudentRadioButton) {
-      this.pilotSchoolLayout.visibility = View.VISIBLE
-      this.gradeLayout.visibility = View.VISIBLE
+      this.pilotSchoolLayout.visibility = if (this.pilotSchoolSpinner.adapter.count == 0) {
+        View.GONE
+      } else {
+        View.VISIBLE
+      }
+      this.gradeLayout.visibility = if (this.gradeSpinner.adapter.count == 0) {
+        View.GONE
+      } else {
+        View.VISIBLE
+      }
     } else {
       this.pilotSchoolLayout.visibility = View.GONE
       this.gradeLayout.visibility = View.GONE
