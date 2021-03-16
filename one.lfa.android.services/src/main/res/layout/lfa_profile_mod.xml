@@ -213,11 +213,18 @@
           android:text="@string/profilePilotYes" />
       </RadioGroup>
 
-      <Spinner
-        android:id="@+id/profilePilotSchoolYesSpinner"
+      <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:entries="@array/lfaPilotSchools" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@color/lightGrey">
+
+        <Spinner
+          android:id="@+id/profilePilotSchoolYesSpinner"
+          android:layout_width="match_parent"
+          android:layout_height="48dp"
+          android:entries="@array/lfaPilotSchools" />
+      </FrameLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -235,21 +242,27 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
-      <Spinner
-        android:id="@+id/profileGradeSpinner"
+      <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:entries="@array/lfaGrades" />
+        android:background="@color/lightGrey">
+
+        <Spinner
+          android:id="@+id/profileGradeSpinner"
+          android:layout_width="match_parent"
+          android:layout_height="48dp"
+          android:entries="@array/lfaGrades" />
+      </FrameLayout>
     </LinearLayout>
 
     <Button
       android:id="@+id/profileCreationCreate"
       android:layout_width="128dp"
       android:layout_height="48dp"
-      android:layout_marginBottom="32dp"
-      android:layout_marginTop="32dp"
       android:layout_gravity="center"
+      android:layout_marginTop="32dp"
+      android:layout_marginBottom="32dp"
       android:text="@string/profileCreate" />
   </LinearLayout>
 
