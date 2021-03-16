@@ -2,6 +2,7 @@ package one.lfa.android.services
 
 import android.os.Bundle
 import android.text.InputFilter
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -525,14 +526,14 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
 
   private fun getGradeText(): String? {
     return if (this.roleRadioGroup.checkedRadioButtonId == R.id.profileRoleStudentRadioButton) {
-      this.gradeSpinner.selectedItem.toString()
+      this.gradeSpinner.selectedItem?.toString()
     } else null
   }
 
   private fun getSchool(): String? {
     if (this.roleRadioGroup.checkedRadioButtonId == R.id.profileRoleStudentRadioButton) {
       if (this.pilotSchoolRadioGroup.checkedRadioButtonId == R.id.profilePilotSchoolYesRadioButton) {
-        return this.pilotSchoolSpinner.selectedItem.toString()
+        return this.pilotSchoolSpinner.selectedItem?.toString()
       }
     }
     return null
