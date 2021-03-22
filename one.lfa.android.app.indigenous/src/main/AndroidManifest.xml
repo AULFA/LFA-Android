@@ -13,7 +13,7 @@
     android:name="org.nypl.simplified.main.MainApplication"
     tools:replace="android:allowBackup"
     android:allowBackup="true"
-    android:contentDescription="Our Yarning"
+    android:contentDescription="Our Yarning by Library For All"
     android:icon="@mipmap/ic_launcher"
     android:label="Our Yarning"
     android:networkSecurityConfig="@xml/network_security_config"
@@ -23,7 +23,7 @@
     <!-- Main entry point for the application. -->
     <activity
       android:name="org.nypl.simplified.main.MainActivity"
-      android:contentDescription="LFA - Our Yarning"
+      android:contentDescription="Our Yarning by Library For All"
       android:exported="true"
       android:launchMode="singleTop"
       android:label="Our Yarning">
