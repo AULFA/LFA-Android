@@ -71,6 +71,7 @@ android {
 }
 
 dependencies {
+  api project(":one.lfa.android.analytics")
   api project(":one.lfa.android.services")
 
   implementation libraries.simplified_main
