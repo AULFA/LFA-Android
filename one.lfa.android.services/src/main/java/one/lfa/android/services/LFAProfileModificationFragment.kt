@@ -24,6 +24,8 @@ import one.lfa.android.services.LFAWhitespace.WHITESPACE
 import one.lfa.android.services.LFAWhitespace.isWhitespace
 import org.joda.time.DateTime
 import org.librarysimplified.services.api.Services
+import org.nypl.simplified.accounts.api.AccountID
+import org.nypl.simplified.accounts.api.AccountProviderFallbackType
 import org.nypl.simplified.accounts.registry.api.AccountProviderRegistryType
 import org.nypl.simplified.navigation.api.NavigationControllers
 import org.nypl.simplified.profiles.api.ProfileAttributes
@@ -35,6 +37,7 @@ import org.nypl.simplified.profiles.api.ProfileCreationEvent
 import org.nypl.simplified.profiles.api.ProfileDateOfBirth
 import org.nypl.simplified.profiles.api.ProfileDescription
 import org.nypl.simplified.profiles.api.ProfileEvent
+import org.nypl.simplified.profiles.api.ProfileID
 import org.nypl.simplified.profiles.api.ProfilePreferences
 import org.nypl.simplified.profiles.api.ProfileUpdated
 import org.nypl.simplified.profiles.controller.api.ProfilesControllerType
@@ -45,6 +48,7 @@ import org.nypl.simplified.ui.profiles.ProfilesNavigationControllerType
 import org.nypl.simplified.ui.thread.api.UIThreadServiceType
 import org.slf4j.LoggerFactory
 import java.util.Locale
+import java.util.ServiceLoader
 
 class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
 
@@ -313,8 +317,7 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
 
   private fun onProfileEvent(event: ProfileEvent) {
     return when (event) {
-      is ProfileUpdated.Succeeded,
-      is ProfileCreationEvent.ProfileCreationSucceeded -> {
+      is ProfileUpdated.Succeeded -> {
         this.uiThread.runOnUIThread {
           try {
             NavigationControllers.find(
@@ -325,6 +328,10 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
             this.logger.error("could not pop backstack: ", e)
           }
         }
+      }
+
+      is ProfileCreationEvent.ProfileCreationSucceeded -> {
+        this.updateProfileDefaultAccount(event.id())
       }
 
       is ProfileUpdated.Failed -> {
@@ -516,6 +523,53 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
         profile = profile.id,
         update = { profileDescription }
       )
+    }
+  }
+
+  private fun updateProfileDefaultAccount(profileId: ProfileID) {
+    val profile = this.profilesController.profiles()[profileId]
+
+    if (profile != null) {
+      // Try to get the fallback account to use it as the default account for this profile
+      var fallbackAccountID: AccountID? = null
+
+      val fallbackProviders = ServiceLoader.load(AccountProviderFallbackType::class.java)
+        .map { provider -> provider.get() }
+        .toList()
+
+      if (fallbackProviders.isEmpty()) {
+        this.logger.debug("fallback account provider not available")
+      } else {
+        val savedFallbackAccount = profile.accountsByProvider()[fallbackProviders.first().id]
+
+        this.logger.debug("setting default account for profile {}: {}", profileId, savedFallbackAccount?.provider?.catalogURI)
+
+        fallbackAccountID = savedFallbackAccount?.id
+      }
+
+      val newPreferences = with(profile.preferences()) {
+        ProfilePreferences(
+          dateOfBirth = dateOfBirth,
+          showTestingLibraries = showTestingLibraries,
+          readerPreferences = readerPreferences,
+          mostRecentAccount = fallbackAccountID,
+          hasSeenLibrarySelectionScreen = hasSeenLibrarySelectionScreen,
+          useExperimentalR2 = useExperimentalR2
+        )
+      }
+
+      this.profilesController.profileUpdateFor(
+        profile = profile.id,
+        update = {
+          ProfileDescription(
+            displayName = profile.description().displayName,
+            preferences = newPreferences,
+            attributes = profile.attributes()
+          )
+        }
+      )
+    } else {
+      this.logger.debug("cannot update most recent account for the profile {}", profileId)
     }
   }
 
