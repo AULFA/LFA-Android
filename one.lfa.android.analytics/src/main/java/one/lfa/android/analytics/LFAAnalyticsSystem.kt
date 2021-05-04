@@ -5,11 +5,14 @@ import androidx.work.Constraints
 import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
+import au.org.libraryforall.provider.Event
+import au.org.libraryforall.resolver.ElevateRepository
 import com.io7m.junreachable.UnreachableCodeException
 import one.irradia.mime.api.MIMEType
 import org.joda.time.LocalDateTime
 import org.joda.time.format.DateTimeFormatterBuilder
 import org.joda.time.format.ISODateTimeFormat
+import org.json.JSONObject
 import org.librarysimplified.http.api.LSHTTPAuthorizationBasic
 import org.librarysimplified.http.api.LSHTTPAuthorizationType
 import org.librarysimplified.http.api.LSHTTPRequestBuilderType
@@ -25,7 +28,6 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.FileWriter
 import java.io.IOException
-import java.io.InputStream
 import java.util.UUID
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.TimeUnit
@@ -45,6 +47,8 @@ class LFAAnalyticsSystem(
 
   private val logger =
     LoggerFactory.getLogger(LFAAnalyticsSystem::class.java)
+
+  private val elevateRepository = ElevateRepository(context)
 
   private val outbox =
     File(this.baseDirectory, "outbox")
@@ -139,12 +143,89 @@ class LFAAnalyticsSystem(
       this.output.write("\n")
       this.output.flush()
     }
+
+    /*
+     * Send the event to the LFA Logger
+     */
+    this.eventToLoggerEvent(event)?.let { elevateRepository.addEvent(it) }
   }
 
   private fun rolloverLog() {
     val outboxFile = File(this.outbox, UUID.randomUUID().toString() + ".log")
     FileUtilities.fileRename(this.logFile, outboxFile)
     this.output = FileWriter(this.logFile, true)
+  }
+
+  private fun eventToLoggerEvent(event: AnalyticsEvent): Event? {
+    val extra = JSONObject()
+    val type: String
+    var analyticsId: UUID? = null
+    var userName: String? = null
+
+    when (event) {
+      is AnalyticsEvent.ApplicationOpened -> {
+        type = "app_open"
+        extra.put("app_version", event.packageVersion)
+      }
+      is AnalyticsEvent.ProfileLoggedIn -> {
+        type = "profile_selected"
+        analyticsId = event.profileUUID
+        userName = event.displayName
+        extra.put("birth_date", event.birthDate)
+        event.attributes.forEach { (key, attr) -> extra.put(key, attr) }
+      }
+      is AnalyticsEvent.ProfileCreated -> {
+        type = "profile_created"
+        analyticsId = event.profileUUID
+        userName = event.displayName
+        extra.put("birth_date", event.birthDate)
+        event.attributes.forEach { (key, attr) -> extra.put(key, attr) }
+      }
+      is AnalyticsEvent.ProfileDeleted -> {
+        type = "profile_deleted"
+        analyticsId = event.profileUUID
+        userName = event.displayName
+        extra.put("birth_date", event.birthDate)
+        event.attributes.forEach { (key, attr) -> extra.put(key, attr) }
+      }
+      is AnalyticsEvent.ProfileUpdated -> {
+        type = "profile_modified"
+        analyticsId = event.profileUUID
+        userName = event.displayName
+        extra.put("birth_date", event.birthDate)
+        event.attributes.forEach { (key, attr) -> extra.put(key, attr) }
+      }
+      is AnalyticsEvent.ProfileLoggedOut -> return null
+      is AnalyticsEvent.CatalogSearched -> {
+        type = "catalog_searched"
+        analyticsId = event.profileUUID
+        extra.put("search_query", event.searchQuery)
+      }
+      is AnalyticsEvent.BookOpened -> {
+        type = "book_opened"
+        analyticsId = event.profileUUID
+        userName = event.profileDisplayName
+        extra.put("book_title", event.opdsEntry.title)
+      }
+      is AnalyticsEvent.BookPageTurned -> {
+        type = "book_open_page"
+        analyticsId = event.profileUUID
+        extra.put("page_title", event.bookPageTitle)
+      }
+      is AnalyticsEvent.BookClosed -> return null
+      is AnalyticsEvent.SyncRequested -> throw UnreachableCodeException()
+      else -> return null
+    }
+
+    return Event(
+      event.timestamp.toDate().time,
+      type,
+      analyticsId,
+      userName,
+      this.lfaConfiguration.deviceID,
+      "reader",
+      extra
+    )
   }
 
   private fun eventToText(event: AnalyticsEvent): String? {
@@ -249,7 +330,7 @@ class LFAAnalyticsSystem(
         "book_opened,${event.profileUUID},${event.profileDisplayName},${event.opdsEntry.title}"
 
       is AnalyticsEvent.BookPageTurned ->
-        "book_open_page,${event.bookPage+1}/${event.bookPagesTotal},${event.bookPageTitle}"
+        "book_open_page,${event.bookPage + 1}/${event.bookPagesTotal},${event.bookPageTitle}"
 
       is AnalyticsEvent.BookClosed ->
         null

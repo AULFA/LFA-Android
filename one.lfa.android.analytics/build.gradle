@@ -1,6 +1,8 @@
 dependencies {
   api libraries.slf4j
 
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+
   implementation project(":one.lfa.android.services")
 
   implementation libraries.simplified_main
