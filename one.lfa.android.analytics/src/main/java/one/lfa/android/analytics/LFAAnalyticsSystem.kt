@@ -5,14 +5,14 @@ import androidx.work.Constraints
 import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
-import au.org.libraryforall.provider.Event
-import au.org.libraryforall.resolver.ElevateRepository
 import com.io7m.junreachable.UnreachableCodeException
 import one.irradia.mime.api.MIMEType
 import org.joda.time.LocalDateTime
 import org.joda.time.format.DateTimeFormatterBuilder
 import org.joda.time.format.ISODateTimeFormat
 import org.json.JSONObject
+import org.libraryforall.analytics.AnalyticsRepository
+import org.libraryforall.analytics.data.Event
 import org.librarysimplified.http.api.LSHTTPAuthorizationBasic
 import org.librarysimplified.http.api.LSHTTPAuthorizationType
 import org.librarysimplified.http.api.LSHTTPRequestBuilderType
@@ -48,7 +48,7 @@ class LFAAnalyticsSystem(
   private val logger =
     LoggerFactory.getLogger(LFAAnalyticsSystem::class.java)
 
-  private val elevateRepository = ElevateRepository(context)
+  private val analyticsRepository = AnalyticsRepository(context)
 
   private val outbox =
     File(this.baseDirectory, "outbox")
@@ -147,7 +147,7 @@ class LFAAnalyticsSystem(
     /*
      * Send the event to the LFA Logger
      */
-    this.eventToLoggerEvent(event)?.let { elevateRepository.addEvent(it) }
+    this.eventToLoggerEvent(event)?.let { analyticsRepository.addEvent(it) }
   }
 
   private fun rolloverLog() {
