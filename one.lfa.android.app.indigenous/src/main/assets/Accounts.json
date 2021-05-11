@@ -2,7 +2,7 @@
   {
     "@version": "20190708",
     "idUUID": "urn:uuid:c6537298-674d-421a-8997-e6dfe5d9000d",
-    "displayName": "Indigenous",
+    "displayName": "Australian Aboriginal & Torres Strait Islander",
     "subtitle": "",
     "logo": "simplified-asset:logos/indigenous.png",
     "supportsSimplyESync": false,

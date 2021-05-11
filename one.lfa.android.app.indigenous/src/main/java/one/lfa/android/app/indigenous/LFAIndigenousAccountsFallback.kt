@@ -17,7 +17,7 @@ class LFAIndigenousAccountsFallback : AccountProviderFallbackType {
       authenticationDocumentURI = null,
       catalogURI = URI.create("https://lfaaustralianindigenouscollection.cantookstation.com/catalog/featuredresources.atom"),
       cardCreatorURI = null,
-      displayName = "LFA Indigenous",
+      displayName = "LFA Australian Aboriginal & Torres Strait Islander",
       eula = null,
       id = URI.create("urn:uuid:c6537298-674d-421a-8997-e6dfe5d9000d"),
       idNumeric = -1,
@@ -28,7 +28,7 @@ class LFAIndigenousAccountsFallback : AccountProviderFallbackType {
       mainColor = "#ec1c24",
       patronSettingsURI = null,
       privacyPolicy = null,
-      subtitle = "LFA Indigenous",
+      subtitle = "LFA Australian Aboriginal & Torres Strait Islander",
       supportEmail = null,
       supportsReservations = false,
       updated = DateTime.now()
