@@ -110,5 +110,37 @@
     "addAutomatically": true,
     "catalogURI": "https://lfaglobalcollection.cantookstation.com/catalog/featuredresources.atom",
     "mainColor": "#ec1c24"
+  },
+  {
+    "@version": "20190708",
+    "idUUID": "urn:provider:com.cantookstation.lfaethiopiacollection",
+    "displayName": "Ethiopian Collection",
+    "subtitle": "",
+    "logo": "simplified-asset:logos/ethiopia.png",
+    "supportsSimplyESync": false,
+    "supportsBarcodeScanner": false,
+    "supportsBarcodeDisplay": false,
+    "supportsReservations": false,
+    "supportsCardCreator": false,
+    "supportsHelpCenter": false,
+    "addAutomatically": true,
+    "catalogURI": "https://lfaethiopiacollection.cantookstation.com/catalog/featuredresources.atom",
+    "mainColor": "#ec1c24"
+  },
+  {
+    "@version": "20190708",
+    "idUUID": "urn:provider:com.cantookstation.lfasomaliacollection",
+    "displayName": "Somali Collection",
+    "subtitle": "",
+    "logo": "simplified-asset:logos/somalia.png",
+    "supportsSimplyESync": false,
+    "supportsBarcodeScanner": false,
+    "supportsBarcodeDisplay": false,
+    "supportsReservations": false,
+    "supportsCardCreator": false,
+    "supportsHelpCenter": false,
+    "addAutomatically": true,
+    "catalogURI": "https://lfaethiopiacollection.cantookstation.com/catalog/featuredresources.atom",
+    "mainColor": "#ec1c24"
   }
 ]
