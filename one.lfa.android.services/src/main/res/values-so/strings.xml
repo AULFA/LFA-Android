@@ -125,8 +125,9 @@
 <string name="profileAskGender">jinsigeed tahay?</string>
 <string name="profileAskGrade">Fasalkee tahay?</string>
 <string name="profileAskName">magacaa?</string>
-<string name="profileAskPilotSchool">dugsigaagu ma waxa weeye  barnaamijka eLibrary paylood</string>
+<string name="profileAskPilotSchool">dugsigaagu ma waxa weeye barnaamijka eLibrary paylood</string>
 <string name="profileAskRole">ma waxaad tahay?</string>
+<string name="profileCreate">Abuur</string>
 <string name="profileCreateTitle">samee broofayl</string>
 <string name="profileCreationErrorGeneral">Khalad ayaa dhacay markaad doonaysay inaad samayso barofaylkaaga:%1$s</string>
 <string name="profileCreationErrorNameAlreadyUsed">Magacaa hore ayaa loo qaatay fadlan qaado magac kale</string>
@@ -239,6 +240,7 @@
 <string name="settingsUserName">Magaca adeegsadaha</string>
 <string name="settingsVersion">Nooca barnaamijka</string>
 <string name="settingsVersionCore">Core rasmi ah</string>
+<string name="catalogDetails">Faahfaahin</string>
 <string name="tabBooks">Buugaag</string>
 <string name="tabCatalog">Liis</string>
 <string name="tabHolds">Haysada</string>
