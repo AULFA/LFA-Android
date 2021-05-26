@@ -471,7 +471,7 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
             isSynthesized = false
           ),
           showTestingLibraries = false,
-          readerPreferences = ReaderPreferences.builder().build(),
+          readerPreferences = ReaderPreferences.builder().setFontScale(75.0).build(),
           mostRecentAccount = null,
           hasSeenLibrarySelectionScreen = true,
           useExperimentalR2 = false
