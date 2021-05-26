@@ -8,7 +8,7 @@
   <string name="profileAskGender">What is your gender?</string>
   <string name="profileAskGrade">What is your school grade?</string>
   <string name="profileAskName">What is your name?</string>
-  <string name="profileAskPilotSchool">Is your school in a Library For All program?</string>
+  <string name="profileAskPilotSchool">Is your school participating in a Library For All program?</string>
   <string name="profileAskRole">Are you a ..?</string>
   <string name="profileCancelButton">Cancel</string>
   <string name="profileCreate">Create</string>
