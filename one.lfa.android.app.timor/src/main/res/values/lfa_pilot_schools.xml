@@ -3,11 +3,15 @@
 <resources>
   <string-array name="lfaPilotSchools">
       <item>Aitehen Reading Nook</item>
+      <item>Batara Reading Nook</item>
       <item>Beboro School</item>
+      <item>Caunua Reading Nook</item>
+      <item>Dirik-Hun Reading Nook</item>
       <item>Hatumetak School</item>
       <item>Kairui School</item>
       <item>Laclo Reading Nook</item>
       <item>Lifau School</item>
       <item>Obrato School</item>
+      <item>Orlalan Reading Nook</item>
   </string-array>
 </resources>
