@@ -68,6 +68,8 @@ class LFAAnalyticsSystem(
 
   private lateinit var output: FileWriter
 
+  private val eventsThrottler = AnalyticsEventsThrottler(this::consumeEvent)
+
   @Volatile
   private var latestSchoolName: String? = null
 
@@ -109,7 +111,7 @@ class LFAAnalyticsSystem(
 
   override fun onAnalyticsEvent(event: AnalyticsEvent): Unit =
     this.executor.execute {
-      this.consumeEvent(event)
+      eventsThrottler.handleEvent(event)
     }
 
   private fun consumeEvent(event: AnalyticsEvent) {
