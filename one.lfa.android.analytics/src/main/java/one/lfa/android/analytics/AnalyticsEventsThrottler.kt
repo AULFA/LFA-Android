@@ -2,6 +2,7 @@ package one.lfa.android.analytics
 
 import org.nypl.simplified.analytics.api.AnalyticsEvent
 import java.util.Timer
+import java.util.TimerTask
 import kotlin.collections.ArrayDeque
 import kotlin.concurrent.schedule
 
@@ -10,6 +11,7 @@ class AnalyticsEventsThrottler(private val targetFunction: (AnalyticsEvent) -> U
   private var lastCreateEvent: AnalyticsEvent.ProfileCreated? = null
   private var isThrottlingProfileCreated = false
   private var isThrottlingProfileUpdated = false
+  private var profileUpdatedTimer: TimerTask? = null
 
   fun handleEvent(event: AnalyticsEvent) {
     when (event) {
@@ -48,7 +50,8 @@ class AnalyticsEventsThrottler(private val targetFunction: (AnalyticsEvent) -> U
 
         isThrottlingProfileUpdated = true
         targetFunction(event)
-        Timer().schedule(700L) {
+        profileUpdatedTimer?.cancel()
+        profileUpdatedTimer = Timer().schedule(700L) {
           synchronized(this) {
             isThrottlingProfileUpdated = false
           }
