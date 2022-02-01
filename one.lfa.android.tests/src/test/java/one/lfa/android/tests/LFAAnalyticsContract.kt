@@ -9,9 +9,9 @@ import one.lfa.android.analytics.LFAAnalyticsConfiguration
 import one.lfa.android.analytics.LFAAnalyticsServerConfiguration
 import one.lfa.android.analytics.LFAAnalyticsSystem
 import org.joda.time.DateTime
+import org.joda.time.DateTimeZone
 import org.joda.time.LocalDateTime
 import org.junit.After
-import org.junit.Assert
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -34,16 +34,15 @@ import java.net.URI
 import java.nio.charset.StandardCharsets
 import java.util.UUID
 import java.util.concurrent.Callable
-import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-import java.util.concurrent.TimeUnit
+import java.util.concurrent.ScheduledExecutorService
 import java.util.zip.GZIPInputStream
 
 abstract class LFAAnalyticsContract {
 
   private lateinit var http: LSHTTPClientType
   private lateinit var server: MockWebServer
-  private lateinit var executor: ExecutorService
+  private lateinit var executor: ScheduledExecutorService
 
   private val LOG =
     LoggerFactory.getLogger(LFAAnalyticsContract::class.java)
@@ -60,9 +59,11 @@ abstract class LFAAnalyticsContract {
         applicationVersion = "1.0.0"
       )
     this.http = LSHTTPClients().create(Mockito.mock(Context::class.java), config)
-    this.executor = Executors.newSingleThreadExecutor()
+    this.executor = Executors.newSingleThreadScheduledExecutor()
     this.server = MockWebServer()
     this.server.start(20000)
+
+    DateTimeZone.setDefault(DateTimeZone.UTC)
   }
 
   @After
@@ -132,6 +133,8 @@ abstract class LFAAnalyticsContract {
         )
       )
     )
+
+    Thread.sleep(1000)
 
     for (i in 1..10) {
       system.onAnalyticsEvent(
@@ -206,6 +209,8 @@ abstract class LFAAnalyticsContract {
         )
       )
     )
+
+    Thread.sleep(1000)
 
     for (i in 1..2) {
       system.onAnalyticsEvent(
@@ -291,6 +296,8 @@ abstract class LFAAnalyticsContract {
         attributes = sortedMapOf<String, String>()
       )
     )
+
+    Thread.sleep(1000)
 
     system.onAnalyticsEvent(
       AnalyticsEvent.ProfileLoggedIn(

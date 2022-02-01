@@ -1,17 +1,16 @@
 package one.lfa.android.analytics
 
 import org.nypl.simplified.analytics.api.AnalyticsEvent
-import java.util.Timer
-import java.util.TimerTask
-import kotlin.collections.ArrayDeque
-import kotlin.concurrent.schedule
+import java.util.concurrent.ScheduledExecutorService
+import java.util.concurrent.ScheduledFuture
+import java.util.concurrent.TimeUnit
 
-class AnalyticsEventsThrottler(private val targetFunction: (AnalyticsEvent) -> Unit) {
+class AnalyticsEventsThrottler(private val executor: ScheduledExecutorService, private val targetFunction: (AnalyticsEvent) -> Unit) {
   private val updateEvents = ArrayDeque<AnalyticsEvent.ProfileUpdated>()
   private var lastCreateEvent: AnalyticsEvent.ProfileCreated? = null
   private var isThrottlingProfileCreated = false
   private var isThrottlingProfileUpdated = false
-  private var profileUpdatedTimer: TimerTask? = null
+  private var profileUpdatedTimer: ScheduledFuture<*>? = null
 
   fun handleEvent(event: AnalyticsEvent) {
     when (event) {
@@ -25,7 +24,7 @@ class AnalyticsEventsThrottler(private val targetFunction: (AnalyticsEvent) -> U
         }
 
         isThrottlingProfileCreated = true
-        Timer().schedule(700L) {
+        executor.schedule({
           synchronized(this) {
             var totalEvent = lastCreateEvent?.copy()
             updateEvents.forEach { collectedEvent ->
@@ -37,7 +36,7 @@ class AnalyticsEventsThrottler(private val targetFunction: (AnalyticsEvent) -> U
             lastCreateEvent = null
             isThrottlingProfileCreated = false
           }
-        }
+        }, 700, TimeUnit.MILLISECONDS)
       }
       is AnalyticsEvent.ProfileUpdated -> {
         // The current version of Simplified generates a ProfileUpdated event and several BookPageTurned events when the reader's text settings are updated.
@@ -50,12 +49,10 @@ class AnalyticsEventsThrottler(private val targetFunction: (AnalyticsEvent) -> U
 
         isThrottlingProfileUpdated = true
         targetFunction(event)
-        profileUpdatedTimer?.cancel()
-        profileUpdatedTimer = Timer().schedule(700L) {
-          synchronized(this) {
-            isThrottlingProfileUpdated = false
-          }
-        }
+        profileUpdatedTimer?.cancel(true)
+        profileUpdatedTimer = executor.schedule({
+          isThrottlingProfileUpdated = false
+        }, 700, TimeUnit.MILLISECONDS)
       }
       is AnalyticsEvent.BookPageTurned -> {
         if (isThrottlingProfileUpdated) {

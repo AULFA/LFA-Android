@@ -29,7 +29,7 @@ import java.io.FileInputStream
 import java.io.FileWriter
 import java.io.IOException
 import java.util.UUID
-import java.util.concurrent.ExecutorService
+import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
 import java.util.zip.GZIPOutputStream
 
@@ -42,7 +42,7 @@ class LFAAnalyticsSystem(
   private val baseConfiguration: AnalyticsConfiguration,
   private val lfaConfiguration: LFAAnalyticsConfiguration,
   private val baseDirectory: File,
-  private val executor: ExecutorService
+  private val executor: ScheduledExecutorService
 ) : AnalyticsSystem {
 
   private val logger =
@@ -68,7 +68,7 @@ class LFAAnalyticsSystem(
 
   private lateinit var output: FileWriter
 
-  private val eventsThrottler = AnalyticsEventsThrottler(this::consumeEvent)
+  private val eventsThrottler = AnalyticsEventsThrottler(executor, this::consumeEvent)
 
   @Volatile
   private var latestSchoolName: String? = null
