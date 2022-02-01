@@ -41,10 +41,8 @@ class AnalyticsEventsThrottler(private val targetFunction: (AnalyticsEvent) -> U
         // The current version of Simplified generates a ProfileUpdated event and several BookPageTurned events when the reader's text settings are updated.
         // This is because the text settings are tied to the user's profile, and when they're changed the current page is re-rendered.
         // We'll emit only the ProfileUpdated event and throttle the BookPageTurned events for 700 milliseconds.
-        if (isThrottlingProfileCreated || isThrottlingProfileUpdated) {
-          if (isThrottlingProfileCreated) {
-            updateEvents.add(event)
-          }
+        if (isThrottlingProfileCreated) {
+          updateEvents.add(event)
           return
         }
 
