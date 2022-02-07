@@ -38,6 +38,7 @@ copy .ci/credentials/online-app-credentials.json one.lfa.android.app.online/src/
 copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.grande/src/main/assets/lfaAnalytics.xml
 copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.laos/src/main/assets/lfaAnalytics.xml
 copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.png_offline/src/main/assets/lfaAnalytics.xml
+copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.solomon/src/main/assets/lfaAnalytics.xml
 copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.timor/src/main/assets/lfaAnalytics.xml
 
 mkdir -p "$HOME/.gradle" ||

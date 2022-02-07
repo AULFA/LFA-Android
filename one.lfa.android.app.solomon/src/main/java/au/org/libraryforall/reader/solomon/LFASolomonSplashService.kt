@@ -6,7 +6,7 @@ import org.nypl.simplified.ui.branding.BrandingSplashServiceType
  * A splash service for the app.
  */
 
-class LFAOfflineSplashService : BrandingSplashServiceType {
+class LFASolomonSplashService : BrandingSplashServiceType {
 
   override val shouldShowLibrarySelectionScreen: Boolean =
     true

@@ -7,7 +7,7 @@ import org.nypl.simplified.accounts.api.AccountProviderAuthenticationDescription
 import org.nypl.simplified.accounts.api.AccountProviderType
 import java.net.URI
 
-class LFAOfflineAccountsFallback : AccountProviderFallbackType {
+class LFASolomonAccountsFallback : AccountProviderFallbackType {
   override fun get(): AccountProviderType =
     AccountProvider(
       addAutomatically = true,
@@ -15,7 +15,7 @@ class LFAOfflineAccountsFallback : AccountProviderFallbackType {
       authentication = AccountProviderAuthenticationDescription.Anonymous,
       authenticationAlternatives = listOf(),
       authenticationDocumentURI = null,
-      catalogURI = URI.create("content://au.org.libraryforall/e5d0c561-aa74-4f19-a043-c084f8346212/feeds/7A0A560E3AF8DDDD996E01FD43C618413A8A2B6CC118933F950C3618939EE1CD.atom"),
+      catalogURI = URI.create("content://au.org.libraryforall/0b063894-7c42-40db-9194-01b9281bc73c/feeds/88D92F5F06E62596CEB61976A23A54DB6414EC113151FF879C04D1CD7C85AF81.atom"),
       cardCreatorURI = null,
       displayName = "Solomon Islands",
       eula = null,
