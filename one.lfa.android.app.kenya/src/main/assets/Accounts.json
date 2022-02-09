@@ -1,0 +1,18 @@
+[
+  {
+    "@version": "20190708",
+    "idUUID": "urn:uuid:3cd65800-4d21-4c56-8506-5843565a3b75",
+    "displayName": "Global English",
+    "subtitle": "",
+    "logo": "simplified-asset:logos/globe.png",
+    "supportsSimplyESync": false,
+    "supportsBarcodeScanner": false,
+    "supportsBarcodeDisplay": false,
+    "supportsReservations": false,
+    "supportsCardCreator": false,
+    "supportsHelpCenter": false,
+    "addAutomatically": true,
+    "catalogURI": "content://au.org.libraryforall/3cd65800-4d21-4c56-8506-5843565a3b75/feeds/E388214F46F3111E4D7FE547930C2915E5D44DE3734C7FBFE4BD34D02124977E.atom",
+    "mainColor": "#ec1c24"
+  }
+]
