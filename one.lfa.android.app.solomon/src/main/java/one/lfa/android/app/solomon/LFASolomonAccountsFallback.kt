@@ -1,4 +1,4 @@
-package au.org.libraryforall.reader.solomon
+package one.lfa.android.app.solomon
 
 import org.joda.time.DateTime
 import org.nypl.simplified.accounts.api.AccountProviderFallbackType

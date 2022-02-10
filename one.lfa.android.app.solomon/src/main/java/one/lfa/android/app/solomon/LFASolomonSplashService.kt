@@ -1,4 +1,4 @@
-package au.org.libraryforall.reader.solomon
+package one.lfa.android.app.solomon
 
 import org.nypl.simplified.ui.branding.BrandingSplashServiceType
 
