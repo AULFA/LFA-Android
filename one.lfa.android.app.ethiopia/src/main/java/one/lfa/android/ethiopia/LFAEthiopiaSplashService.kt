@@ -1,4 +1,4 @@
-package one.lfa.android.app.ethiopia
+package one.lfa.android.ethiopia
 
 import org.nypl.simplified.ui.branding.BrandingSplashServiceType
 
