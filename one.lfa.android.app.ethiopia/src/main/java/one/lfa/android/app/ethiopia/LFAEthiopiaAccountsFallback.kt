@@ -1,4 +1,4 @@
-package one.lfa.android.ethiopia
+package one.lfa.android.app.ethiopia
 
 import org.joda.time.DateTime
 import org.nypl.simplified.accounts.api.AccountProvider
