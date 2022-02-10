@@ -1,13 +1,13 @@
-package one.lfa.android.kenya
+package one.lfa.android.app.solomon
 
 import org.joda.time.DateTime
+import org.nypl.simplified.accounts.api.AccountProviderFallbackType
 import org.nypl.simplified.accounts.api.AccountProvider
 import org.nypl.simplified.accounts.api.AccountProviderAuthenticationDescription
-import org.nypl.simplified.accounts.api.AccountProviderFallbackType
 import org.nypl.simplified.accounts.api.AccountProviderType
 import java.net.URI
 
-class LFAKenyaAccountsFallback : AccountProviderFallbackType {
+class LFASolomonAccountsFallback : AccountProviderFallbackType {
   override fun get(): AccountProviderType =
     AccountProvider(
       addAutomatically = true,
@@ -15,20 +15,20 @@ class LFAKenyaAccountsFallback : AccountProviderFallbackType {
       authentication = AccountProviderAuthenticationDescription.Anonymous,
       authenticationAlternatives = listOf(),
       authenticationDocumentURI = null,
-      catalogURI = URI.create("content://au.org.libraryforall/58f0fb4b-0f60-4939-a4cf-1b2b74d6c587/feeds/A3F5F15BA1946CB9268F3BBBED376135F0638A375532F18033F6482CBD1B1075.atom"),
+      catalogURI = URI.create("content://au.org.libraryforall/0b063894-7c42-40db-9194-01b9281bc73c/feeds/88D92F5F06E62596CEB61976A23A54DB6414EC113151FF879C04D1CD7C85AF81.atom"),
       cardCreatorURI = null,
-      displayName = "Somali Collection",
+      displayName = "Solomon Islands",
       eula = null,
-      id = URI.create("urn:uuid:58f0fb4b-0f60-4939-a4cf-1b2b74d6c587"),
+      id = URI.create("urn:provider:com.cantookstation.lfasolomonislandscollection"),
       idNumeric = -1,
       isProduction = true,
       license = null,
       loansURI = null,
-      logo = URI.create("simplified-asset:logos/somalia.png"),
+      logo = URI.create("simplified-asset:logos/solomon_islands.png"),
       mainColor = "#ec1c24",
       patronSettingsURI = null,
       privacyPolicy = null,
-      subtitle = "Somali Collection",
+      subtitle = "",
       supportEmail = null,
       supportsReservations = false,
       updated = DateTime.now()
