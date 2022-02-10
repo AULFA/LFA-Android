@@ -1,5 +1,6 @@
-package one.lfa.android.kenya
+package one.lfa.android.app.kenya
 
+import one.lfa.android.kenya.R
 import org.nypl.simplified.ui.branding.BrandingSplashServiceType
 
 /**
