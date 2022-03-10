@@ -43,7 +43,7 @@ task preFlightChecks {
 
   def keystoreHash = "20dfb53906594f4ae7a77df3d92f87f1c003c6a824b0b541c23c3185fd603da8"
   def analyticsHash = "917e2f8e6344d49824e913257a824011877008a510e35424f5b38814981ce14c"
-  def credsHash = "c1c37b083ca9503cd09b43ceecbf3331ee7aa75e5b0841bb4b50485058fc5d26"
+  def credsHash = "130da55a0a53c65b0db96501da143717ead5e84f19866bb148209dd291e54169"
 
   def requiredFiles = [:]
   requiredFiles["lfa-keystore.jks"] = keystoreHash
