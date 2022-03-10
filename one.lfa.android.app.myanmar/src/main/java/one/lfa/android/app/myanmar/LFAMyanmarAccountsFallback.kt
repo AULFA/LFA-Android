@@ -17,7 +17,7 @@ class LFAMyanmarAccountsFallback : AccountProviderFallbackType {
       authenticationDocumentURI = null,
       catalogURI = URI.create("content://au.org.libraryforall/ee8f9748-b1de-4c28-aff7-b9767e650998/feeds/6F90E501B459F8D9404930EF705A297FFCEF7389D8F5D5D70019A0A2E6112894.atom"),
       cardCreatorURI = null,
-      displayName = "Myanmar Collection",
+      displayName = "မြန်မာ",
       eula = null,
       id = URI.create("urn:uuid:ee8f9748-b1de-4c28-aff7-b9767e650998"),
       idNumeric = -1,
@@ -28,7 +28,7 @@ class LFAMyanmarAccountsFallback : AccountProviderFallbackType {
       mainColor = "#ec1c24",
       patronSettingsURI = null,
       privacyPolicy = null,
-      subtitle = "Myanmar Collection",
+      subtitle = "",
       supportEmail = null,
       supportsReservations = false,
       updated = DateTime.now()
