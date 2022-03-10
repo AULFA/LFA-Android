@@ -14,6 +14,7 @@
   <string name="audio_book_player_return_question">၎င်းကို ပြန်အပ်ချင်ပါသလား။</string>
   <string name="audio_book_player_return_title">သင့်အသံထွက်စာအုပ် ပြီးဆုံးပါပြီ</string>
   <string name="bootFailedGeneric">ပြဿနာတစ်ခု တွေ့ရှိပါတယ်။ သင့်ကွန်နက်ရှင်ကို စစ်ပေးပါ သို့မဟုတ် အက်ပ်ကို ပိတ်ပြီး ပြန်ဖွင့်ပေးပါ။</string>
+  <string name="cancel">ပယ်ဖျက်ရန်</string>
   <string name="catalogAccessibilityBookBorrow">ရယူရန်ခလုတ်</string>
   <string name="catalogAccessibilityBookDelete">ဖျက်ရန်ခလုတ်</string>
   <string name="catalogAccessibilityBookDownload">ဒေါင်းလုဒ်ဆွဲရန်ခလုတ်</string>
