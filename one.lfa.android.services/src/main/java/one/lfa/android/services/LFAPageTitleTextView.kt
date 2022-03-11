@@ -4,6 +4,16 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 
+/**
+ * A simple extension of AppCompatTextView that handles cases where we're getting corrupted page titles from NYPL-Simplified/Simplified-Android-Core.
+ * This happens (rarely) when we're handling languages that use non-latin characters. As of 11-03-2022 we have only instance of this happening with LFA's books.
+ *
+ * @constructor
+ * Same as AppCompatTextView
+ *
+ * @param context
+ * @param attrs
+ */
 class LFAPageTitleTextView(context: Context, attrs: AttributeSet?) : AppCompatTextView(context, attrs) {
 
   override fun setText(text: CharSequence, type: BufferType?) {
