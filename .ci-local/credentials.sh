@@ -33,6 +33,7 @@ copy .ci/credentials/online-app-credentials.json one.lfa.android.app.grande/src/
 copy .ci/credentials/online-app-credentials.json one.lfa.android.app.indigenous/src/main/assets/account_bundled_credentials.json
 copy .ci/credentials/online-app-credentials.json one.lfa.android.app.laos.online/src/main/assets/account_bundled_credentials.json
 copy .ci/credentials/online-app-credentials.json one.lfa.android.app.laos/src/main/assets/account_bundled_credentials.json
+copy .ci/credentials/online-app-credentials.json one.lfa.android.app.myanmar.online/src/main/assets/account_bundled_credentials.json
 copy .ci/credentials/online-app-credentials.json one.lfa.android.app.online/src/main/assets/account_bundled_credentials.json
 
 copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.ethiopia/src/main/assets/lfaAnalytics.xml
