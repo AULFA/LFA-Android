@@ -1,0 +1,18 @@
+[
+  {
+    "@version": "20190708",
+    "idUUID": "urn:uuid:ad3b1341-22b9-4022-ab81-8d7f93c72cdd",
+    "displayName": "မြန်မာ",
+    "subtitle": "",
+    "logo": "simplified-asset:logos/myanmar.png",
+    "supportsSimplyESync": false,
+    "supportsBarcodeScanner": false,
+    "supportsBarcodeDisplay": false,
+    "supportsReservations": false,
+    "supportsCardCreator": false,
+    "supportsHelpCenter": false,
+    "addAutomatically": true,
+    "catalogURI": "content://au.org.libraryforall/ad3b1341-22b9-4022-ab81-8d7f93c72cdd/feeds/6F90E501B459F8D9404930EF705A297FFCEF7389D8F5D5D70019A0A2E6112894.atom",
+    "mainColor": "#ec1c24"
+  }
+]
