@@ -1,0 +1,18 @@
+[
+  {
+    "@version": "20190708",
+    "idUUID": "urn:provider:com.cantookstation.lfamyanmarcollection",
+    "displayName": "မြန်မာ",
+    "subtitle": "",
+    "logo": "simplified-asset:logos/myanmar.png",
+    "supportsSimplyESync": false,
+    "supportsBarcodeScanner": false,
+    "supportsBarcodeDisplay": false,
+    "supportsReservations": false,
+    "supportsCardCreator": false,
+    "supportsHelpCenter": false,
+    "addAutomatically": true,
+    "catalogURI": "https://lfamyanmarcollection.cantookstation.com/catalog/featuredresources.atom",
+    "mainColor": "#ec1c24"
+  }
+]
