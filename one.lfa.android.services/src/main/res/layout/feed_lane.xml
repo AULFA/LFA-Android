@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:clipChildren="false"
+  android:clipToPadding="false"
+  android:orientation="vertical">
+
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp">
+
+    <TextView
+      android:id="@+id/feedLaneTitle"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_centerVertical="true"
+      android:paddingRight="40dp"
+      android:ellipsize="end"
+      android:maxLines="1"
+      android:text="@string/catalogPlaceholder"
+      android:textColor="?attr/simplifiedColorPrimaryDark"
+      android:textSize="18sp"
+      android:textStyle="bold" />
+
+    <ImageView
+      android:src="@drawable/ic_baseline_chevron_right_24"
+      app:tint="@android:color/black"
+      android:contentDescription="@string/lfaCatalogLaneArrow"
+      android:layout_width="24dp"
+      android:layout_height="24dp"
+      android:layout_alignParentEnd="true"
+      android:layout_centerVertical="true" />
+
+  </RelativeLayout>
+
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/feedLaneCoversScroll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp" />
+</LinearLayout>
