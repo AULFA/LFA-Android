@@ -3,4 +3,5 @@
 <resources>
   <string name="appName">LFA</string>
   <string name="catalogBookAvailabilityLoanedIndefinite"></string>
+  <string name="lfaCatalogLaneArrow">View lane</string>
 </resources>
