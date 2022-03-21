@@ -2,9 +2,9 @@
   {
     "@version": "20190708",
     "idUUID": "urn:uuid:c6537298-674d-421a-8997-e6dfe5d9000d",
-    "displayName": "Australian Aboriginal & Torres Strait Islander",
+    "displayName": "Our Yarning",
     "subtitle": "",
-    "logo": "simplified-asset:logos/indigenous.png",
+    "logo": "simplified-asset:logos/ouryarning.png",
     "supportsSimplyESync": false,
     "supportsBarcodeScanner": false,
     "supportsBarcodeDisplay": false,
