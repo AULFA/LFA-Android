@@ -142,5 +142,53 @@
     "addAutomatically": true,
     "catalogURI": "https://lfaethiopiacollection.cantookstation.com/catalog/featuredresources.atom",
     "mainColor": "#ec1c24"
+  },
+  {
+    "@version": "20190708",
+    "idUUID": "urn:provider:com.cantookstation.lfamyanmarcollection",
+    "displayName": "Myanmar Collection",
+    "subtitle": "",
+    "logo": "simplified-asset:logos/myanmar.png",
+    "supportsSimplyESync": false,
+    "supportsBarcodeScanner": false,
+    "supportsBarcodeDisplay": false,
+    "supportsReservations": false,
+    "supportsCardCreator": false,
+    "supportsHelpCenter": false,
+    "addAutomatically": true,
+    "catalogURI": "https://lfamyanmarcollection.cantookstation.com/catalog/featuredresources.atom",
+    "mainColor": "#ec1c24"
+  },
+  {
+    "@version": "20190708",
+    "idUUID": "urn:provider:com.cantookstation.lfabhutancollection",
+    "displayName": "Bhutan Collection",
+    "subtitle": "",
+    "logo": "simplified-asset:logos/bhutan.png",
+    "supportsSimplyESync": false,
+    "supportsBarcodeScanner": false,
+    "supportsBarcodeDisplay": false,
+    "supportsReservations": false,
+    "supportsCardCreator": false,
+    "supportsHelpCenter": false,
+    "addAutomatically": true,
+    "catalogURI": "https://lfabhutancollection.cantookstation.com/catalog/featuredresources.atom",
+    "mainColor": "#ec1c24"
+  },
+  {
+    "@version": "20190708",
+    "idUUID": "urn:provider:com.cantookstation.lfavietnamcollection",
+    "displayName": "Vietnam Collection",
+    "subtitle": "",
+    "logo": "simplified-asset:logos/vietnam.png",
+    "supportsSimplyESync": false,
+    "supportsBarcodeScanner": false,
+    "supportsBarcodeDisplay": false,
+    "supportsReservations": false,
+    "supportsCardCreator": false,
+    "supportsHelpCenter": false,
+    "addAutomatically": true,
+    "catalogURI": "https://lfavietnamcollection.cantookstation.com/catalog/featuredresources.atom",
+    "mainColor": "#ec1c24"
   }
 ]
