@@ -1,0 +1,18 @@
+[
+  {
+    "@version": "20190708",
+    "idUUID": "urn:provider:com.cantookstation.lfabhutancollection",
+    "displayName": "Bhutan",
+    "subtitle": "",
+    "logo": "simplified-asset:logos/bhutan.png",
+    "supportsSimplyESync": false,
+    "supportsBarcodeScanner": false,
+    "supportsBarcodeDisplay": false,
+    "supportsReservations": false,
+    "supportsCardCreator": false,
+    "supportsHelpCenter": false,
+    "addAutomatically": true,
+    "catalogURI": "https://lfabhutancollection.cantookstation.com/catalog/featuredresources.atom",
+    "mainColor": "#ec1c24"
+  }
+]

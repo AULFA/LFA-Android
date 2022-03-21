@@ -47,6 +47,7 @@ task preFlightChecks {
 
   def requiredFiles = [:]
   requiredFiles["lfa-keystore.jks"] = keystoreHash
+  requiredFiles["one.lfa.android.app.bhutan.online/src/main/assets/account_bundled_credentials.json"] = credsHash
   requiredFiles["one.lfa.android.app.ethiopia/src/main/assets/lfaAnalytics.xml"] = analyticsHash
   requiredFiles["one.lfa.android.app.grande/src/main/assets/account_bundled_credentials.json"] = credsHash
   requiredFiles["one.lfa.android.app.grande/src/main/assets/lfaAnalytics.xml"] = analyticsHash
