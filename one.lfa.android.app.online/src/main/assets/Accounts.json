@@ -18,7 +18,7 @@
   {
     "@version": "20190708",
     "idUUID": "urn:provider:com.cantookstation.lfalaos",
-    "displayName": "ປະເທດລາວ",
+    "displayName": "ປະເທດລາວ (Laos)",
     "subtitle": "",
     "logo": "simplified-asset:logos/laos.png",
     "supportsSimplyESync": false,
@@ -114,7 +114,7 @@
   {
     "@version": "20190708",
     "idUUID": "urn:provider:com.cantookstation.lfasomaliacollection",
-    "displayName": "Somalia Collection",
+    "displayName": "Somalia",
     "subtitle": "",
     "logo": "simplified-asset:logos/somalia.png",
     "supportsSimplyESync": false,
@@ -130,7 +130,7 @@
   {
     "@version": "20190708",
     "idUUID": "urn:provider:com.cantookstation.lfamyanmarcollection",
-    "displayName": "Myanmar Collection",
+    "displayName": "Myanmar",
     "subtitle": "",
     "logo": "simplified-asset:logos/myanmar.png",
     "supportsSimplyESync": false,
@@ -146,7 +146,7 @@
   {
     "@version": "20190708",
     "idUUID": "urn:provider:com.cantookstation.lfabhutancollection",
-    "displayName": "Bhutan Collection",
+    "displayName": "Bhutan",
     "subtitle": "",
     "logo": "simplified-asset:logos/bhutan.png",
     "supportsSimplyESync": false,
@@ -162,7 +162,7 @@
   {
     "@version": "20190708",
     "idUUID": "urn:provider:com.cantookstation.lfavietnamcollection",
-    "displayName": "Vietnam Collection",
+    "displayName": "Vietnam",
     "subtitle": "",
     "logo": "simplified-asset:logos/vietnam.png",
     "supportsSimplyESync": false,
