@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <dimen name="catalogBookDetailButtonsHeight"></dimen>
+  <dimen name="catalogBookDetailButtonsHeight">40dp</dimen>
   <dimen name="catalogFeedCellButtonsHeight">40dp</dimen>
-  <dimen name="catalogFeedCellHeight">160dp</dimen>
-  <dimen name="catalogFeedCellImageWidth">100dp</dimen>
+  <dimen name="catalogFeedCellHeight">176dp</dimen>
+  <dimen name="catalogFeedCellImageWidth">110dp</dimen>
   <dimen name="cover_thumbnail_height">180dp</dimen>
+  <dimen name="cover_thumbnail_width">126dp</dimen>
   <dimen name="cover_corner_radius">4dp</dimen>
 </resources>
