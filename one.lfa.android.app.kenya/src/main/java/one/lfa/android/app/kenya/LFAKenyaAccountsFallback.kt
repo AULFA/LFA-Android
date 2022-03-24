@@ -17,7 +17,7 @@ class LFAKenyaAccountsFallback : AccountProviderFallbackType {
       authenticationDocumentURI = null,
       catalogURI = URI.create("content://au.org.libraryforall/58f0fb4b-0f60-4939-a4cf-1b2b74d6c587/feeds/A3F5F15BA1946CB9268F3BBBED376135F0638A375532F18033F6482CBD1B1075.atom"),
       cardCreatorURI = null,
-      displayName = "Somali Collection",
+      displayName = "Somalia",
       eula = null,
       id = URI.create("urn:uuid:58f0fb4b-0f60-4939-a4cf-1b2b74d6c587"),
       idNumeric = -1,
@@ -28,7 +28,7 @@ class LFAKenyaAccountsFallback : AccountProviderFallbackType {
       mainColor = "#ec1c24",
       patronSettingsURI = null,
       privacyPolicy = null,
-      subtitle = "Somali Collection",
+      subtitle = "",
       supportEmail = null,
       supportsReservations = false,
       updated = DateTime.now()
