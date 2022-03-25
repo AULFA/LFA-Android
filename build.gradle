@@ -29,7 +29,7 @@ ext {
   androidBuildToolsVersion = "29.0.3"
   androidCompileSDKVersion = 29
   androidMinimumSDKVersion = 21
-  androidTargetSDKVersion = 29
+  androidTargetSDKVersion = 30
 }
 
 static def sha256Of(File file) {
