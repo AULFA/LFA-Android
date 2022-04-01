@@ -63,6 +63,7 @@ task preFlightChecks {
   requiredFiles["one.lfa.android.app.solomon/src/main/assets/lfaAnalytics.xml"] = analyticsHash
   requiredFiles["one.lfa.android.app.timor/src/main/assets/lfaAnalytics.xml"] = analyticsHash
   requiredFiles["one.lfa.android.app.vietnam/src/main/assets/lfaAnalytics.xml"] = analyticsHash
+  requiredFiles["one.lfa.android.app.vietnam.online/src/main/assets/account_bundled_credentials.json"] = credsHash
 
   def missingFiles = []
   for (entry in requiredFiles) {
