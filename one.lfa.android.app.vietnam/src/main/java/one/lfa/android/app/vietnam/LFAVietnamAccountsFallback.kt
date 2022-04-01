@@ -17,7 +17,7 @@ class LFAVietnamAccountsFallback : AccountProviderFallbackType {
       authenticationDocumentURI = null,
       catalogURI = URI.create("content://au.org.libraryforall/0c41f814-fd53-431f-8d18-2d861544d26a/feeds/07A1BEDCC41D0B7C9B1194CA395AC20C0155188951511B7B0C8F2E9BA8DCCA31.atom"),
       cardCreatorURI = null,
-      displayName = "Vietnam",
+      displayName = "Việt Nam",
       eula = null,
       id = URI.create("urn:uuid:0c41f814-fd53-431f-8d18-2d861544d26a"),
       idNumeric = -1,

@@ -17,7 +17,7 @@ class LFAVietnamAccountsFallback : AccountProviderFallbackType {
       authenticationDocumentURI = null,
       catalogURI = URI.create("https://lfavietnamcollection.cantookstation.com/catalog/featuredresources.atom"),
       cardCreatorURI = null,
-      displayName = "Vietnam",
+      displayName = "Việt Nam",
       eula = null,
       id = URI.create("urn:provider:com.cantookstation.lfavietnamcollection"),
       idNumeric = -1,
