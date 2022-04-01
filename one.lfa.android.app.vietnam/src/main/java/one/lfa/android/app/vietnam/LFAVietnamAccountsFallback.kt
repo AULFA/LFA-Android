@@ -7,7 +7,7 @@ import org.nypl.simplified.accounts.api.AccountProviderFallbackType
 import org.nypl.simplified.accounts.api.AccountProviderType
 import java.net.URI
 
-class LFAMyanmarAccountsFallback : AccountProviderFallbackType {
+class LFAVietnamAccountsFallback : AccountProviderFallbackType {
   override fun get(): AccountProviderType =
     AccountProvider(
       addAutomatically = true,
