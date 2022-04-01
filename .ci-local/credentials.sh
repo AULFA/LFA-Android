@@ -45,6 +45,7 @@ copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.myanmar/src/main/asset
 copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.png_offline/src/main/assets/lfaAnalytics.xml
 copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.solomon/src/main/assets/lfaAnalytics.xml
 copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.timor/src/main/assets/lfaAnalytics.xml
+copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.vietnam/src/main/assets/lfaAnalytics.xml
 
 mkdir -p "$HOME/.gradle" ||
   fatal "could not create gradle configuration directory"
