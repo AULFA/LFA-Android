@@ -174,5 +174,21 @@
     "addAutomatically": true,
     "catalogURI": "https://lfavietnamcollection.cantookstation.com/catalog/featuredresources.atom",
     "mainColor": "#ec1c24"
+  },
+  {
+    "@version": "20190708",
+    "idUUID": "urn:provider:com.cantookstation.lfaukrainecollection",
+    "displayName": "Ukraine",
+    "subtitle": "",
+    "logo": "simplified-asset:logos/ukraine.png",
+    "supportsSimplyESync": false,
+    "supportsBarcodeScanner": false,
+    "supportsBarcodeDisplay": false,
+    "supportsReservations": false,
+    "supportsCardCreator": false,
+    "supportsHelpCenter": false,
+    "addAutomatically": true,
+    "catalogURI": "https://lfaukrainecollection.cantookstation.com/catalog/featuredresources.atom",
+    "mainColor": "#ec1c24"
   }
 ]
