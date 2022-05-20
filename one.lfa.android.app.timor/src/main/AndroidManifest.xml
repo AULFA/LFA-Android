@@ -11,6 +11,7 @@
 
   <queries>
     <provider android:authorities="au.org.libraryforall" />
+    <provider android:authorities="org.libraryforall.analytics.AnalyticsProvider" />
   </queries>
 
   <application

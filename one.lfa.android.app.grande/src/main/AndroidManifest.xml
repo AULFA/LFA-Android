@@ -9,6 +9,11 @@
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+  <queries>
+    <provider android:authorities="au.org.libraryforall" />
+    <provider android:authorities="org.libraryforall.analytics.AnalyticsProvider" />
+  </queries>
+
   <application
     android:name="org.nypl.simplified.main.MainApplication"
     tools:replace="android:allowBackup"
