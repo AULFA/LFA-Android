@@ -575,8 +575,8 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
 
   private fun getNamePair(): FirstAndLastName {
     return FirstAndLastName(
-      nameFirst = this.nameFirst.text.toString(),
-      nameLast = this.nameLast.text.toString()
+      nameFirst = this.nameFirst.text.toString().trim(LFAWhitespace::isWhitespace),
+      nameLast = this.nameLast.text.toString().trim(LFAWhitespace::isWhitespace)
     )
   }
 
@@ -669,9 +669,10 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
         .isNotEmpty()
 
     val isNameLastOK =
-      this.nameLast.text.toString()
-        .trim(LFAWhitespace::isWhitespace)
-        .isNotEmpty()
+      this.nameLast.visibility != View.VISIBLE ||
+        this.nameLast.text.toString()
+          .trim(LFAWhitespace::isWhitespace)
+          .isNotEmpty()
 
     val isGenderNonBinaryEmpty =
       this.genderNonBinaryEditText.text.toString()
