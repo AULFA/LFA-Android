@@ -144,7 +144,7 @@
   <string name="profilePleaseEnter">သင့်အမည်၊ ကျား/မ နှင့် မွေးနေ့ရက်စွဲကို ဖြည့်ပေးပါ။</string>
   <string name="profileRoleOther">အခြား</string>
   <string name="profileRoleParent">မိဘ</string>
-  <string name="profileRoleStudent">ကျောင်သား</string>
+  <string name="profileRoleStudent">ကျောင်းသား</string>
   <string name="profileRoleTeacher">ဆရာ</string>
   <string name="profileSwitchConfirm">အကောင့်မှထွက်ရန် သေချာပါသလား။</string>
   <string name="profileCancel">ပယ်ဖျက်ရန်</string>
