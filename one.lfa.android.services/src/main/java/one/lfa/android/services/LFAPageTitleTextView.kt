@@ -36,7 +36,8 @@ class LFAPageTitleTextView(context: Context, attrs: AttributeSet?) : AppCompatTe
 
   companion object {
     val PAGE_TITLES_MAP = mapOf(
-      "ဒီီစာာအုုပ် ်က ဖတ််လို့့�ကော�\uDBC0\uDCE0 ာင်းး\uDBC0\uDCE1လားး \uDBC0\uDCE1။" to "ဒီစာအုပ်က ဖတ်လို့ကောင်းလား။"
+      "ဒီီစာာအုုပ် ်က ဖတ််လို့့�ကော�\uDBC0\uDCE0 ာင်းး\uDBC0\uDCE1လားး \uDBC0\uDCE1။" to "ဒီစာအုပ်က ဖတ်လို့ကောင်းလား။",
+      "ပါ\nါဝင််ဆော� ာင််ရွွ ရွွက််သူ ူများ�း \uDBC0\uDCE1အကြော \uDBC0\uDCEC�ာင်းး င်းး\uDBC0\uDCE1" to "ပါဝင်ဆောင်ရွက်သူများအကြောင်း"
     )
   }
 
