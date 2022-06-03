@@ -46,7 +46,7 @@
   <string name="catalogBookAvailabilityRevoked">ဤစာအုပ်ကို ပြန်အပ်ရန် အချိန်ကျရောက်နေပါပြီ။</string>
   <string name="catalogBookCoverDescription">စာအုပ် မျက်နှာဖုံး ဓာတ်ပုံ</string>
   <string name="catalogBookFormatAudioBook">အသံထွက်စာအုပ်</string>
-  <string name="catalogBookFormatEPUB">အီးဘွတ်</string>
+  <string name="catalogBookFormatEPUB">E-book</string>
   <string name="catalogBookFormatPDF">PDF ဖိုင်</string>
   <string name="catalogBookIntervalDays">ရက်</string>
   <string name="catalogBookIntervalDaysShort">ရက်</string>
