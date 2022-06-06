@@ -48,7 +48,8 @@
       android:hint="@string/profileNameLastField"
       android:imeOptions="actionDone"
       android:inputType="textPersonName|textCapWords"
-      android:text="" />
+      android:text=""
+      android:visibility="gone" />
 
     <TextView
       android:layout_width="wrap_content"

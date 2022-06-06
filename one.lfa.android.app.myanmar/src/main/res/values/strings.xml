@@ -46,7 +46,7 @@
   <string name="catalogBookAvailabilityRevoked">ဤစာအုပ်ကို ပြန်အပ်ရန် အချိန်ကျရောက်နေပါပြီ။</string>
   <string name="catalogBookCoverDescription">စာအုပ် မျက်နှာဖုံး ဓာတ်ပုံ</string>
   <string name="catalogBookFormatAudioBook">အသံထွက်စာအုပ်</string>
-  <string name="catalogBookFormatEPUB">အီးဘွတ်</string>
+  <string name="catalogBookFormatEPUB">E-book</string>
   <string name="catalogBookFormatPDF">PDF ဖိုင်</string>
   <string name="catalogBookIntervalDays">ရက်</string>
   <string name="catalogBookIntervalDaysShort">ရက်</string>
@@ -76,7 +76,7 @@
   <string name="catalogMetaUpdatedDate">ပြင်ဆင်ပြီး</string>
   <string name="catalogOperationFailed">လုပ်ဆောင်ချက် မပြီးမြောက်ခဲ့ပါ။</string>
   <string name="catalogPlaceholder"></string>
-  <string name="catalogRead">ဖတ်ရှုပြီး</string>
+  <string name="catalogRead">ဖတ်ရှုရန်</string>
   <string name="catalogRelatedBooks">ဆက်စပ်သောစာအုပ်များ ...</string>
   <string name="catalogReload">ပြန်လည်လုပ်ဆောင်ရန်</string>
   <string name="catalogReportIssue">ပြဿနာ တင်ပြရန် ...</string>
@@ -136,15 +136,15 @@
   <string name="profileGenderMale">အမျိုးသား</string>
   <string name="profileGenderNonBinary">ဒွိစုံ-မဟုတ်</string>
   <string name="profileGenderOther">အခြား</string>
-  <string name="profileNameFirstField">ပထမအမည်</string>
-  <string name="profileNameLastField">မျိုးရိုးအမည်</string>
+  <string name="profileNameFirstField">အမည်</string>
+  <string name="profileNameLastField"></string>
   <string name="profileModifyTitle">ပရိုဖိုင်တစ်ခုကို ပြင်ဆင်ရန်</string>
   <string name="profilePilotNo">မဟုတ်ပါ</string>
   <string name="profilePilotYes">ဟုတ်ပါတယ်။ ကျွန်ုပ်ကျောင်းက -</string>
   <string name="profilePleaseEnter">သင့်အမည်၊ ကျား/မ နှင့် မွေးနေ့ရက်စွဲကို ဖြည့်ပေးပါ။</string>
   <string name="profileRoleOther">အခြား</string>
   <string name="profileRoleParent">မိဘ</string>
-  <string name="profileRoleStudent">ကျောင်သား</string>
+  <string name="profileRoleStudent">ကျောင်းသား</string>
   <string name="profileRoleTeacher">ဆရာ</string>
   <string name="profileSwitchConfirm">အကောင့်မှထွက်ရန် သေချာပါသလား။</string>
   <string name="profileCancel">ပယ်ဖျက်ရန်</string>
