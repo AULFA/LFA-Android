@@ -265,6 +265,18 @@
       android:layout_marginTop="32dp"
       android:layout_marginBottom="32dp"
       android:text="@string/profileCreate" />
+
+    <Button
+      android:id="@+id/profileCreationDelete"
+      android:layout_width="128dp"
+      android:layout_height="48dp"
+      android:layout_gravity="center"
+      android:layout_marginTop="-16dp"
+      android:layout_marginBottom="32dp"
+      android:text="@string/profileDelete"
+      android:visibility="gone"
+      android:textColor="@android:color/white"
+      android:backgroundTint="@color/simplified_material_red_primary_dark" />
   </LinearLayout>
 
 </ScrollView>

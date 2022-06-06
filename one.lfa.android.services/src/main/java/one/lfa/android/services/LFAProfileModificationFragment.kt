@@ -35,6 +35,7 @@ import org.nypl.simplified.profiles.api.ProfileAttributes.Companion.ROLE_ATTRIBU
 import org.nypl.simplified.profiles.api.ProfileAttributes.Companion.SCHOOL_ATTRIBUTE_KEY
 import org.nypl.simplified.profiles.api.ProfileCreationEvent
 import org.nypl.simplified.profiles.api.ProfileDateOfBirth
+import org.nypl.simplified.profiles.api.ProfileDeletionEvent
 import org.nypl.simplified.profiles.api.ProfileDescription
 import org.nypl.simplified.profiles.api.ProfileEvent
 import org.nypl.simplified.profiles.api.ProfileID
@@ -72,6 +73,7 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
 
   private lateinit var date: DatePicker3P
   private lateinit var finishButton: Button
+  private lateinit var deleteButton: Button
   private lateinit var genderNonBinaryEditText: EditText
   private lateinit var genderNonBinaryRadioButton: RadioButton
   private lateinit var genderRadioGroup: RadioGroup
@@ -131,6 +133,14 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
     this.finishButton.setOnClickListener { view ->
       view.isEnabled = false
       this.createOrModifyProfile()
+    }
+
+    this.deleteButton = layout.findViewById(R.id.profileCreationDelete)
+    if (this.parameters.profileID != null) {
+      this.deleteButton.visibility = View.VISIBLE
+      this.deleteButton.setOnClickListener {
+        this.deleteProfile()
+      }
     }
 
     this.date =
@@ -317,7 +327,8 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
 
   private fun onProfileEvent(event: ProfileEvent) {
     return when (event) {
-      is ProfileUpdated.Succeeded -> {
+      is ProfileUpdated.Succeeded,
+      is ProfileDeletionEvent.ProfileDeletionSucceeded -> {
         this.uiThread.runOnUIThread {
           try {
             NavigationControllers.find(
@@ -343,6 +354,12 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
       is ProfileCreationEvent.ProfileCreationFailed -> {
         this.uiThread.runOnUIThread {
           this.showProfileCreationError(event)
+        }
+      }
+
+      is ProfileDeletionEvent.ProfileDeletionFailed -> {
+        this.uiThread.runOnUIThread {
+          this.showProfileDeletionError(event)
         }
       }
 
@@ -378,6 +395,19 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
     AlertDialog.Builder(context)
       .setTitle(R.string.profileUpdateError)
       .setMessage(context.getString(R.string.profileUpdateFailedMessage, event.exception.message))
+      .setIcon(R.drawable.profile_failure)
+      .create()
+      .show()
+  }
+
+  @UiThread
+  private fun showProfileDeletionError(event: ProfileDeletionEvent.ProfileDeletionFailed) {
+    this.uiThread.checkIsUIThread()
+
+    val context = this.requireContext()
+    AlertDialog.Builder(context)
+      .setTitle(R.string.profileUpdateError)
+      .setMessage(context.getString(R.string.profileDeletionFailedMessage, event.exception.message))
       .setIcon(R.drawable.profile_failure)
       .create()
       .show()
@@ -523,6 +553,22 @@ class LFAProfileModificationFragment : ProfileModificationAbstractFragment() {
         profile = profile.id,
         update = { profileDescription }
       )
+    }
+  }
+
+  private fun deleteProfile() {
+    this.parameters.profileID?.let { profileId ->
+      val context = this.requireContext()
+      val profile = this.profilesController.profiles()[profileId] ?: return@let
+
+      AlertDialog.Builder(context)
+        .setTitle(R.string.profileDeleteAsk)
+        .setMessage(context.getString(R.string.profileDeleteAskMessage, profile.displayName))
+        .setPositiveButton(R.string.profileDelete) { _, _ ->
+          this.profilesController.profileDelete(profile.id)
+        }
+        .create()
+        .show()
     }
   }
 
