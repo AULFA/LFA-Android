@@ -76,7 +76,7 @@
   <string name="catalogMetaUpdatedDate">ပြင်ဆင်ပြီး</string>
   <string name="catalogOperationFailed">လုပ်ဆောင်ချက် မပြီးမြောက်ခဲ့ပါ။</string>
   <string name="catalogPlaceholder"></string>
-  <string name="catalogRead">ဖတ်ရှုပြီး</string>
+  <string name="catalogRead">ဖတ်ရှုရန်</string>
   <string name="catalogRelatedBooks">ဆက်စပ်သောစာအုပ်များ ...</string>
   <string name="catalogReload">ပြန်လည်လုပ်ဆောင်ရန်</string>
   <string name="catalogReportIssue">ပြဿနာ တင်ပြရန် ...</string>
