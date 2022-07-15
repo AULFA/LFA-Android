@@ -10,6 +10,11 @@
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
   <queries>
+    <package android:name="au.org.libraryforall.updater.app" />
+    <package android:name="au.org.libraryforall.updater.inclusiv" />
+    <package android:name="org.libraryforall.lfastudentdashboard" />
+    <package android:name="org.libraryforall.lfastudentdashboard.myanmar" />
+    <package android:name="org.libraryforall.lfastudentdashboard.vietnam" />
     <provider android:authorities="au.org.libraryforall" />
     <provider android:authorities="org.libraryforall.analytics.AnalyticsProvider" />
   </queries>
