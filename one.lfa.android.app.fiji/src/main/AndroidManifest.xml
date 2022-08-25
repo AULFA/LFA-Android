@@ -23,9 +23,9 @@
     android:name="org.nypl.simplified.main.MainApplication"
     tools:replace="android:allowBackup"
     android:allowBackup="true"
-    android:contentDescription="LFA Reader"
+    android:contentDescription="Library For All"
     android:icon="@mipmap/ic_launcher"
-    android:label="LFA Reader"
+    android:label="Library For All"
     android:networkSecurityConfig="@xml/network_security_config"
     android:theme="@style/LFA_NoActionBar"
     android:usesCleartextTraffic="true">
@@ -33,10 +33,10 @@
     <!-- Main entry point for the application. -->
     <activity
       android:name="org.nypl.simplified.main.MainActivity"
-      android:contentDescription="LFA Reader"
+      android:contentDescription="Library For All"
       android:exported="true"
       android:launchMode="singleTop"
-      android:label="LFA Reader">
+      android:label="Library For All">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
