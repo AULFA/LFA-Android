@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+  <string-array name="lfaPilotSchools">
+    <item>Aiome SDA Elementary</item>
+    <item>Akurkai Elementary</item>
+    <item>Alemo Elementary</item>
+    <item>Amapokina Elementary</item>
+    <item>Anminik Elementary</item>
+    <item>Antiragen Elementary</item>
+    <item>Aupio Elementary</item>
+    <item>Aven Elementary</item>
+    <item>Bamsos Elementary</item>
+    <item>Bavaroko Primary</item>
+    <item>Bog (Ombusi) Elementary</item>
+    <item>Bomana Primary</item>
+    <item>Bonzoc Elementary</item>
+    <item>Bopirumpun Elementary</item>
+    <item>Boreboa Primary</item>
+    <item>Boregaina Elementary</item>
+    <item>Buingim Elementary</item>
+    <item>Burr Elementary</item>
+    <item>Butuka Primary</item>
+    <item>Carr Memorial Primary</item>
+    <item>Coronation Primary</item>
+    <item>Eki Vaki Primary</item>
+    <item>Erima Skul Elementary</item>
+    <item>Evadahana Primary</item>
+    <item>Finongan Elementary</item>
+    <item>Flierl Elementary</item>
+    <item>Gabensis SDA Elementary</item>
+    <item>Gabsonkec Elementary</item>
+    <item>Gaire Elementary</item>
+    <item>Garinam Elementary</item>
+    <item>Gavuone Elementary</item>
+    <item>Ginigolo Elementary</item>
+    <item>Goldie Primary</item>
+    <item>Gum Elementary</item>
+    <item>Hagara Primary</item>
+    <item>Hohola Dem Primary</item>
+    <item>Hudini Elementary</item>
+    <item>Inauaia Elementary</item>
+    <item>Ipisan Elementary</item>
+    <item>Itsingants Elementary</item>
+    <item>Jobto Elementary</item>
+    <item>June Valley Primary</item>
+    <item>Kemen Elementary</item>
+    <item>Kesaut Elementary</item>
+    <item>Konogul Elementary</item>
+    <item>Kouye Elementary</item>
+    <item>Kupiano Station Elementary</item>
+    <item>Laugui Elementary</item>
+    <item>Lutu Busamang Elementary</item>
+    <item>Madzam Elementary</item>
+    <item>Marawasa Elementary</item>
+    <item>Mare Elementary</item>
+    <item>Mawan Elementary</item>
+    <item>May Memorial Elementary</item>
+    <item>Mopo Elementary</item>
+    <item>Munum Elementary</item>
+    <item>Ngintsip Elementary</item>
+    <item>Ororo Primary</item>
+    <item>Pari Primary</item>
+    <item>Pinu Elementary</item>
+    <item>Potaput Elementary</item>
+    <item>Rearea Elementary</item>
+    <item>Sacred Heart Primary</item>
+    <item>Sepu Elementary</item>
+    <item>Sevese Morea Primary</item>
+    <item>Siar Elementary</item>
+    <item>St Francis-Koki Primary</item>
+    <item>St Johns Primary</item>
+    <item>St Peters Primary</item>
+    <item>Sukurum Elementary</item>
+    <item>Sunbeam Elementary</item>
+    <item>Taurama Primary</item>
+    <item>Tauya Elementary</item>
+    <item>Tebensarik Elementary</item>
+    <item>Tokarara Primary</item>
+    <item>Tumun Gain Elementary</item>
+    <item>Uria Elementary</item>
+    <item>Usema Elementary</item>
+    <item>Uyam Elementary</item>
+    <item>Waigani Primary</item>
+    <item>Ward Strip Primary</item>
+    <item>Wasin Elementary</item>
+    <item>Welwel Elementary</item>
+    <item>Yangalang Elementary</item>
+    <item>Zuebak Elementary</item>
+  </string-array>
+</resources>
