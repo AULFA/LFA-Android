@@ -1,5 +1,6 @@
 include ':one.lfa.android.analytics'
 include ':one.lfa.android.app.bhutan.online'
+include ':one.lfa.android.app.demo'
 include ':one.lfa.android.app.ethiopia'
 include ':one.lfa.android.app.fiji'
 include ':one.lfa.android.app.grande'
