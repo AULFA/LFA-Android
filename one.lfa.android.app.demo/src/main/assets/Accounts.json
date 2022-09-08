@@ -1,0 +1,102 @@
+[
+  {
+    "@version": "20190708",
+    "idUUID": "urn:uuid:3cd65800-4d21-4c56-8506-5843565a3b75",
+    "displayName": "Global English",
+    "subtitle": "",
+    "logo": "simplified-asset:logos/globe.png",
+    "supportsSimplyESync": false,
+    "supportsBarcodeScanner": false,
+    "supportsBarcodeDisplay": false,
+    "supportsReservations": false,
+    "supportsCardCreator": false,
+    "supportsHelpCenter": false,
+    "addAutomatically": true,
+    "catalogURI": "content://au.org.libraryforall/3cd65800-4d21-4c56-8506-5843565a3b75/feeds/E388214F46F3111E4D7FE547930C2915E5D44DE3734C7FBFE4BD34D02124977E.atom",
+    "mainColor": "#ec1c24"
+  },
+  {
+    "@version": "20190708",
+    "idUUID": "urn:uuid:58f0fb4b-0f60-4939-a4cf-1b2b74d6c587",
+    "displayName": "Somalia",
+    "subtitle": "",
+    "logo": "simplified-asset:logos/somalia.png",
+    "supportsSimplyESync": false,
+    "supportsBarcodeScanner": false,
+    "supportsBarcodeDisplay": false,
+    "supportsReservations": false,
+    "supportsCardCreator": false,
+    "supportsHelpCenter": false,
+    "addAutomatically": true,
+    "catalogURI": "content://au.org.libraryforall/58f0fb4b-0f60-4939-a4cf-1b2b74d6c587/feeds/A3F5F15BA1946CB9268F3BBBED376135F0638A375532F18033F6482CBD1B1075.atom",
+    "mainColor": "#ec1c24"
+  },
+  
+  {
+    "@version": "20190708",
+    "idUUID": "urn:uuid:0c41f814-fd53-431f-8d18-2d861544d26a",
+    "displayName": "Vietnam",
+    "subtitle": "",
+    "logo": "simplified-asset:logos/vietnam.png",
+    "supportsSimplyESync": false,
+    "supportsBarcodeScanner": false,
+    "supportsBarcodeDisplay": false,
+    "supportsReservations": false,
+    "supportsCardCreator": false,
+    "supportsHelpCenter": false,
+    "addAutomatically": true,
+    "catalogURI": "content://au.org.libraryforall/0c41f814-fd53-431f-8d18-2d861544d26a/feeds/07A1BEDCC41D0B7C9B1194CA395AC20C0155188951511B7B0C8F2E9BA8DCCA31.atom",
+    "mainColor": "#ec1c24"
+  },
+  
+  {
+    "@version": "20190708",
+    "idUUID": "urn:uuid:f5b1f8d9-43ad-42ea-9b96-a291e7ce8fb5",
+    "displayName": "ປະເທດລາວ (Laos)",
+    "subtitle": "",
+    "logo": "simplified-asset:logos/laos.png",
+    "supportsSimplyESync": false,
+    "supportsBarcodeScanner": false,
+    "supportsBarcodeDisplay": false,
+    "supportsReservations": false,
+    "supportsCardCreator": false,
+    "supportsHelpCenter": false,
+    "addAutomatically": true,
+    "catalogURI": "content://au.org.libraryforall/f5b1f8d9-43ad-42ea-9b96-a291e7ce8fb5/feeds/DAE5313E5E65D49C7AFF7388819E7A42A93B0614523BE11C278489FC536670AE.atom",
+    "mainColor": "#ec1c24"
+  },
+  
+  {
+    "@version": "20190708",
+    "idUUID": "urn:uuid:ad3b1341-22b9-4022-ab81-8d7f93c72cdd",
+    "displayName": "Myanmar",
+    "subtitle": "",
+    "logo": "simplified-asset:logos/myanmar.png",
+    "supportsSimplyESync": false,
+    "supportsBarcodeScanner": false,
+    "supportsBarcodeDisplay": false,
+    "supportsReservations": false,
+    "supportsCardCreator": false,
+    "supportsHelpCenter": false,
+    "addAutomatically": true,
+    "catalogURI": "content://au.org.libraryforall/ad3b1341-22b9-4022-ab81-8d7f93c72cdd/feeds/6F90E501B459F8D9404930EF705A297FFCEF7389D8F5D5D70019A0A2E6112894.atom",
+    "mainColor": "#ec1c24"
+  },
+  
+  {
+    "@version": "20190708",
+    "idUUID": "urn:uuid:f07ef516-ea25-498f-ba23-80ff2904e6e6",
+    "displayName": "Timor Leste",
+    "subtitle": "",
+    "logo": "simplified-asset:logos/timor.png",
+    "supportsSimplyESync": false,
+    "supportsBarcodeScanner": false,
+    "supportsBarcodeDisplay": false,
+    "supportsReservations": false,
+    "supportsCardCreator": false,
+    "supportsHelpCenter": false,
+    "addAutomatically": true,
+    "catalogURI": "content://au.org.libraryforall/f07ef516-ea25-498f-ba23-80ff2904e6e6/feeds/B3CB1505FEF3ADA2894675D1077D8D41CC55A5D4858611ECC9712BABE77A8B4D.atom",
+    "mainColor": "#ec1c24"
+  }
+]
