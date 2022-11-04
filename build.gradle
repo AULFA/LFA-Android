@@ -118,6 +118,17 @@ ext.libraries = [
 allprojects {
   group = project.ext["GROUP"]
   version = project.ext["VERSION_NAME"]
+
+  configurations.all {
+    resolutionStrategy.eachDependency {
+      if (requested.group == "com.github.edrlab.nanohttpd" && requested.name == "nanohttpd") {
+        useTarget("com.github.readium.nanohttpd:nanohttpd:master-SNAPSHOT")
+      }
+      if (requested.group == "com.github.edrlab.nanohttpd" && requested.name == "nanohttpd-nanolets") {
+        useTarget("com.github.readium.nanohttpd:nanohttpd-nanolets:master-SNAPSHOT")
+      }
+    }
+  }
 }
 
 subprojects { project ->
