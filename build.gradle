@@ -51,6 +51,7 @@ task preFlightChecks {
   requiredFiles["one.lfa.android.app.demo/src/main/assets/lfaAnalytics.xml"] = analyticsHash
   requiredFiles["one.lfa.android.app.ethiopia/src/main/assets/lfaAnalytics.xml"] = analyticsHash
   requiredFiles["one.lfa.android.app.fiji/src/main/assets/lfaAnalytics.xml"] = analyticsHash
+  requiredFiles["one.lfa.android.app.globalenglish/src/main/assets/lfaAnalytics.xml"] = analyticsHash
   requiredFiles["one.lfa.android.app.grande/src/main/assets/account_bundled_credentials.json"] = credsHash
   requiredFiles["one.lfa.android.app.grande/src/main/assets/lfaAnalytics.xml"] = analyticsHash
   requiredFiles["one.lfa.android.app.indigenous/src/main/assets/account_bundled_credentials.json"] = credsHash
