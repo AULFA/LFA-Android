@@ -41,6 +41,7 @@ copy .ci/credentials/online-app-credentials.json one.lfa.android.app.vietnam.onl
 copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.demo/src/main/assets/lfaAnalytics.xml
 copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.ethiopia/src/main/assets/lfaAnalytics.xml
 copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.fiji/src/main/assets/lfaAnalytics.xml
+copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.globalenglish/src/main/assets/lfaAnalytics.xml
 copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.grande/src/main/assets/lfaAnalytics.xml
 copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.kenya/src/main/assets/lfaAnalytics.xml
 copy .ci/credentials/lfaAnalytics.xml one.lfa.android.app.laos/src/main/assets/lfaAnalytics.xml
